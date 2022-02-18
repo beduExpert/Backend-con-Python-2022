@@ -35,7 +35,8 @@ Nos dirigiremos a este utilizando el comando cd. Y una vez dentro de este inicia
 python -m venv virtualenv
    ```
 
-   ![](img/1.png)
+   ![](img/Ejemplo1_1.jpg)
+ 
 
 
    >*__Nota:__ Recuerda que un entorno virtual, es una característica integrada en Python que  permite mantener una lista de paquetes instalados para cada proyecto en particular para que de esta forma no interfieran entre si.*
@@ -43,7 +44,7 @@ python -m venv virtualenv
 La activación del entorno virtual varia dependiendo del sistema. Utiliza el comando segun corresponda:
 
 <p align="right">
-Mac ![](img/mac.jpg)
+<img width="20px" src="img/mac.jpg">
 </p>
 
    ```console
