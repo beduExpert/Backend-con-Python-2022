@@ -2,7 +2,6 @@
 ## Ejemplo 01: Entornos virtuales e instalación de Django
 
 
-<div style="text-align: justify;">
 	
 ### 1. Objetivos :dart:
 	
