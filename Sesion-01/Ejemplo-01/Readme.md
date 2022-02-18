@@ -47,16 +47,13 @@ La activación del entorno virtual varia dependiendo del sistema. Utiliza el com
 <div style="text-align: right;">
 Mac
 </div>
-	
-   ```
-    __Activaremos el entorno virtual:__
 
    ```console
    source bin/activate
    ```
- <div style="text-align: right;">
-Windows - PowerShell
-</div>
+<p align="center">
+	Windows - PowerShell
+</p>
 	  
    ![](img/2.png)
   
