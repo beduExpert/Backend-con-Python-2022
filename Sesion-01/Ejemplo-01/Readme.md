@@ -1,51 +1,49 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-01
 ## Ejemplo 01: Entornos virtuales e instalación de Django
 
-
-	
 ### 1. Objetivos :dart:
-	
+
 - Implementar entornos virtuales
 - Instalar Django en un entorno virtual
 - Conocer como distribuir entornos virtuales al equipo de desarrollo
 
 #### 2. Requisitos :clipboard:
-	
+
 1. Tener Python Instalado
-2. Tener Instalado PIP 
+2. Tener Instalado PIP
 3. Tener una terminal configurada (PowerShell, WSL, etc)
 
 #### 3. Desarrollo :rocket:
-	
-1.  Abre una terminal. En esta primera pantalla escribiremos el comando para inicializar Python. Esto nos permitira verificar que tienes instalado y configurado el lenguaje. 
+
+1.  Abre una terminal. En esta primera pantalla escribiremos el comando para inicializar Python. Esto nos permitira verificar que tienes instalado y configurado el lenguaje.
 
    ```console
    python
-   ```	
+   ```
 Al correr el comando anterior deberiamos de poder visualizar la consola de python si todo está configurado adecuadamente. Saldremos de la consola utilizando Ctrl+Z. Posterior a esto crearemos un nuevo directorio llamado S01.
-	
+
    ```console
    mkdir S01
-   ```	
+   ```
 Nos dirigiremos a este utilizando el comando cd. Y una vez dentro de este inicializaremos un entorno virtual utilizando el el comando de python venv.
-	
+
    ```console
    cd S01
-   ```	
-	
+   ```
+
    ```console
 python -m venv virtualenv
    ```
-   
+
    ![](img/1.png)
 
 
-   __Nota:__ Recuerda que un entorno virtual, es una característica integrada en Python que  permite mantener una lista de paquetes instalados para cada proyecto en particular para que de esta forma no interfieran entre sí.
-	
-La activación del entorno virtual varia dependiendo del sistema. Utiliza el comando segun corresponda: 
-	
+   >*__Nota:__ Recuerda que un entorno virtual, es una característica integrada en Python que  permite mantener una lista de paquetes instalados para cada proyecto en particular para que de esta forma no interfieran entre si.*
+
+La activación del entorno virtual varia dependiendo del sistema. Utiliza el comando segun corresponda:
+
 <p align="right">
-Mac
+Mac ![](img/mac.jpg)
 </p>
 
    ```console
@@ -54,13 +52,28 @@ Mac
 <p align="right">
 	Windows - PowerShell
 </p>
-	  
+
+> *__Nota:__ Para poder ejecutar scripts en PowerShell es necesario aplicar los permisos necesario en el sistema.*
+
+<details><summary>Agregar permisos a PowerShell</summary>
+<p>
+
+
+En una consola de PowerShell escribe: 
+
+    ```
+       Set-ExecutionPolicy -ExecutionPolicy bypass 
+    ```
+
+</p>
+</details>
+
    ![](img/2.png)
-  
+
    __Para desactivar el nuevo entorno se realiza con:__
 
    ```console
-   deactivate  
+   deactivate 
    ```
      ![](img/3.png)
 
@@ -92,18 +105,18 @@ Mac
    ```console
    pip freeze > requeriments.txt
    ```
-   
+
    ![](img/5.png)
-   
+
    __Visualizamos el archivo generado con:__
 
    ```console
    cat requeriments.txt
    ```
-   
+
    ![](img/6.png)
-   
-   
+
+
    __Para restaurar un entorno virtual se realiza con:__
 
    ```console
