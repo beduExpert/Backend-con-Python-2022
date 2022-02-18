@@ -44,14 +44,14 @@ python -m venv virtualenv
 	
 La activación del entorno virtual varia dependiendo del sistema. Utiliza el comando segun corresponda: 
 	
-<div style="text-align: right;">
+<p align="right">
 Mac
-</div>
+</p>
 
    ```console
    source bin/activate
    ```
-<p align="center">
+<p align="right">
 	Windows - PowerShell
 </p>
 	  
