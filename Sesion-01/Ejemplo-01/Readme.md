@@ -1,27 +1,47 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-01
-## Entornos virtuales e instalación de Django
+## Ejemplo 01: Entornos virtuales e instalación de Django
 
-### OBJETIVO
-- Conocer los entornos virtuales y su aplicación
-- Conocer el framework Django y su instalación
+
+<div style="text-align: justify;">
+	
+### 1. Objetivos :dart:
+	
+- Implementar entornos virtuales
+- Instalar Django en un entorno virtual
 - Conocer como distribuir entornos virtuales al equipo de desarrollo
 
-#### REQUISITOS
-1. Descargar el repositorio
-1. Usar la carpeta de trabajo `Sesion-01/Ejemplo-01`
+#### 2. Requisitos :clipboard:
+	
+1. Tener Python Instalado
+2. Tener Instalado PIP 
+3. Tener una terminal configurada (PowerShell, WSL, etc)
 
-#### DESARROLLO
-1. Crear un entorno virtual para el proyecto base con Django usando el siguiente comando:
-
+#### 3. Desarrollo :rocket:
+	
+1.  Abre una terminal. En esta primera pantalla escribiremos el comando para inicializar Python. Esto nos permitira verificar que tienes instalado y configurado el lenguaje. 
 
    ```console
-   virtualenv django
+   python
+   ```	
+Al correr el lenguaje anterior deberiamos de poder visualizar la consola de python si todo está configurado adecuadamente. Saldremos de la consola utilizando Ctrl+Z. Posterior a esto crearemos un nuevo directorio llamado S01.
+	
+   ```console
+   mkdir S01
+   ```	
+Nos dirigiremos a este utilizando el comando cd. Y una vez dentro de este inicializaremos un entorno virtual utilizando el el comando de python venv.
+	
+   ```console
+   cd S01
+   ```	
+	
+   ```console
+python -m venv virtualenv
    ```
    
    ![](img/1.png)
 
 
-   __Nota:__ Revisar concepto de **entorno virtual**
+   __Nota:__ Recuerda que un entorno virtual, es una característica integrada en Python que  permite mantener una lista de paquetes instalados para cada proyecto en particular para que de esta forma no interfieran entre sí.
 
    __Ingresamos al directorio creado:__
 
