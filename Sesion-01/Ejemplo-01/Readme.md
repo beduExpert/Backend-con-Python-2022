@@ -23,7 +23,7 @@
    ```console
    python
    ```	
-Al correr el lenguaje anterior deberiamos de poder visualizar la consola de python si todo está configurado adecuadamente. Saldremos de la consola utilizando Ctrl+Z. Posterior a esto crearemos un nuevo directorio llamado S01.
+Al correr el comando anterior deberiamos de poder visualizar la consola de python si todo está configurado adecuadamente. Saldremos de la consola utilizando Ctrl+Z. Posterior a esto crearemos un nuevo directorio llamado S01.
 	
    ```console
    mkdir S01
@@ -42,11 +42,13 @@ python -m venv virtualenv
 
 
    __Nota:__ Recuerda que un entorno virtual, es una característica integrada en Python que  permite mantener una lista de paquetes instalados para cada proyecto en particular para que de esta forma no interfieran entre sí.
-
-   __Ingresamos al directorio creado:__
-
-   ```console
-   cd django
+	
+La activación del entorno virtual varia dependiendo del sistema. Utiliza el comando segun corresponda: 
+	
+<div style="text-align: right;">
+Mac
+<div style="text-align: right;">
+	
    ```
     __Activaremos el entorno virtual:__
 
