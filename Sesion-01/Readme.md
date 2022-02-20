@@ -2,31 +2,29 @@
 # Sesión 1: Django Fundamentals
 
 <img src="img/pizarron.png" align="right" height="100" width="100" hspace="10">
-<div style="text-align: justify;">
 
-## :dart: Objetivos
+
+### :dart: Objetivos
 - Identificar el uso de entornos virtuales y su aplicación.
 - Instalar Django dentro de un ambiente virtual.
 - Construit una aplicación "Hola Mundo" aplicando los conceptos de rutas, vistas y plantillas.
 
-## 📂 Organización de la clase
-
----
+### 📂 Organización de la clase
+***
 
 #### <ins>Ambientes Virtuales</ins>
-<img src="img/imagen1.png" align="right" height="200" width="250"> 
+<img src="img/imagen1.png" align="right" height="200" width="200"> 
 
 Comenzaremos con la configuración de un __ambiente virtual__. Utilizaremos la herramienta de python *VirtualEnv*.
 
-La información de una base de datos se encuentra alojada en un servidor, por lo general, una computadora de gran potencia. Para conectarnos hacemos uso de un cliente que recibe datos de la base y envía peticiones para cambiar o agregar datos.
-
+Aprenderemos la estructura de paquetes necesaria para manejar archivos del tipo requirements.txt e instalarlos cuando colaboremos en equipos de trabajo. 
 
 - [**`EJEMPLO 1`**](Ejemplo-01/Readme.md)
 
----
+***
 
 #### <ins>Estructura de un Proyecto en Django</ins>
-<img src="imagenes/imagen2.png" align="right" height="200" width="300"> 
+<img src="img/imagen2.png" align="right" height="200" width="200"> 
 
 Una vez que hemos configurado un ambiente virtual e instalado Django, podemos comenzar con la creación de proyectos. Cada proyecto en Django contiene *Aplicaciones*. Una proyecto se compone de los siguientes archivos.
 
@@ -46,10 +44,10 @@ Cada aplicación que escribes en Django consiste en un paquete de Python que sig
 - [**`EJEMPLO 2`**](Ejemplo-02/Readme.md)
 - [**`RETO 2`**](Reto-02/Readme.md)
 
----
+***
 
 #### <ins>Arquitectura MVT (Model,View,Template) </ins>
-<img src="imagenes/imagen3.png" align="right" height="200" width="300">
+<img src="img/imagen3.png" align="right" height="200" width="200">
 
  Django sigue un paradigma llamado Model View Template (MVT).
 
@@ -60,7 +58,7 @@ Cada aplicación que escribes en Django consiste en un paquete de Python que sig
 
 - [**`EJEMPLO 3`**](Ejemplo-03/Readme.md)
 
----
+***
 
 ### Postwork :memo:
 Aplica lo todo lo que aprendiste durante la sesión siguiendo un proyecto guidado.
@@ -71,4 +69,3 @@ Aplica lo todo lo que aprendiste durante la sesión siguiendo un proyecto guidad
 
 [`Anterior`](../Readme.md) | [`Siguiente`](../Sesion-02/Readme.md)
 
-</div>
