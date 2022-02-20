@@ -174,6 +174,9 @@ Para instalar automáticamente estos paquetes y configurar nuestro ambiente virt
 #### <p align="Center">
 	¡Felicidades! Has configurado tu entorno virtual y el archivo requirements.txt :+1: :1st_place_medal:</p>
 
+
+[`Anterior`](../Readme.md#entornos-virtuales) | [`Siguiente`](../Readme.md#entornos-virtuales-en-vscode)
+
 ___Referencias___
    ***
 
