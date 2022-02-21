@@ -175,9 +175,3 @@ Para instalar automáticamente estos paquetes y configurar nuestro entorno virtu
 
 
 [`Anterior`](../Readme.md#Entornos-Virtuales) | [`Siguiente`](../Readme.md#estructura-de-un-proyecto-en-django)
-
-___Referencias___
-   ***
-
-   - Documentación Oficial Django: https://docs.djangoproject.com/
-   - Documentación Oficial PowerShell https://docs.microsoft.com/en-us/powershell/
