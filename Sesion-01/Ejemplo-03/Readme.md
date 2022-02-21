@@ -173,6 +173,31 @@ Todas las url relativas o absolutas ahora tienen que ser absolutas e iniciar con
    ```
    >*__Nota:__ Es importante incluir `{% load static %}` para que las etiquetas funcionen. Como buena práctica se aconseja incluirlo en la primera línea de tus plantillas cuando sea necesario.*
 
+Este es el código completo de la plantilla index.html
+```html
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'tarjeta/index.css' %}">
+    <title>Template</title>
+</head>
+<body>
+    <div class="box">
+        <div class="inner">
+          <span>Hola BEDU</span>
+        </div>
+        <div class="inner">
+          <span>Hola BEDU</span>
+        </div>
+      </div>
+</body>
+</html>`
+```
+
 El resultado debería de ser algo como esto:
 
  ![](img/Ejemplo3_4.jpg)
