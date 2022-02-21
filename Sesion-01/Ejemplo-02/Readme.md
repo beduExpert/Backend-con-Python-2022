@@ -1,62 +1,115 @@
 
 [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-02
-## Iniciar la construcción de una aplicación web con Django
 
-### OBJETIVOS
-- Conocer como iniciar un proyecto en Django
-- Conocer como crear una aplicación
-- Conocer y definir una ruta en Django
-- Conocer y definir una vista asociada a la ruta
+### 1. Objetivos :dart:
 
-#### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-01/Ejemplo-02`
-1. Activar el entorno virtual __django__
+- Configurar el editor Vs Code para utilizar nuestro ambiente virtual.
+- Conocer como iniciar un proyecto en Django.
+- Conocer como crear una aplicación.
+- Conocer y definir una ruta en Django.
+- Conocer y definir una vista asociada a la ruta.
 
-#### DESARROLLO
-1. Crear el proyecto __Banco__ con Django y cambiándonos a la carpeta del proyecto:
+### 2. Requisitos :clipboard:
+
+1. Tener Python Instalado.
+2. Tener Instalado PIP.
+3. Tener una terminal configurada (PowerShell, WSL, etc).
+4. Tener un entorno virtual con __django__ instalado.
+5. Tener VS Code instalado
+
+
+### 3. Desarrollo :rocket:
+
+
+#### Configuración del entorno virtual en VS Code
+***
+Una vez configurado nuestro proyecto mediante una terminal. Podemos vincular el directorio de trabajo a VS Code desde la terminal.
+
+```
+code .
+```
+   ![](img/Ejemplo2_1.jpg)
+
+Este comando debería de abrir una ventana de VS Code. Utilizaremos este IDE para gestionar nuestras carpetas y tener una experiencia de programación más sencilla.
+
+   ![](img/Ejemplo2_2.jpg)
+
+   >*__Nota:__ Recuerda asegurarte de VS Code utilice como interprete las versiones de Python de tu ambiente virtual.
+
+<details><summary>Haz click aquí para saber como: vincular el interprete del ambiente virtual a VS Code.</summary>
+<p>
+Para poder utilizar VS Code el indicador en la esquina inferior derecha debe de mostrar como activo el interprete con el nombre tu ambiente virtual.
+
+![](img/Ejemplo2_3.jpg)
+
+En caso de que esto no sea asi puedes seleccionar el ejecutable directamente. Presiona __Ctrl+Shift+P__ para abrir el menú de selección de interprete.
+
+![](img/Ejemplo2_4.jpg)
+
+Haz click en el boton __Enter interpreter path__ y dirigete a la carpeta de Scripts (Windows) para seleccionar tu ejecutable de Python o a la carpeta bin en sistemas UNIX.
+</p>
+</details>
+
+#### Inicialización de un proyecto de Django 
+***
+
+Un proyecto Django es un directorio que contiene todos los datos del proyecto: código, configuración, plantillas y activos.
+
+Se crea y se estructura ejecutando el comando __django-admin__ en la línea de comandos con el argumento __startproject__ y proporcionando el nombre del proyecto.
+
+Por ejemplo, para crear un proyecto Django con el nombre Banco, el comando que se ejecuta es este:
 
    ```console
    django-admin startproject Banco
    ```
+Ingresamos al directorio creado y lo visualizamos.
 
-1. Ingresamos al directorio creado y lo visualizamos
-
-	```
-	   cd Banco
-	   ls
+   ```console
+   cd Banco
+   ls
    ```
-   
-   ![](img/1.png)
 
-1. Crear la aplicación __tarjeta__ con el comando:
+   ![](img/Ejemplo2_8.jpg)
+
+   >*__Nota:__ Django genera un archivo manage.py el cuál es un archivo que estaremos utilizando para trabajar con nuestro proyecto.
+
+Verifica la configuración del proyecto __Banco__ con el comando:
+
+   ```console
+   Python manage.py
+   ```
+![](img/Ejemplo2_8.jpg)
+
+Como resultados se nos mostrará la lista de comandos disponibles que podemos operar sobre nuestro proyecto.
+
+Uno de los comandos que más utilizaremos será el comando para inicializar el servidor de Django.
+
+   ```console
+   Python manage.py runserver
+   ```
+El resultado de este comando debería arrojarte en tu consola una serie de lineas en las cuales se especfica la dirección http en que se ejecuta el servidor Django.
+
+![](img/Ejemplo2_9.jpg)
+
+Puedes copiar la ruta o hacer ctrl+click para visitar la página de tu proyecto.
+
+![](img/Ejemplo2_10.jpg)
+
+#### Agregar una aplicación al proyecto
+***
+Un proyecto de Django contendrá al menos una aplicación. Si está bien diseñada, una aplicación debería poder eliminarse de un proyecto y moverse a otro proyecto sin modificaciones.
+
+Para inicializar una aplicación usamos los comandos asociados a manage.py
 
    ```console
    python3 manage.py startapp tarjeta
    ls
    ```
-   
-   ![](img/2.png)
-   
-   ***
+Esto creará toda una estructura de archivos de la aplicación dentro de nuestro proyecto. Las aplicaciones se caracterizan por tener los archivos de __modelos__ models.py y __vistas__ views.py Exploraremos cada elemento conforme avance el curso.
 
-1. Ejecutar el proyecto __Banco__ con:
+   ![](img/Ejemplo2_11.jpg)
 
-   ```console
-   python3 manage.py runserver
-   ```
-   
-   ![](img/3.png)
-   
-   Si se abre la url indicada, se observará lo mismo que el "hola mundo!", así que sigamos un poco más adelante, nuestro objetivo es mostrar la página `index.html` pero como parte de la aplicación web.
-   
-   ![](img/4.png)
-
-   __Nota:__ Como el servidor bloquea la terminal, vamos a dejar esta terminal aquí y para los siguiente comandos abrir otra terminal, activar el entorno virtual django.
-   
-   ![](img/5.png)
-
-1. Agrega la aplicación __tarjeta__ a la configuración en el archivo `Banco/Banco/settings.py`:
+Para configurar adecuadamente nuestra nueva aplicación dentro del proyecto. Debemos agregar la aplicación __tarjeta__ a la configuración en el archivo `Banco/Banco/settings.py`:
 
    ```python
    # Application definition
@@ -68,65 +121,74 @@
        'django.contrib.sessions',
        'django.contrib.messages',
        'django.contrib.staticfiles',
-       'tarjeta',
-   ]   
+       'tarjeta', ## Esta es la app que agregamos.
+   ]
    ```
-   
-   ![](img/6.png)
-
-   __Revisar el flujo de una petición HTTP para el caso de Django:__
-
-   [Ver diapos]
-
-1. Agrega información regional a la configuración en el archivo `Banco/Banco/settings.py`:
+Además, vamos a agrega información regional a la configuración en el archivo `Banco/Banco/settings.py`. Esto permite que el administrador de django esté en español, además de que el tratamiento de horas y fechas serán referidas a la zona horaria de México:
 
    ```python
    # Internationalization
-   # https://docs.djangoproject.com/en/2.2/topics/i18n/
+   # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
    LANGUAGE_CODE = 'es-MX'
 
    TIME_ZONE = 'America/Mexico_City'
    ```
-   
-   ![](img/7.png)
-   
-   Esto permite que el administrador de django esté en español, además de que el tratamiento de horas y fechas serán referidas a la zona horaria de México.
+> *__Nota:__ El objetivo de la internacionalización y localización es permitir que una única aplicación web ofrezca su contenido en idiomas y formatos adaptados a diferentes audiencias geográficas. Django tiene soporte completo para la traducción de texto, formato de fechas, horas y números, y zonas horarias.*
 
-1. Mapear la url `/` con las rutas generales del proyecto __Banco__ hacia las rutas de la aplicación __tarjeta__
+Para verificar que los cambios se han ejecutado correctamente. Utiliza el comando manage.py
 
-   ```
-   url / -> Banco/Banco/urls.py -> Banco/Banco/tarjeta/urls.py
-   ```
+```console
+python manage.py runserver
+```
+Al visitar la URL del servidor el idioma debería ser español.
 
-   __En el archivo `Banco/Banco/urls.py` agregar lo siguiente:__
+   ![](img/Ejemplo2_12.jpg)
+
+
+#### Mappeo de URL
+***
+
+Django no sabe automáticamente qué vista debe ejecutarse cuando recibe una solicitud para una URL. La función de una Mappeo de URL es crear este vínculo entre una dirección URL y una vista. La asignación de URL a vista se define en el archivo __urls.py__
+
+Por ejemplo si abrimos el archivo __urls.py__ dentro de banco nos encontraremos lo siguiente.
 
    ```python
    from django.contrib import admin
-   from django.urls import path, include  # modificada
+   from django.urls import path
 
    urlpatterns = [
-       path('', include("tours.urls")),  # agregada
-       path('admin/', admin.site.urls),
+      path('admin/', admin.site.urls),
    ]
    ```
-   
-   ![](img/8.png)
+Este archivo contiene una variable, urlpatterns, que es una lista de rutas que Django evalúa  hasta que encuentra una coincidencia para la URL que se solicita.
 
-   En la vetana donde se está ejecutando el proyecto __Banco__ se puede observar el siguiente mensaje de error:
-   
-   ![](img/9.png)
+Agreguemos a nuestro proyecto un mappeo para la aplicación __tarjeta__, en el archivo __urls.py__ de __Banco__ agregamos lo siguiente:
 
-   Lo que indica que nos falta crear el archivo `urls.py` dentro de la carpeta `Banco/tarjeta/`
+```python
+from django.contrib import admin
+from django.urls import path, include #agregamos include
 
-1. Mapear la url `/` con las rutas de la aplicación __tarjeta__
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('tarjeta.urls')), #agregamos un nuevo path
+]
 
-   ```
-   url / -> Banco/tarjeta/urls.py -> Banco/tarjeta/views.py
-   ```
+```
+La URL se resolverá en una vista o en otro archivo urls.py que también contenga una variable urlpatterns, que se resolverá de la misma manera. Los archivos URL se pueden encadenar de esta manera para que no se vuelvan demasiado grandes.
 
-   __Crear el archivo `Banco/tarjeta/urls.py` con el siguiente contenido:__
-   
+Si intentmaos correr el proyecto __Banco__ se puede observar el siguiente mensaje de error:
+
+```
+  File "<frozen importlib._bootstrap>", line 1030, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1007, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 984, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'tarjeta.urls'
+```
+Lo que indica que nos falta crear el archivo `urls.py` dentro de la carpeta `Banco/tarjeta/`
+
+Vamos a crear el archivo `Banco/tarjeta/urls.py` con el siguiente contenido:
+
    ```python
     from django.urls import path
 	 from . import views
@@ -135,34 +197,23 @@
     path('', views.index, name="index"),
 	 ]
    ```
-   
-   ![](img/10.png)
-
-   __Reiniciar Django para observar el resultado:__
-
-   ![](img/11.png)
-   
-   Lo que indica que en el archivo `tarjeta/views.py` no existe una función llamada `index`, así que toca agregar dicha función.
-
-1. Agregar la función/vista `index` al archivo `tarjeta/views.py` con el siguiente contenido:
+Para que esto funciones es necesario agregar función/vista `index` al archivo `tarjeta/views.py` con el siguiente contenido:
 
    ```python
-   from django.http import HttpResponse
    from django.shortcuts import render
+   from django.http import HttpResponse
 
-   # Create your views here.
    def index(request):
-       """ Vista para atender la petición de la url / """
-       return HttpResponse("<h2>Soy la página de inicio! Hola Mundo!!</h2>")
+      return HttpResponse("<h2>Soy la página de inicio! Hola Mundo!!")
    ```
-    ![](img/12.png)
 
-   __Nota: Si la aplicación Django no está iniciada, iniciarla en este momento y abrir la siguiente url en el navegador__
+> *__Nota__: Si la aplicación Django no está iniciada, iniciarla en este momento y abrir la siguiente url en el navegador http://127.0.0.1:8000*
 
-   http://127.0.0.1:8000
-
-   __El resultado debería ser el siguiente:__
-
+El resultado deberiía ser el siguiente
    ![](img/13.png)
-   
-   ***
+
+
+### ¡Felicidades! Has configurado un proyecto en Django. Agregaste una aplicación y vinculaste una vista al servidor. :+1: :1st_place_medal:
+
+
+[`Anterior`](../Readme.md#entornos-virtuales) | [`Siguiente`](../Readme.md#entornos-virtuales-en-vscode)
