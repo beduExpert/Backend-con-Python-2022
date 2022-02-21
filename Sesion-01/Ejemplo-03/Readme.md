@@ -202,7 +202,7 @@ El resultado debería de ser algo como esto:
 
  ![](img/Ejemplo3_4.jpg)
 
- ### ¡Felicidades! Has creado tu propia plantilla con soporte para chivos estáticos. Agregaste css personalizado y configuraste la aplicación para consumir los archivos a nivel proyecto. :+1: :1st_place_medal:
+ ### ¡Felicidades! Has creado tu propia plantilla con soporte para archivos estáticos. Agregaste css personalizado y configuraste la aplicación para consumir los archivos a nivel proyecto. :+1: :1st_place_medal:
 
 
 
