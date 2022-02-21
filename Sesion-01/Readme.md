@@ -17,7 +17,7 @@
 
 Comenzaremos con la configuración de un __entorno virtual__. Utilizaremos la herramienta de python *virtualenv* y *venv*. El comando dependerá de si utilizamos un sistema UNIX o windows.
 
-Además, analizeremos la estructura de paquetes necesaria para manejar archivos del tipo requirements.txt e instalarlos cuando colaboremos en equipos de trabajo.
+Además, analizaremos la estructura de paquetes necesaria para manejar archivos del tipo requirements.txt e instalarlos cuando colaboremos en equipos de trabajo.
 
 Los entornos virtuales se consideran una buena práctica que nos permite seprar nuestros paquetes de desarollo de los paquetes del sistema.
 
@@ -28,7 +28,7 @@ Los entornos virtuales se consideran una buena práctica que nos permite seprar 
 #### <ins>Estructura de un Proyecto en Django</ins>
 <img src="img/imagen2.png" align="right" height="200" width="200">
 
-Una vez que hemos configurado un entorno virtual e instalado Django, podemos comenzar con la creación de proyectos. Cada proyecto en Django contiene *Aplicaciones*. Una proyecto se compone de los siguientes archivos.
+Una vez que hemos configurado un entorno virtual e instalado Django, podemos comenzar con la creación de proyectos. Cada proyecto en Django contiene *Aplicaciones*. Un proyecto se compone de los siguientes archivos.
 
 ```console
 mi_sitio/
