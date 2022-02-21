@@ -53,7 +53,7 @@ La activación del entorno virtual varia dependiendo del sistema. Utiliza el com
 	Windows - PowerShell
 </p>
 
-Ingresamos a la carpeta del ambiente virtual que creamos y corremos el comando ls para examinar los contenidos de la carpeta.
+Ingresamos a la carpeta del entorno virtual que creamos y corremos el comando ls para examinar los contenidos de la carpeta.
    ```console
 cd .\virtualenv\Scripts\
 ls
@@ -61,7 +61,7 @@ ls
 
 ![](img/Ejemplo1_2.jpg)
 
-El comando virtualenv creo una serie de archivos por nosotros. Además de agregar los archivos agrega las versiones necesarias y aisladas de python y pip. Para Iniciar nuestro ambiente debemos ejecutar el script .ps1 con el siguiente comando: 
+El comando virtualenv creo una serie de archivos por nosotros. Además de agregar los archivos agrega las versiones necesarias y aisladas de python y pip. Para Iniciar nuestro entorno debemos ejecutar el script .ps1 con el siguiente comando: 
 
    ```console
    .\Activate.ps1
@@ -79,10 +79,10 @@ En una consola de PowerShell escribe:
 </p>
 </details>
 
-Para desactivar el ambiente puedes usar el comando deactivate:
+Para desactivar el entorno puedes usar el comando deactivate:
 
    ```console
-   deactivate 
+   deactivate
    ```
    ![](img/Ejemplo1_3.jpg)
 
@@ -90,7 +90,7 @@ Para desactivar el ambiente puedes usar el comando deactivate:
 <p align="right">
 	UNIX - MacOS, Linux Terminal
 </p>
-Ingresa a la carpeta del ambiente virtual que creaste. En este caso el nombre de la carpeta es django.  Utiliza el comando source para activar el ambiente.
+Ingresa a la carpeta del entorno virtual que creaste. En este caso el nombre de la carpeta es django.  Utiliza el comando source para activar el entorno.
 
 <p align="right">
 <img width="20px" src="img/mac.jpg">
@@ -102,7 +102,7 @@ Ingresa a la carpeta del ambiente virtual que creaste. En este caso el nombre de
 
    ![](img/2.png)
 
-Para desactivar el ambiente puedes usar el comando deactivate:
+Para desactivar el entorno puedes usar el comando deactivate:
 
 <p align="right">
 <img width="20px" src="img/mac.jpg">
@@ -127,17 +127,17 @@ Una vez que hemos configurado el entorno virtual podemos instalar modulos en est
 
 La instalación puede demorar algunos minutos pero al terminar habrás instalado Django en tu entorno virtual. Recuerda que este modulo será independiente a tu instalación root o del sistema.
 
-Para conocer la versión de los modulos que has instalado puedes utilizar el siguiente comando: 
+Para conocer la versión de los modulos que has instalado puedes utilizar el siguiente comando:
 
    ```console
    pip freeze
    ```
   ![](img/Ejemplo1_5.jpg)
 
-  Para este ambiente virtual estamos utilizando Django en su versión 4. 
+  Para este entorno virtual estamos utilizando Django en su versión 4.0.2.
 
  #### Generación del archivo requirements.txt
-*** 
+***
 
 Un elemento importante cuando trabajamos con Python es el uso del archivo requerements.txt. Este archivo nos especifíca que modulos y sus versiones.
 
@@ -156,13 +156,13 @@ Podemos examinar la estructura de de nuestro directorio y utilizar el comando ca
 
  #### Instalación del archivo requirements.txt
 ***
-Cuando trabajamos en un equipo de trabajo debemos especificar los modulos y versiones que usamos. En el caso de que utilizemos un ambiente creado por alguien más. Recordemos siempre examinar su archivo requierements.txt.
+Cuando trabajamos en un equipo de trabajo debemos especificar los modulos y versiones que usamos. En el caso de que utilizemos un entorno creado por alguien más. Recordemos siempre examinar su archivo requierements.txt.
 
-La siguiente captura es un ejemplo de un proyecto de ciencia de datos que especifica los diversos paquetes que se requieren para que el ambiente virtual funcione.
+La siguiente captura es un ejemplo de un proyecto de ciencia de datos que especifica los diversos paquetes que se requieren para que el entorno virtual funcione.
 
    ![](img/Ejemplo1_7.jpg)
 
-Para instalar automáticamente estos paquetes y configurar nuestro ambiente virtual. Utilizamos el comando:
+Para instalar automáticamente estos paquetes y configurar nuestro entorno virtual. Utilizamos el comando:
 
    ```console
    pip install -r requeriments.txt
@@ -171,10 +171,10 @@ Para instalar automáticamente estos paquetes y configurar nuestro ambiente virt
 
 >*__Nota:__ -r indica a pip que estamos trabajando con archivos de requerimientos*
 
-#### ¡Felicidades! Has configurado tu entorno virtual y el archivo requirements.txt :+1: :1st_place_medal:</p>
+#### ¡Felicidades! Has configurado tu entorno virtual y el archivo requirements.txt :+1: :1st_place_medal:
 
 
-[`Anterior`](../Readme.md#entornos-virtuales) | [`Siguiente`](../Readme.md#entornos-virtuales-en-vscode)
+[`Anterior`](../Readme.md#Entornos-Virtuales) | [`Siguiente`](../Readme.md#estructura-de-un-proyecto-en-django)
 
 ___Referencias___
    ***

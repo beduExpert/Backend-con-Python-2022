@@ -3,7 +3,7 @@
 
 ### 1. Objetivos :dart:
 
-- Configurar el editor Vs Code para utilizar nuestro ambiente virtual.
+- Configurar el editor Vs Code para utilizar nuestro entorno virtual.
 - Conocer como iniciar un proyecto en Django.
 - Conocer como crear una aplicación.
 - Conocer y definir una ruta en Django.
@@ -34,11 +34,11 @@ Este comando debería de abrir una ventana de VS Code. Utilizaremos este IDE par
 
    ![](img/Ejemplo2_2.jpg)
 
-   >*__Nota:__ Recuerda asegurarte de VS Code utilice como interprete las versiones de Python de tu ambiente virtual.
+   >*__Nota:__ Recuerda asegurarte de VS Code utilice como interprete las versiones de Python de tu entorno virtual.
 
-<details><summary>Haz click aquí para saber como: vincular el interprete del ambiente virtual a VS Code.</summary>
+<details><summary>Haz click aquí para saber como: vincular el interprete del entorno virtual a VS Code.</summary>
 <p>
-Para poder utilizar VS Code el indicador en la esquina inferior derecha debe de mostrar como activo el interprete con el nombre tu ambiente virtual.
+Para poder utilizar VS Code el indicador en la esquina inferior derecha debe de mostrar como activo el interprete con el nombre tu entorno virtual.
 
 ![](img/Ejemplo2_3.jpg)
 
@@ -50,7 +50,7 @@ Haz click en el boton __Enter interpreter path__ y dirigete a la carpeta de Scri
 </p>
 </details>
 
-#### Inicialización de un proyecto de Django 
+#### Inicialización de un proyecto de Django
 ***
 
 Un proyecto Django es un directorio que contiene todos los datos del proyecto: código, configuración, plantillas y activos.
@@ -216,4 +216,4 @@ El resultado deberiía ser el siguiente
 ### ¡Felicidades! Has configurado un proyecto en Django. Agregaste una aplicación y vinculaste una vista al servidor. :+1: :1st_place_medal:
 
 
-[`Anterior`](../Readme.md#entornos-virtuales) | [`Siguiente`](../Readme.md#entornos-virtuales-en-vscode)
+[`Anterior`](../Readme.md#Entornos-Virtuales) | [`Siguiente`](../Readme.md#arquitectura-mvt-modelviewtemplate-)

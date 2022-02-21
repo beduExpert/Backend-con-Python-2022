@@ -6,29 +6,29 @@
 
 ### :dart: Objetivos
 - Identificar el uso de entornos virtuales y su aplicación.
-- Instalar Django dentro de un ambiente virtual.
+- Instalar Django dentro de un entorno virtual.
 - Construit una aplicación "Hola Mundo" aplicando los conceptos de rutas, vistas y plantillas.
 
 ### 📂 Organización de la clase
 ***
 
-#### <ins>Ambientes Virtuales</ins>
-<img src="img/imagen1.png" align="right" height="100" width="100"> 
+#### <ins>Entornos Virtuales</ins>
+<img src="img/imagen1.png" align="right" height="100" width="100">
 
-Comenzaremos con la configuración de un __ambiente virtual__. Utilizaremos la herramienta de python *virtualenv* y *venv*. El comando dependerá de si utilizamos un sistema UNIX o windows. 
+Comenzaremos con la configuración de un __entorno virtual__. Utilizaremos la herramienta de python *virtualenv* y *venv*. El comando dependerá de si utilizamos un sistema UNIX o windows.
 
 Además, analizeremos la estructura de paquetes necesaria para manejar archivos del tipo requirements.txt e instalarlos cuando colaboremos en equipos de trabajo.
 
-Los ambientes virtuales se consideran una buena práctica que nos permite seprar nuestros paquetes de desarollo de los paquetes del sistema. 
+Los entornos virtuales se consideran una buena práctica que nos permite seprar nuestros paquetes de desarollo de los paquetes del sistema.
 
 - [**`EJEMPLO 1`**](Ejemplo-01/Readme.md)
 
 ***
 
 #### <ins>Estructura de un Proyecto en Django</ins>
-<img src="img/imagen2.png" align="right" height="200" width="200"> 
+<img src="img/imagen2.png" align="right" height="200" width="200">
 
-Una vez que hemos configurado un ambiente virtual e instalado Django, podemos comenzar con la creación de proyectos. Cada proyecto en Django contiene *Aplicaciones*. Una proyecto se compone de los siguientes archivos.
+Una vez que hemos configurado un entorno virtual e instalado Django, podemos comenzar con la creación de proyectos. Cada proyecto en Django contiene *Aplicaciones*. Una proyecto se compone de los siguientes archivos.
 
 ```console
 mi_sitio/
