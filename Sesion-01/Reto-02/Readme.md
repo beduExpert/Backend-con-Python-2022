@@ -1,32 +1,38 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Reto-02
-## Iniciar la construcción de una aplicación web con Django
+## Agregar una segunda aplicación al proyecto Banco
 
-### OBJETIVOS
-- Crear una aplicación en Django
-- Definir una ruta en Django
-- Definir una vista asociada a la ruta
+### 1. Objetivos :dart:
+- Agregar una aplicación a un proyecto en Django
+- Definir una ruta (path) en Django
+- Definir una vista asociada a la ruta (path)
 
-#### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-01/Reto-02`
-1. Activar el entorno virtual __Banco__
+### 2. Requisitos :clipboard:
+1. Completar el Ejemplo 1
+2. Activar el entorno virtual __Banco__
 
-#### DESARROLLO
-1. Crear la aplicación ____ con:
+### 3. Desarrollo :rocket:
+
+En este reto necesitamos agregar otra aplicación al proyecto Banco. Para lograr esto sigue los siguientes pasos:
+- Crea una nueva aplicación usando manage.py
+- Agrega la aplicación __servicios__ al archivo settings.py de banco.
+- Agrega la ruta (path) de servicios a al archivo urls de banco y vincula el archivo urls de servicios a una vista.
+- En la vista agrega un encabezado de segundo nivel con el siguiente texto: `<h2>Soy la página de inicio de un servicio!</h2`.
+
+<details><summary>Solución</summary>
+
+ Crear la aplicación ____ con:
 
    ```console
    python3 manage.py startapp servicios
    ```
-   ***
 
-1. Ejecutar el proyecto __Banco__ con:
+ Ejecutar el proyecto __Banco__ con:
 
    ```console
-   python3 manage.py runserver  
+   python3 manage.py runserver
    ```
-   ***
 
-1. Agrega la aplicación __servicios__ a la configuración en el archivo `Banco/Banco/settings.py`:
+ Agrega la aplicación __servicios__ a la configuración en el archivo `Banco/Banco/settings.py`:
 
    ```python
    # Application definition
@@ -40,11 +46,9 @@
        'django.contrib.staticfiles',
        'tarjeta',
        'servicios',
-   ]   
+   ]
    ```
-   ***
-
-1. Mapear la url `/servicios` con las rutas generales del proyecto __Banco__ hacia las rutas de la aplicación __servicios__
+ Mapea la url `/servicios` con las rutas generales del proyecto __Banco__ hacia las rutas de la aplicación __servicios__
 
    ```
    url / -> Banco/Banco/urls.py -> Banco/servicios/urls.py
@@ -58,10 +62,9 @@
    		path('servicios/', include("servicios.urls")), #agregada
    		path('admin/', admin.site.urls),
    ]
-   ```
-   ***
 
-1. Mapear la url `/servicios` con las rutas de la aplicación __servicios__
+
+ Mapea la url `/servicios` con las rutas de la aplicación __servicios__
 
    ```
    url /perfiles -> Banco/servicios/urls.py -> Banco/servicios/views.py
@@ -80,7 +83,7 @@
    Acuérdate de estar reiniciando Django para observar los resultados y mensajes de error.
    ***
 
-1. Agregar la función/vista `index` al archivo `Banco/servicios/views.py` con el siguiente contenido:
+Agregar la vista `index` al archivo `Banco/servicios/views.py` con el siguiente contenido:
 
    ```python
    from django.http import HttpResponse
@@ -100,4 +103,7 @@
    __El resultado debería ser el siguiente:__
 
   ![](img/1.png)
-   ***
+</details>
+</br>
+
+[`Anterior`](../Readme.md#Entornos-Virtuales) | [`Siguiente`](../Ejemplo-03/Readme.md)

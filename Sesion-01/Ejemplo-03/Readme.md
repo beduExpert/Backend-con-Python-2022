@@ -1,100 +1,184 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-03
-## Agregar la página de inicio ya maquetada a la aplicación web
+### 1. Objetivos :dart:
 
-### OBJETIVOS
 - Conocer como agregar páginas ya maquetadas por medio de las plantillas con Django.
 - Conocer como configurar y agregar los archivos estáticos en una aplicación web con Django.
-- Contar con la página de inicio del proyecto Bedutravels disponible con Django.
 
-#### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-01/Ejemplo-03/django/`
-1. Activar el entorno virtual __django__
-1. Página de inicio maquetada del proyecto __Banco__
+### 2. Requisitos :clipboard:
 
-   ![](img/1.png)
+1. Tener Python Instalado.
+2. Tener Instalado PIP.
+3. Tener una terminal configurada (PowerShell, WSL, etc).
+4. Tener un entorno virtual con __django__ instalado.
+5. Tener VS Code instalado
+5. Haber completado el Ejemplo-02
 
-#### DESARROLLO
-1. Ejecutar el proyecto __Banco__ con:
+### 3. Desarrollo :rocket:
 
-   ```console
-   python3 manage.py runserver   
-   ```
-   
-   ![](img/2.png)
-   ***
+#### Creación de una plantilla de Django
+***
+Dentro de cada proyecto que generemos en Django. Podemos tener una carpeta llamada templates (plantillas).
 
-1. Haciendo uso de las plantillas de Django integrar la página de inicio maquetada que se encuentra en `public_html/index.html`.
+ Por defecto, Django busca los archivos html en la carpeta `proyecto/aplicacion/templates/aplicacion/`
 
-   __Crear las carpetas `Banco/tarjeta/templates/tarjeta`:__
+   Vamos a modificar el archivo settings.py para incluir una ruta a nivel proyecto. `'DIRS': [os.path.join(BASE_DIR, 'templates')]`
 
-   ```console
-   $ mkdir tarjeta/templates
-   $ mkdir tarjeta/templates/tarjeta
-   ```
+   ```python
+   TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+```
+> *__Nota:__ Recuerda importar el módulo os con import os al inicio de tu archivo settings.*
 
-   __Copiar el archivo `public_html/index.html` dentro de la carpeta `Banco/tarjeta/templates/tarjeta/`:__
+A continuación, crea un directorio de plantillas en el mismo nivel que el proyecto. Aquí hay un ejemplo de cómo se vería con el archivo index.html
 
-   ```console
-   cp ../../public_html/index.html tarjeta/templates/tarjeta
-   ```
+   ![](img/Ejemplo3_1.jpg)
 
-   __Modificar la función `index()` en el archivo `tarjeta/views.py` para hacer uso de las plantillas (templates)__
+
+Generamos un nuevo archivo llamado index.html. Dentro de este archivo incluiremos el siguiente código.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template</title>
+</head>
+<body>
+    <h2>Soy la página de inicio principal!</h2>
+    <p>Enviado desde un template</p>
+</body>
+</html>
+```
+
+Para poder utilizar nuestrso template debemos ,odificar la función `index()` en el archivo `tarjeta/views.py` para hacer uso de las plantillas (templates).
 
    ```python
    from django.shortcuts import render
+   from django.http import HttpResponse
 
    # Create your views here.
    def index(request):
-       """ Vista para atender la petición de la url / """
        return render(request, "tarjeta/index.html")
    ```
-   
-   ![](img/3.png)
-   
-   Por omisión, Django busca los archivos html en la carpeta `proyecto/aplicacion/templates/aplicacion/`
 
-   __El resultado en el navegador debería de ser el siguiente:__
+El resultado en el navegador debería de ser el siguiente:
 
-   ![](img/4.png)
+  ![](img/Ejemplo3_2.jpg)
 
-   Hasta aquí ya podemos ver el html, pero ¿y los estilos y las imágenes?
+#### Configuración de archivos estáticos
+***
+Los sitios web generalmente necesitan servir archivos adicionales como imágenes, JavaScript o CSS. En Django, nos referimos a estos archivos como "archivos estáticos".
 
-   Como son archivos estáticos aún no hemos autorizado a que se puedan ver, así que continuemos.
-   ***
+Por defecto Django busca los archivos estáticos en la carpeta `Banco/tarjeta/static/tarjeta/`. Vamos a configurar folder a nivel proyecto para almenacenar nuestros archivos estaticos. Agregamos las siguientes lineas de código al final del archivo `settings.py`
 
-1. Agregando acceso a los archivos estáticos (ruta y vista)
+```console
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+    '/var/www/static/',
+]
+```
 
-   __Crear la carpeta `Banco/tarjeta/static/tarjeta/`:__
+Procedemos a crear la estructura del folder donde almacenaremos nuestros archivos `/static/tarjeta/` . Dentro de este crearemos un archivo index.css
 
-   ```console
-   mkdir tarjeta/static
-   mkdir tarjeta/static/tarjeta
-   ```
+ ![](img/Ejemplo3_3.jpg)
 
-   __Copiar las carpetas de los archivos estáticos (css y img):__
 
-  ![](img/5.png)
+<details><summary>En el archivo index.css agregaremos el siguiente código CSS</summary>
+<p>
+Este es el código CSS:
 
-   __Finalmente hay que modificar la ruta en el archivo `index.html` para que usen el sistema de Django__
+         html,
+         body {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: navajowhite;
+         }
 
-   Todas las url relativas o absolutas ahora tienen que ser absolutas e iniciar con `/static/tarjeta/`, un ejemplos se muestra a continuación:
+         .box {
+            display: flex;
+         }
 
+         .box .inner {
+            width: 400px;
+            height: 200px;
+            line-height: 200px;
+            font-size: 4em;
+            font-family: sans-serif;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+         }
+
+         .box .inner:first-child {
+            background-color: indianred;
+            color: darkred;
+            transform-origin: right;
+            transform: perspective(100px) rotateY(-15deg);
+         }
+
+         .box .inner:last-child {
+            background-color: lightcoral;
+            color: antiquewhite;
+            transform-origin: left;
+            transform: perspective(100px) rotateY(15deg);
+         }
+
+         .box .inner span {
+            position: absolute;
+            animation: marquee 5s linear infinite;
+         }
+
+         .box .inner:first-child span {
+            animation-delay: 2.5s;
+            left: -100%;
+         }
+
+         @keyframes marquee {
+            from {
+               left: 100%;
+            }
+
+            to {
+               left: -100%;
+            }
+         }
+
+</p>
+</details>
+
+Hay que modificar la ruta en el archivo `index.html` para que usen el sistema de Django
+
+Todas las url relativas o absolutas ahora tienen que ser absolutas e iniciar con una etiqueta `static`
    ```html
    <!-- Animate.css -->
-   <link rel="stylesheet" href="/static/tarjeta/css/index.css">
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'tarjeta/index.css' %}">
    ```
-   Remplazar todas las coincidencias.
+   >*__Nota:__ Es importante incluir `{% load static %}` para que las etiquetas funcionen. Como buena práctica se aconseja incluirlo en la primera línea de tus plantillas cuando sea necesario.*
 
-   __Actualizar el navegador y entonces se debería de ver la página mostrada al inicio__
+El resultado debería de ser algo como esto:
 
-   Si no funciona:
-   - Recargar la página forzado actualizar el cache del navegador con `Control+Shift+R`.
-   - En la ventana donde se está ejecutando el proyecto, deternlo y volver a iniciarlo.
-   - Usar una ventana de incógnito.
-   - Pedir ayuda a un experto (que no lo vas a encontrar en clase!)
+ ![](img/Ejemplo3_4.jpg)
 
-   Si si funciona entonces:
-   - Misión cumplida!
+ ### ¡Felicidades! Has creado tu propia plantilla con soporte para chivos estáticos. Agregaste css personalizado y configuraste la aplicación para consumir los archivos a nivel proyecto. :+1: :1st_place_medal:
 
-![](img/6.png)
+
+
+[`Anterior`](../Reto-02/Readme.md) | [`Siguiente`](../../Sesion-02/Readme.md)

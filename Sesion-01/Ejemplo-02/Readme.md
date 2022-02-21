@@ -216,4 +216,4 @@ El resultado deberiía ser el siguiente
 ### ¡Felicidades! Has configurado un proyecto en Django. Agregaste una aplicación y vinculaste una vista al servidor. :+1: :1st_place_medal:
 
 
-[`Anterior`](../Readme.md#Entornos-Virtuales) | [`Siguiente`](../Readme.md#arquitectura-mvt-modelviewtemplate-)
+[`Anterior`](../Readme.md#Entornos-Virtuales) | [`Siguiente`](../Reto-02/Readme.md)
