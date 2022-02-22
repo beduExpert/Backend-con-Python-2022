@@ -1,10 +1,16 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-03
-### 1. Objetivos :dart:
 
-- Conocer como agregar páginas ya maquetadas por medio de las plantillas con Django.
+
+# Ejemplo 03 - Agregar página a la aplicación web mediante una plantilla
+
+
+
+## Objetivo
+
+- Agregar página a la aplicación web mediante una plantilla
 - Conocer como configurar y agregar los archivos estáticos en una aplicación web con Django.
 
-### 2. Requisitos :clipboard:
+## Requisitos
 
 1. Tener Python Instalado.
 2. Tener Instalado PIP.
@@ -13,7 +19,10 @@
 5. Tener VS Code instalado
 5. Haber completado el Ejemplo-02
 
-### 3. Desarrollo :rocket:
+## Desarrollo
+
+
+
 
 #### Creación de una plantilla de Django
 ***

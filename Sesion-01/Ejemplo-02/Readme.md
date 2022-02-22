@@ -1,15 +1,17 @@
 
 [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-02
 
-### 1. Objetivos :dart:
+# Ejemplo 02 - Construir aplicación base de Django
+
+## Objetivo
 
 - Configurar el editor Vs Code para utilizar nuestro entorno virtual.
 - Conocer como iniciar un proyecto en Django.
-- Conocer como crear una aplicación.
+- Conocer como crear una primera aplicación en tu proyecto.
 - Conocer y definir una ruta en Django.
 - Conocer y definir una vista asociada a la ruta.
 
-### 2. Requisitos :clipboard:
+##  Requisitos
 
 1. Tener Python Instalado.
 2. Tener Instalado PIP.
@@ -18,7 +20,7 @@
 5. Tener VS Code instalado
 
 
-### 3. Desarrollo :rocket:
+###  Desarrollo
 
 
 #### Configuración del entorno virtual en VS Code
@@ -213,7 +215,7 @@ El resultado deberiía ser el siguiente
    ![](img/13.png)
 
 
-### ¡Felicidades! Has configurado un proyecto en Django. Agregaste una aplicación y vinculaste una vista al servidor. :+1: :1st_place_medal:
+### ¡Felicidades! Has configurado un proyecto en Django. Agregaste tu primera aplicación y vinculaste una vista al servidor. :+1: :1st_place_medal:
 
 
 [`Anterior`](../Readme.md#Entornos-Virtuales) | [`Siguiente`](../Reto-02/Readme.md)

@@ -1,19 +1,19 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-01
 ## Ejemplo 01: Entornos virtuales e instalación de Django
 
-### 1. Objetivos :dart:
+## Objetivo
 
 - Implementar entornos virtuales
 - Instalar Django en un entorno virtual
 - Conocer como distribuir entornos virtuales al equipo de desarrollo
 
-### 2. Requisitos :clipboard:
+##  Requisitos 
 
 1. Tener Python Instalado
 2. Tener Instalado PIP
 3. Tener una terminal configurada (PowerShell, WSL, etc)
 
-### 3. Desarrollo :rocket:
+## Desarrollo
 
 
 #### Activación del entorno virtual
