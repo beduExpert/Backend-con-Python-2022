@@ -100,8 +100,8 @@ No olvides agregar la etiqueta
    
 | Requisito     | Si lo cumple  | No lo cumple  | 
 | ------------- | ------------- | ------------- |
-| Genera un ambiente virtual para iniciar un proyecto  | Content Cell  |               |
-| Configura una vista para regresar la plantilla  | Content Cell  |               |
+| Genera un ambiente virtual para iniciar un proyecto  |  |               |
+| Configura una vista para regresar la plantilla  |   |               |
 |Configura la plantilla para leer archivos estáticos. | | 
 |Existe una configuración de settings.py con la aplicación agregada y las rutas para plantillas y archivos estáticos. ||
 Archivo index.html
