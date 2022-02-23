@@ -1,7 +1,7 @@
-`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-04
+`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-05
 
 
-# Ejemplo 04 - Agregar página a la aplicación web mediante una plantilla
+# Ejemplo 05 - Agregar página a la aplicación web mediante una plantilla
 
 
 
