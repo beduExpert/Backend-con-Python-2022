@@ -220,9 +220,11 @@ django-admin.py startproject todoapp
 Agrega la aplicación todolist a tu proyecto
  python manage.py startapp todolist
 Agrega la página de inicio index a tu proyecto mediante una plantilla
-    Crea la carpeta templates/toapp. 
-    Crea un archivo index.html y agrega el código proporcionado. 
-           Reemplaza el siguiente código: 
+
+Crea la carpeta templates/toapp.
+Crea un archivo index.html y agrega el código proporcionado.
+Reemplaza el siguiente código:
+
 ```
 {% load static %}
 <!DOCTYPE html>

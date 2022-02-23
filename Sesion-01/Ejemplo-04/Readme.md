@@ -1,7 +1,7 @@
 
-[`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-02
+[`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-04
 
-# Ejemplo 02 - Construir aplicación base de Django
+# Ejemplo 04 - Construir aplicación base de Django
 
 ## Objetivo
 
@@ -11,13 +11,6 @@
 - Conocer y definir una ruta en Django.
 - Conocer y definir una vista asociada a la ruta.
 
-##  Requisitos
-
-1. Tener Python Instalado.
-2. Tener Instalado PIP.
-3. Tener una terminal configurada (PowerShell, WSL, etc).
-4. Tener un entorno virtual con __django__ instalado.
-5. Tener VS Code instalado
 
 
 ###  Desarrollo
@@ -211,11 +204,9 @@ Para que esto funciones es necesario agregar función/vista `index` al archivo `
 
 > *__Nota__: Si la aplicación Django no está iniciada, iniciarla en este momento y abrir la siguiente url en el navegador http://127.0.0.1:8000*
 
-El resultado deberiía ser el siguiente
+El resultado debería ser el siguiente
    ![](img/13.png)
 
 
 ### ¡Felicidades! Has configurado un proyecto en Django. Agregaste tu primera aplicación y vinculaste una vista al servidor. :+1: :1st_place_medal:
 
-
-[`Anterior`](../Readme.md#Entornos-Virtuales) | [`Siguiente`](../Reto-02/Readme.md)

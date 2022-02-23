@@ -65,4 +65,3 @@ La versión instalada debería ser Django==1.5
 </details>
 </br>
 
-[`Anterior`](../Readme.md#Entornos-Virtuales) | [`Siguiente`](../Ejemplo-03/Readme.md)

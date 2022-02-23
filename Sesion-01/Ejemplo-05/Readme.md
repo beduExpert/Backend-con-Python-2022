@@ -1,7 +1,7 @@
-`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-03
+`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-04
 
 
-# Ejemplo 03 - Agregar página a la aplicación web mediante una plantilla
+# Ejemplo 04 - Agregar página a la aplicación web mediante una plantilla
 
 
 
@@ -10,14 +10,6 @@
 - Agregar página a la aplicación web mediante una plantilla
 - Conocer como configurar y agregar los archivos estáticos en una aplicación web con Django.
 
-## Requisitos
-
-1. Tener Python Instalado.
-2. Tener Instalado PIP.
-3. Tener una terminal configurada (PowerShell, WSL, etc).
-4. Tener un entorno virtual con __django__ instalado.
-5. Tener VS Code instalado
-5. Haber completado el Ejemplo-02
 
 ## Desarrollo
 
@@ -214,5 +206,3 @@ El resultado debería de ser algo como esto:
  ### ¡Felicidades! Has creado tu propia plantilla con soporte para archivos estáticos. Agregaste css personalizado y configuraste la aplicación para consumir los archivos a nivel proyecto. :+1: :1st_place_medal:
 
 
-
-[`Anterior`](../Reto-02/Readme.md) | [`Siguiente`](../../Sesion-02/Readme.md)

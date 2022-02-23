@@ -1,5 +1,5 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Reto-02
-# Reto 02: Nombre del reto Agregar una segunda aplicación al proyecto Banco
+# Reto 02: Agregar una segunda aplicación al proyecto Banco
 
 ## Objetivo
 - Agregar una aplicación a un proyecto en Django
