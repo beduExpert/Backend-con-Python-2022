@@ -48,7 +48,7 @@ Además, analizaremos la estructura de paquetes necesaria para manejar archivos 
 
 Los entornos virtuales se consideran una buena práctica que nos permite seprar nuestros paquetes de desarollo de los paquetes del sistema.
 
-- [**`EJEMPLO 3`**](Ejemplo-02/Readme.md)
+- [**`EJEMPLO 3`**](Ejemplo-03/Readme.md)
 - [**`RETO 1`**](Reto-01/Readme.md)
 
 ***
@@ -71,7 +71,7 @@ mi_sitio/
 
 Cada aplicación que escribes en Django consiste en un paquete de Python que sigue una determinada convención. Django viene con una utilidad que genera automáticamente la estructura de directorios básica de una aplicación, por lo que podemos centrarnos en escribir código en lugar de crear directorios.
 
-- [**`EJEMPLO 4`**](Ejemplo-03/Readme.md)
+- [**`EJEMPLO 4`**](Ejemplo-04/Readme.md)
 - [**`RETO 2`**](Reto-02/Readme.md)
 
 ***
@@ -86,7 +86,7 @@ Cada aplicación que escribes en Django consiste en un paquete de Python que sig
 1. Una plantilla (Templates) es un archivo de lenguaje de marcado de hipertexto (HTML) que contiene marcadores de posición especiales que se reemplazan por variables de la aplicación.
 
 
-- [**`EJEMPLO 5`**](Ejemplo-04/Readme.md)
+- [**`EJEMPLO 5`**](Ejemplo-05/Readme.md)
 
 ***
 
