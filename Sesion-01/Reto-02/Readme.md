@@ -17,7 +17,7 @@ En este reto necesitamos agregar otra aplicación al proyecto Banco. Para lograr
 
 <details><summary>Solución</summary>
 
- Crear la aplicación ____ con:
+ Crear la aplicación  con:
 
    ```console
    python3 manage.py startapp servicios
@@ -77,7 +77,6 @@ En este reto necesitamos agregar otra aplicación al proyecto Banco. Para lograr
        path('', views.index, name='servicios_index'),
    ]
    ```
-   Acuérdate de estar reiniciando Django para observar los resultados y mensajes de error.
    ***
 
 Agregar la vista `index` al archivo `Banco/servicios/views.py` con el siguiente contenido:
