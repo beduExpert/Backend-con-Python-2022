@@ -1,22 +1,19 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Reto-02
-## Agregar una segunda aplicación al proyecto Banco
+# Reto 02: Nombre del reto Agregar una segunda aplicación al proyecto Banco
 
-### 1. Objetivos :dart:
+## Objetivo
 - Agregar una aplicación a un proyecto en Django
 - Definir una ruta (path) en Django
 - Definir una vista asociada a la ruta (path)
 
-### 2. Requisitos :clipboard:
-1. Completar el Ejemplo 1
-2. Activar el entorno virtual __Banco__
-
-### 3. Desarrollo :rocket:
+## Desarrollo
 
 En este reto necesitamos agregar otra aplicación al proyecto Banco. Para lograr esto sigue los siguientes pasos:
 - Crea una nueva aplicación usando manage.py
 - Agrega la aplicación __servicios__ al archivo settings.py de banco.
 - Agrega la ruta (path) de servicios a al archivo urls de banco y vincula el archivo urls de servicios a una vista.
-- En la vista agrega un encabezado de segundo nivel con el siguiente texto: `<h2>Soy la página de inicio de un servicio!</h2`.
+- En la vista agrega un encabezado de segundo nivel con el siguiente texto:
+ `<h2>Soy la página de inicio de un servicio!</h2>`.
 
 <details><summary>Solución</summary>
 
