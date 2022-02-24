@@ -37,7 +37,7 @@ python -m pip install virtualenv
 ```
 #### ¿Dónde se utiliza Django? 
 ***
-Para crear aplicaciones web altamente escalables con una audiencia en constante crecimiento (por ejemplo, sitios de noticias), Django es uno de los frameworks web más populares de Python. Django es claro y simple, rápido y confiable, flexible y escalable. Django tiene una gran comunidad de contribuyentes leales. Según SimilarTech, había 77, 278 sitios web construidos con Django a partir de mayo de 2019. A continuación se sition algunos de los sitio web que han crecido y evolucionado utilizando Django.
+Para crear aplicaciones web altamente escalables con una audiencia en constante crecimiento (por ejemplo, sitios de noticias), Django es uno de los frameworks web más populares de Python. Django es claro y simple, rápido y confiable, flexible y escalable. Django tiene una gran comunidad de contribuyentes leales. Según SimilarTech, había 77, 278 sitios web construidos con Django a partir de mayo de 2019. A continuación se muestran algunos de los sitio web que han crecido y evolucionado utilizando Django.
 
 ![](img/Ejemplo1_1.jpg)
 
