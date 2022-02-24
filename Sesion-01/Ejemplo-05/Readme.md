@@ -66,7 +66,7 @@ Generamos un nuevo archivo llamado index.html. Dentro de este archivo incluiremo
 </html>
 ```
 
-Para poder utilizar nuestrso template debemos ,odificar la función `index()` en el archivo `tarjeta/views.py` para hacer uso de las plantillas (templates).
+Para poder utilizar nuestrso template debemos modificar la función `index()` en el archivo `tarjeta/views.py` para hacer uso de las plantillas (templates).
 
    ```python
    from django.shortcuts import render
