@@ -91,7 +91,7 @@ Cada aplicación que escribes en Django consiste en un paquete de Python que sig
 ***
 
 ### Postwork :memo:
-Aplica lo todo lo que aprendiste durante la sesión siguiendo un proyecto guidado.
+Aplica lo todo lo que aprendiste durante la sesión siguiendo un proyecto guiado.
 
 - [**`POSTWORK SESIÓN 1`**](Postwork/Readme.md)
 
