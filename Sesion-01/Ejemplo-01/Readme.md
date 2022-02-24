@@ -43,7 +43,7 @@ Para crear aplicaciones web altamente escalables con una audiencia en constante 
 
 1. Instragram. De acuerdo con el post publicado por Instragram Engineering. Es el sitio más grande publicado en Django.Link:https://instagram-engineering.com/web-service-efficiency-at-instagram-with-python-4976d078e366
 
-2. The Washington Post https://www.washingtonpost.com/ , Utiliza una versión llamada DJango CMS. que es utilizada por otros sitios como National Geographic, PBS y la NAsa. https://www.django-cms.org/en/
+2. The Washington Post https://www.washingtonpost.com/ , Utiliza una versión llamada DJango CMS. que es utilizada por otros sitios como National Geographic, PBS y la NASA. https://www.django-cms.org/en/
 
 3. Reddit https://www.reddit.com/
 
