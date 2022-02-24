@@ -7,7 +7,7 @@
 ### :dart: Objetivos
 - Identificar el uso de entornos virtuales y su aplicación.
 - Instalar Django dentro de un entorno virtual.
-- Construit una aplicación "Hola Mundo" aplicando los conceptos de rutas, vistas y plantillas.
+- Construir una aplicación "Hola Mundo" aplicando los conceptos de rutas, vistas y plantillas.
 
 ### 📂 Organización de la clase
 ***
