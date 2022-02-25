@@ -1,78 +1,96 @@
-`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-02
-## Operación READ: Lectura de datos con Python y MariaDB
+`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Ejemplo-04
 
-### OBJETIVO
-Conocer el procedimiento para realizar la operación __Read__ a una tabla en un servidor MariaDB desde Python para el proyecto Biblioteca.
+## Ejemplo 04: Inicialización y conexión a bases de datos PostgreSQL
 
-#### REQUISITOS
-1. Contar con los datos de conexión a la base de datos Biblioteca.
+### OBJETIVOS
+- Conocer el procedimiento para inicializar un servidor PostgreSQL
+- Conocer el procedimiento para inicializar la base de datos.
+- Conocer el procedimiento para realizar una conexión a la base de datos con Django.
 
-   __Host:__ localhost <br />
-   __User:__ Biblioteca <br />
-   __Password:__ Biblioteca <br />
-   __Base de datos:__ Biblioteca
+> *__Nota:__ Para realizar este ejercicio es necesario tener instalado PostreSQL. Puedes descargarlo aquí: https://www.postgresql.org*
 
-1. Usar la carpeta de trabajo `Sesion-02/Ejemplo-05`
-
-1. Contar con la tabla __Libro__ creada y con los datos contenidos en el archivo `sql/tabla-libro.sql`.
-
-   ![Tabla Libro](assets/tabla-libro.jpg)
-
-   Si no cuenta con la tabla, entonces inicializarla con el siguiente comando:
-   ```console
-   Sesion-02/Ejemplo-05 $ docker exec -i pythonsql mysql -hlocalhost -uBiblioteca -pBiblioteca Biblioteca < sql/tabla-libro.sql
-
-   Sesion-02/Ejemplo-05 $
-   ```
-
-1. Instalar el módulo `mysql-connector-python` que será el responsable de permitir realizar una conexión a base de datos MySQL / MariaDB desde Python.
-
-   __Sito principal:__
-   https://dev.mysql.com/doc/connector-python/en/
-
-   __Instalación con el comando pip:__
-   ```console
-   $ pip install mysql-connector-python
-   Collecting mysql-connector-python
-   Using cached https://files.pythonhosted.org/packages/43/bd/43a128bbd6a3237d6f255c7afaa9308430d5c90f8db8371276169722f037/mysql_connector_python-8.0.16-cp37-cp37m-manylinux1_x86_64.whl
-   Requirement already satisfied: protobuf>=3.0.0 in /home/rctorr/miniconda3/lib/python3.7/site-packages (from mysql-connector-python) (3.7.1)
-   Requirement already satisfied: six>=1.9 in /home/rctorr/miniconda3/lib/python3.7/site-packages (from protobuf>=3.0.0->mysql-connector-python) (1.12.0)
-   Requirement already satisfied: setuptools in /home/rctorr/miniconda3/lib/python3.7/site-packages (from protobuf>=3.0.0->mysql-connector-python) (41.0.0)
-   Installing collected packages: mysql-connector-python
-   Successfully installed mysql-connector-python-8.0.16
-
-   $
-   ```
 
 ### DESARROLLO
- 1. __OPERACIÓN READ__ Crea el script `lista-registros.py` que imprima en formato texto en la salida estándar, la lista de registros de la tabla proporcionada como parámetro en la línea de comandos. Hacer uso de los módulos `click`, `mysql-connector-python` y `stdout`.
+PostgreSQL es un poderoso sistema de bases de datos objeto relacional de código abierto.
+Sus orígenes se remontan a 1986 como parte del proyecto POSTGRES en la Universidad de California en Berkeley y tiene más de 30 años de desarrollo activo en la plataforma central.
 
- Aplicar el modelo MVC y todas las funciones que tengan que ver con la base de datos colocarlas dentro del script/módulo `modelomysql.py`.
 
-   __Caso: Ejecutando el script sin argumentos__
+### Inicializando la base de Datos PostgreSQL
+***
 
-   ```console
-   Sesion-02/Ejemplo-05 $ python lista-registros.py
+En el Prework de la sesión identificamos cómo descargar e instalar __PostgreSQL__ en tu equipo y inicializarlo en nuestro sistema operativo, por lo cual iniciaremos nuestro gestor de base de datos.
 
-   Tablas disponibles
-   ------------------
-   Libro
-   ------------------
-   ```
+![](img/1.png)
+![](img/2.png)
 
-   __Caso: Imprimiendo registros de la tabla Libro__
+Procederemos a generar una nueva base de datos, al cual le asignaremos el nombre de __pruebapostgres__
 
-   ```console
-   Sesion-02/Ejemplo-05 $ python lista-registros.py Libro
+![](img/3.png)
+![](img/4.png)
+![](img/5.png)
 
-   Tabla: Libro
-   ------------
-   Id | Titulo                 | Editorial   | NumPag | Autores
-    1 | Yo, Robot              | Gnome Press |    374 |       1
-    2 | El fin de la eternidad | Gnome Press |    191 |       1
-    3 | El arte de la guerra   | Obelisco    |    112 |       2
-   ------------
-   ```
-   ***
 
-__Nota:__ En la carpeta ya existe el script `stdout.py` que es un módulo que contiene la función `imprime_registros()` y se puede hacer uso de ella.
+Para poder utilizar __PostgreSQL__ en Django es necesario instalar un cliente para Python, por lo cual abriremos nuestro proyecto. Recordemos que es importante activar nuestro entorno virtual
+
+```console
+   $ cd django
+```
+
+```console
+$ source bin/activate
+```
+![](img/6.png)
+
+Una vez activado procederemos a instalar __psycopg2__ con el siguiente comando:
+
+```console
+   $ pip install psycopg2-binary
+```
+
+   ![](img/7.png)
+
+A continuación conectaremos con nuestra base de datos, primero tendremos que configurar los parámetros con la base de datos que creamos anteriormente en el Workbench de MySQL. Abriremos el documento __Banco/Banco/settings.py__ y buscaremos el siguiente bloque de código:
+
+```python
+   DATABASES = {
+    	'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    	}
+	}
+```
+
+Como lo vimos en el ejemplo anterior Django trabaja por defecto con SQLite, por lo que tendremos que modificarlo para que tenga la información de la base de datos que queremos conectar.
+
+```python
+   DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'pruebapostgres',
+            'USER': 'postgres',
+            'PASSWORD': '',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
+    }
+```
+
+### Verificando la conexión mediante migraciones
+***
+
+Ya que tenemos todo configurado sólo queda realizar la migración de los modelos de la aplicación de Django. Abriremos nuestra terminal con el entorno activado y nos situaremos en la carpeta __banco__ seguido por el siguiente comando: 
+
+
+```console
+   $ python3 manage.py migrate
+```
+
+Visualizaremos la siguiente pantalla la cual confirma la migración fue realizada con exito:
+
+![](img/10.png)
+
+Abriremos nuestro gestor y desplegaremos las tablas generadas por Django, comprobando que la configuración fue realizada con éxito.
+
+![](img/11.png)
+
+#### ¡Felicidades! Ya sabes conoces los fundamentos de una base PostgresSQL :+1: :1st_place_medal:

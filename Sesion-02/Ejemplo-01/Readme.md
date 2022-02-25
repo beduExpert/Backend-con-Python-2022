@@ -1,84 +1,92 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Ejemplo-01
-
-## Ejemplo 01: Bases de Datos SQLite3
+## Ejemplo 01: Bases de Datos
 ## Objetivo
 
-- Conocer el procedimiento para inicializar Django con SQLite
-- Utilizar DB Browser para inicializar una base de datos SQLite
+- Conocer las bases de Datos Compatibles con Django
+- Identificar los configuraciones necesarias en Django para trabajar con bases de datos.
 
-> *__Nota:__ Para realizar este ejercicio es necesario tener instalado DB Browser. Puedes descargarlo aquí: https://sqlitebrowser.org/*
 
-## DESARROLLO
 
-SQLite es un motor de base de datos escrito en lenguaje C. No es una aplicación independiente, sino una biblioteca que los desarrolladores de software integran en sus aplicaciones. Como tal, pertenece a la familia de las bases de datos integradas
+## Desarrollo
 
-Django por defecto trabaja con SQLite por lo que no tendremos que hacer configuraciones especiales.
 
-### SQLite como base por defecto en Django.
+#### Bases de Datos
 ***
+La manera de gestionar estos datos es a través de un Sistema Gestor de Bases de Datos (SGBD), este consiste en un conjunto de programas utilizados para definir, administrar y procesar de una manera tanto práctica como eficiente una base de datos y sus aplicaciones.
 
-Utilizaremos el proyecto `Banco` de la sesión 1. Nos desplazaremos a la carpeta del proyecto.
+Django soporta oficialmente las siguientes sistemas gestores de bases de datos:
 
-Cuando creamos nuestra primera aplicación e iniciamos el servidor, debería haber notado un nuevo archivo llamado `db.sqlite3` en el directorio del proyecto.
+- Postgresql
+- MariaDB
+- Mysql
+- Oracle
+- SQLite
 
-![](img/Ejemplo1_1.jpg)
+Las bases de datos con las que trabajaremos siguen el __Modelo relacional__  Según el modelo relacional, los datos de una base de datos relacional se almacenan en relaciones, que el usuario percibe como tablas. Cada relación está compuesta por tuplas (registros) y atributos (campos).
 
-Este  archivo es un archivo de base de datos que conservará todos los datos que genera Django. Dado que Django es un framework del lado del servidor, tratará a nuestro equipo como el host cuando ejecutamos el servidor desde la línea de comandos. Este archivo se genera automáticamente ya que la base de datos de Django está configurada como SQLite de forma predeterminada.
-
-Una vez instalado `DB Browser` procederemos a abrir el archivo `db.sqlite3` que encontramos en nuestro proyecto `Banco`.
-
-![](img/Ejemplo1_2.jpg)
-
-Por medio de DB Browser estamos visualizando la información que tiene nuestra base de datos. La base de datos se creo automáticamente y por defecto con Django.
-
-
-### SQLite generado por Django desde settings.py
+#### Configuraciones de bases de Datos en Django
 ***
+Para conectarse a las bases de datos Django integra una serie de configuraciones determinadas. De nuestro proyecto de la sesón anterior __Banco__ podemos analizar estar configuraciones.
 
-Al examinar el archivo `settings.py` podemos encontrar el diccionario donde espeficica django como base de datos.
+Si abrimos el archivo `settings.py` y nos desplazamos al diccionario `DATABASES` nos encontraremos con el siguiente código
 
-```Python
+```python
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 ```
 
+Es importante identificar que DATABASES es un diccionario que contiene los parámetros de conexión que usará Django para conectarse a la base de datos principal de nuestro proyecto.
 
-El parametro `ENGINE` especifica la base de datos con la que trabajaremos. Debemos incluir el archivo  `django.db.backends.sqlite3` como valor del parámetro., este refiere a una biblioteca de python para la base de datos sqlite3 que convertirá el código python al lenguaje de base de datos SQL . Como resultado, no necesitaremos escribir ninguna consulta en lenguaje de base de datos  porque todo el código será transformado por Python.
+Comparemos algunos otros códigos de ejemplo para conectarnos a otras bases de datos.
 
-### Trabajando con DB Browser para agregar datosS
-***
+Para conectarnos a __Postgresql__ usando la librería incluida con Django podemos usar el siguiente código. 
 
-Podemos crear una nueva tabla en la base de datos haciendo click sobre el botón Create Table. Esto nos mostrará la siguiente pantalla.
-
-![](img/Ejemplo1_4.jpg)
-
-En esta pantalla podemos comenzar a trabajar con el esquema de nuestra base de datos. Por ejemplo vamos a definir una tabla llamada __Prueba__ con un  campo primario de nombre __ID_Prueba__
-
-![](img/Ejemplo1_5.jpg)
-
-Notemos que en la parte inferior se nos muestra el código SQL asociado a esta operación. Al ejecutar la operación y regresar a la pantalls anterior observamos que nuestra base ahora tiene una tabla.
-
-
-![](img/Ejemplo1_6.jpg)
-
-Para insertar datos en nuestra tabla podemos usar la pestaña __Execute SQL__. En esta pestaña podemos escribir código SQL. Utilizaremos la función `INSERT INTO` para ingresar un dato a `ID_Prueba`
-
-
-```SQL 
-INSERT INTO Prueba (ID_Prueba)
-VALUES (1);
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'OPTIONS': {
+            'service': 'my_service',
+            'passfile': '.my_pgpass',
+        },
+    }
+}
 ```
 
-
-![](img/Ejemplo1_7.jpg)
-
-Si examinamos la pestañá de __Browse Data__ veremos que tenemos creado un registro con el valor 1. 
-
-![](img/Ejemplo1_8.jpg)
+Como se mencionó antes. No existe un único paquete o forma para realizar estás conexiones. Otra librería muy utilizada es __pyscopg2__
 
 
-#### ¡Felicidades! Ya sabes conoces los fundamentos de una base SQLite :+1: :1st_place_medal:
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db_name',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '', # default is 5432
+    }
+}
+```
+
+> *__Nota:__ Las librerías que usamos para conectarnos a bases de datos son un tipo de API conocidas como DB API interface, y su funcionamiento está especificado en el estándar de Python PEP 249. Puedes revisarlo en el siguiente link: https://www.python.org/dev/peps/pep-0249/*
+
+Dependiendo del tipo de base que usemos la configuración puede variar un poco. Asegurate de siempre revisar la documentación para estar informado de los cambios versión con versión: https://docs.djangoproject.com/en
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': '/path/to/my.cnf',
+        },
+    }
+}
+```
+
+#### ¡Felicidades! Ya conoces los fundamentos de Django :+1: :1st_place_medal:
+

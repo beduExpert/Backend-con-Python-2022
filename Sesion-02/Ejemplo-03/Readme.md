@@ -1,96 +1,93 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Ejemplo-03
 
-## Inicializando Django con PostgreSQL
 
-### OBJETIVOS
-- Conocer el procedimiento para inicializar un servidor PostgreSQL
+## Ejemplo 03: Inicialización y conexión a bases de datos MySQL
+## Objetivo
+
+- Conocer el procedimiento para inicializar un servidor MySQL
 - Conocer el procedimiento para inicializar la base de datos.
 - Conocer el procedimiento para realizar una conexión a la base de datos con Django.
 
-#### REQUISITOS
-1. [PostgreSQL](https://www.postgresql.org)
-1. Contar con el repositorio actualizado creado por el experto para este módulo.
-1. Abrir una terminal y posicionarse en la carpeta de trabajo
 
-### DESARROLLO
-1. En el Prework de la sesión identificamos cómo descargar e instalar __PostgreSQL__ en tu equipo y inicializarlo en nuestro sistema operativo, por lo cual iniciaremos nuestro gestor de base de datos.
-	
+__Nota:__ Para realizar este ejercicio es necesario tener instalado un servidor MySQL y un cliente como MySQL Workbench. Puedes descargarlos aquí:
+- https://dev.mysql.com/downloads/mysql/
+- https://www.mysql.com/products/workbench/ 
+
+
+## DESARROLLO
+
+MySQL un Sistema Gestor de Bases de Datos Relacionales open source con un modelo cliente servidor actualmente propiedad de Oracle, fue en 2010 cuando esta empresa compró Sun Microsystems, quien a su vez había adquirido MySQL AB en 2008, esta última, la empresa original que desarrolló MySQL en 1994.
+
+Actualmente se encuentra en el segundo lugar de popularidad según un ranking de DB-Engines
+
+### Inicializando la base de Datos MySQL
+***
+
+En el Prework de la sesión identificamos cómo descargar e instalar MySQL en tu equipo e inicializarlo en nuestro sistema operativo, por lo cual iniciaremos nuestro gestor de base de datos.
+
+Una vez inicializado realizaremos la conexión con __MySQL Workbench__
+
 	![](img/1.png)
+
+Procederemos a generar un nuevo Schema, al cual le asignaremos el nombre de base_MySQL
+
 	![](img/2.png)
-
-2. Procederemos a generar una nueva base de datos, al cual le asignaremos el nombre de __pruebapostgres__
-
 	![](img/3.png)
 	![](img/4.png)
-	![](img/5.png)
 
-	
+Para poder utilizar __MySQL__ en Django es necesario instalar un cliente para Python, por lo cual abriremos nuestro proyecto e iniciaremos nuestro entorno virtual.
 
-4. Para poder utilizar __PostgreSQL__ en Django es necesario instalar un cliente para Python, por lo cual abriremos nuestro proyecto. Recordemos que es importante activar nuestro entorno virtual
-
-	```console
-   $ cd django
-   ```
-   ```console
+```console
    $ source bin/activate
-   ```
-   
-	![](img/6.png)
-	
-   
-6. Una vez activado procederemos a instalar __psycopg2__ con el siguiente comando:
+```
+   ![](img/5.png)
 
-	```console
-   $ pip install psycopg2-binary
-   ```
-   
-   ![](img/7.png)
-   
-7. A continuación conectaremos con nuestra base de datos, primero tendremos que configurar los parámetros con la base de datos que creamos anteriormente en el Workbench de MySQL. Abriremos el documento __Banco/Banco/settings.py__ y buscaremos el siguiente bloque de código:
+Una vez activado procederemos a instalar __mysqlclient__ con el siguiente comando:
 
-	```python
+```console
+   $ pip3 install mysqlclient
+ ```
+
+A continuación conectaremos con nuestra base de datos, primero tendremos que configurar los parámetros con la base de datos que creamos anteriormente en Workbench de MySQL. Abriremos el documento __settings.py__ y buscaremos el siguiente bloque de código:
+
+```python
    DATABASES = {
     	'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     	}
 	}
-   ```
-   
-   ![](img/8.png)
-   
-8. Como lo vimos en el ejemplo anterior Django trabaja por defecto con SQLite3, por lo que tendremos que modificarlo para que tenga la información de la base de datos que queremos conectar.
+```
 
-	```python
+Como lo vimos en el ejemplo anterior Django trabaja por defecto con SQLite3, por lo que tendremos que modificarlo para que tenga la información de la base de datos que queremos conectar.
+
+```python
    DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'pruebapostgres',
-            'USER': 'postgres',
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'pruebamysql',
+            'USER': 'nombreusuario',
             'PASSWORD': '',
             'HOST': '127.0.0.1',
-            'PORT': '5432',
+            'PORT': '3306',
         }
     }
-   ```
-   
-   ![](img/9.png)
-   
-9. Ya que tenemos todo configurado sólo queda realizar la migración de los modelos de la aplicación de Django. Abriremos nuestra terminal con el entorno activado y nos situaremos en la carpeta __banco__ seguido por el siguiente comando: 
+```
 
-	```console
+### Verificando la conexión mediante migraciones
+***
+
+Ya que tenemos todo configurado sólo queda realizar la migración de los modelos de la aplicación de Django. Abriremos nuestra terminal con el entorno activado y nos situaremos en la carpeta __Banco__ seguido por el siguiente comando:
+
+```console
    $ python3 manage.py migrate
-   ```
-   
-10. Visualizaremos la siguiente pantalla la cual confirma la migración fue realizada con exito:
+```
+Visualizaremos la siguiente pantalla la cual confirma la migración fue realizada con éxito:
 
- 	 ![](img/10.png)
- 	 
-11. Abriremos nuestro gestor y desplegaremos las tablas generadas por Django, comprobando que la configuración fue realizada con exito.
+![](img/10.png)
 
-	![](img/11.png)
- 
+Si abrimos MySQL Workbench, podemos comprobar que la conexión se ha realizado adecuadamente pue se generaron las tablas de la migración de Django, esto significa que la configuración fue realizada con éxito.
 
+![](img/11.png)
 
-	
-
+#### ¡Felicidades! Ya sabes conoces los fundamentos de una base MySQL :+1: :1st_place_medal:

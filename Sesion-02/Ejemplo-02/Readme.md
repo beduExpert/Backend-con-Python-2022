@@ -1,101 +1,84 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Ejemplo-02
 
-
-## Ejemplo 02: Inicializando Django con MySQL
+## Ejemplo 02: Inicialización y conexión a bases de datos SQLite3
 ## Objetivo
 
-- Conocer el procedimiento para inicializar un servidor MySQL
-- Conocer el procedimiento para inicializar la base de datos.
-- Conocer el procedimiento para realizar una conexión a la base de datos con Django.
-
+- Conocer el procedimiento para inicializar Django con SQLite
+- Utilizar DB Browser para inicializar una base de datos SQLite
 
 > *__Nota:__ Para realizar este ejercicio es necesario tener instalado DB Browser. Puedes descargarlo aquí: https://sqlitebrowser.org/*
 
 ## DESARROLLO
 
+SQLite es un motor de base de datos escrito en lenguaje C. No es una aplicación independiente, sino una biblioteca que los desarrolladores de software integran en sus aplicaciones. Como tal, pertenece a la familia de las bases de datos integradas
 
-## Inicializando Django con MySQL
+Django por defecto trabaja con SQLite por lo que no tendremos que hacer configuraciones especiales.
 
-### OBJETIVOS
-- Conocer el procedimiento para inicializar un servidor MySQL
-- Conocer el procedimiento para inicializar la base de datos.
-- Conocer el procedimiento para realizar una conexión a la base de datos con Django.
+### SQLite como base por defecto en Django.
+***
+
+Utilizaremos el proyecto `Banco` de la sesión 1. Nos desplazaremos a la carpeta del proyecto.
+
+Cuando creamos nuestra primera aplicación e iniciamos el servidor, debería haber notado un nuevo archivo llamado `db.sqlite3` en el directorio del proyecto.
+
+![](img/Ejemplo1_1.jpg)
+
+Este  archivo es un archivo de base de datos que conservará todos los datos que genera Django. Dado que Django es un framework del lado del servidor, tratará a nuestro equipo como el host cuando ejecutamos el servidor desde la línea de comandos. Este archivo se genera automáticamente ya que la base de datos de Django está configurada como SQLite de forma predeterminada.
+
+Una vez instalado `DB Browser` procederemos a abrir el archivo `db.sqlite3` que encontramos en nuestro proyecto `Banco`.
+
+![](img/Ejemplo1_2.jpg)
+
+Por medio de DB Browser estamos visualizando la información que tiene nuestra base de datos. La base de datos se creo automáticamente y por defecto con Django.
 
 
+### SQLite generado por Django desde settings.py
+***
 
-### DESARROLLO
-En el Prework de la sesión identificamos cómo descargar e instalar MySQL en tu equipo e inicializarlo en nuestro sistema operativo, por lo cual iniciaremos nuestro gestor de base de datos.
+Al examinar el archivo `settings.py` podemos encontrar el diccionario donde espeficica django como base de datos.
 
-Una vez inicializado realizaremos la conexión con __MySQL Workbench__
-
-	![](img/1.png)
-
-Procederemos a generar un nuevo Schema, al cual le asignaremos el nombre de base_MySQL
-
-	![](img/2.png)
-	![](img/3.png)
-	![](img/4.png)
-
-Para poder utilizar __MySQL__ en Django es necesario instalar un cliente para Python, por lo cual abriremos nuestro proyecto
-
-	```console
-   $ cd django
-   ```
-
-	![](img/5.png)
-
-Recordemos que es importante activar nuestro entorno virtual
-
-	```console
-   $ source bin/activate
-   ```
-   ![](img/5.png)
-
-Una vez activado procederemos a instalar __mysqlclient__ con el siguiente comando:
-
-	```console
-   $ pip3 install mysqlclient
-   ```
-
-A continuación conectaremos con nuestra base de datos, primero tendremos que configurar los parámetros con la base de datos que creamos anteriormente en Workbench de MySQL. Abriremos el documento __settings.py__ y buscaremos el siguiente bloque de código:
-
-	```python
-   DATABASES = {
-    	'default': {
+```Python
+DATABASES = {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    	}
-	}
-   ```
-
-   ![](img/8.png)
-
-Como lo vimos en el ejemplo anterior Django trabaja por defecto con SQLite3, por lo que tendremos que modificarlo para que tenga la información de la base de datos que queremos conectar.
-
-```python
-   DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.mysql',
-            'NAME': 'pruebamysql',
-            'USER': 'nombreusuario',
-            'PASSWORD': '',
-            'HOST': '127.0.0.1',
-            'PORT': '3306',
-        }
     }
+}
 ```
 
-   ![](img/9.png)
 
-Ya que tenemos todo configurado sólo queda realizar la migración de los modelos de la aplicación de Django. Abriremos nuestra terminal con el entorno activado y nos situaremos en la carpeta __banco__ seguido por el siguiente comando:
+El parámetro `ENGINE` especifica la base de datos con la que trabajaremos. Debemos incluir el archivo  `django.db.backends.sqlite3` como valor del parámetro., este refiere a una biblioteca de python para la base de datos sqlite3 que convertirá el código python al lenguaje de base de datos SQL . Como resultado, no necesitaremos escribir ninguna consulta en lenguaje de base de datos  porque todo el código será transformado por Python.
 
-```console
-   $ python3 manage.py migrate
+### Trabajando con DB Browser para agregar datosS
+***
+
+Podemos crear una nueva tabla en la base de datos haciendo click sobre el botón Create Table. Esto nos mostrará la siguiente pantalla.
+
+![](img/Ejemplo1_4.jpg)
+
+En esta pantalla podemos comenzar a trabajar con el esquema de nuestra base de datos. Por ejemplo vamos a definir una tabla llamada __Prueba__ con un  campo primario de nombre __ID_Prueba__
+
+![](img/Ejemplo1_5.jpg)
+
+Notemos que en la parte inferior se nos muestra el código SQL asociado a esta operación. Al ejecutar la operación y regresar a la pantallas anterior observamos que nuestra base ahora tiene una tabla.
+
+
+![](img/Ejemplo1_6.jpg)
+
+Para insertar datos en nuestra tabla podemos usar la pestaña __Execute SQL__. En esta pestaña podemos escribir código SQL. Utilizaremos la función `INSERT INTO` para ingresar un dato a `ID_Prueba`
+
+
+```SQL
+INSERT INTO Prueba (ID_Prueba)
+VALUES (1);
 ```
-Visualizaremos la siguiente pantalla la cual confirma la migración fue realizada con éxito:
 
-![](img/10.png)
 
-Abriremos nuestro MySQL Workbench y desplegaremos las tablas generadas por Django, comprobando que la configuración fue realizada con éxito.
+![](img/Ejemplo1_7.jpg)
 
-![](img/11.png)
+Si examinamos la pestaña de __Browse Data__ veremos que tenemos creado un registro con el valor 1.
+
+![](img/Ejemplo1_8.jpg)
+
+
+#### ¡Felicidades! Ya sabes conoces los fundamentos de una base SQLite :+1: :1st_place_medal:
