@@ -19,7 +19,7 @@ Una base de datos es una colección estructurada de datos que ayuda a administra
 
 ***
 #### <ins>Tema 02: Conexiones a bases de datos SQL</ins>
-<img src="img/imagen3.png" align="right" height="100" width="100">
+<img src="img/imagen2.png" align="right" height="100" width="100">
 
 Para conectarnos auna base de datos en SQL necesitamos editar el archivo de configuración settings.py y trabajar con la variable DATABASES.
 
@@ -37,7 +37,7 @@ Puede haber varias bases de datos porque requerimos copias de seguridad, pero s�
 ***
 
 #### <ins>Tema 03: SQL y operaciones CRUD</ins>
-<img src="img/imagen2.jpg" align="right" height="100" width="100">
+<img src="img/imagen3.jpg" align="right" height="100" width="100">
 
 Las bases de datos relacionales o las bases de datos de lenguaje de consulta estructurado (SQL) almacenan datos en una estructura predeterminada de filas y columnas denominada tablas. Una base de datos puede estar compuesta por más de una tabla de este tipo, y estas tablas tienen una estructura fija de atributos, tipos de datos y relaciones con otras tablas.
 
@@ -53,7 +53,7 @@ SQL utiliza un conjunto de comandos para realizar una variedad de operaciones de
 ***
 
 #### <ins>Tema 04: Introducción a las migraciones</ins>
-<img src="img/imagen4.png" align="right" height="200" width="200">
+<img src="img/imagen4.png" align="right" height="200" width="250">
 
 Django tiene su mecanismo de control de versiones, que se conoce como migraciones. Cuando realices un cambio que requiera la instalación de nuevas dependencias, debes decírselo a Django desde la línea de comandos. Cada modificación que realices se anotará como una migración, que podrás revisar más tarde, para volver a versiones anteriores.
 
