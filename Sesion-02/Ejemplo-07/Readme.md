@@ -119,8 +119,113 @@ def obtiene_tablas():
 ```
 De la misma forma hacemos uso del cursor para correr el comando `SHOW TABLES`. Esta instrucción es dependiente del sistema gestor de base de datos que usemos. En el supuesto de que usaremos PostgresSQL el comando cambiaría.
 
+Podemos probar nuestro código de la misma forma que lo hicimos con la función anterior.
+```python
+if __name__ == "main":
+   print(obtiene_tablas("Libro"))
+```
 
-Ejecuta el script sin argumento
+Las funciones que acabamos de definir interactuaran con los archivos `lista-registros.py` y `stdout.py`.
+
+El primero importa las funciones de nuestro archivo de modelos y verifica la existencia de una tabla como parámetro en caso de existir. Nos mostrará la información de la tabla y en caso contrario las tablas disponibles para consultarse.
+
+
+
+```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+# Archivo lista registros.py 
+
+import click
+from modelomysql import obtiene_registros, obtiene_tablas
+from stdout import imprime_registros
+
+@click.command()
+@click.argument("tabla", required=False)
+def lista_registros(tabla):
+    """
+    Imprime la lista de registros de TABLA  en la salida estándar, si no se
+    proporciona una tabla, se imprime la Lista de tablas disponibles.
+    """
+    if tabla:
+        # Se obtiene la lista de registros de tabla
+        registros = obtiene_registros(tabla)
+        # Se imprimen los registros en formato texto en la salida estándar
+        imprime_registros(registros, "Tabla: {}".format(tabla))
+    else:
+        tablas = obtiene_tablas()
+        imprime_registros(tablas, "Tablas disponibles")
+
+if __name__ == '__main__':
+    lista_registros()
+```
+
+Analizando el archivo `stdout.py` podemos observar que este script realiza un formateo a los resultados de los registros.
+
+```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+"""
+Módulo encargado de realizar imprimir información a la salida estándar (STDOUT)
+"""
+
+def imprime_registros(registros, titulo=None):
+    """
+    Imprime la lista de registros en la salida estándar en formato texto, cada
+    registro es de tipo lista.
+
+    titulo - Es de tipo str y si es proporcionado se imprime como título
+    """
+    # Se calcula el ancho máximo para cada columna
+    anchos = [[len(str(campo)) for campo in reg] for reg in registros]
+    anchos = [max(col) for col in zip(*anchos)]
+
+    # Se imprime la lista
+    print()
+    if titulo: print(titulo)
+    print("-" * len(titulo))
+    for reg in registros:
+        # Se formatea cada registro en una línea de texto
+        reg = zip(reg, anchos)
+        reg = ["{:{}}".format(*campo) for campo in reg]
+        print(" | ".join(reg))
+    print("-" * len(titulo))
+    print()
+```
+
+Finalmente podemos ejecutar el script `agrega-libro.py`
+
+```python
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+import click
+from modelomysql import agrega_registro
+
+
+@click.command()
+@click.argument("titulo")
+@click.argument("editorial")
+@click.argument("numpag", type=int)
+@click.argument("autores")
+def agrega_usuario(titulo, editorial, numpag, autores):
+    """
+    Agrega un nuevo registro a la tabla Libro con los campos TITULO,
+    EDITORIAL, NUMPAG y AUTORES. Imprime un mensaje si el registro se agrega
+    exitosamente a la tabla.
+    """
+    tabla = "Libro"
+    registro = (titulo, editorial, numpag, autores)
+    if agrega_registro(tabla, registro):
+        print("Se ha agregado el registro {} a la tabla {}".format(
+            registro, tabla))
+
+if __name__ == '__main__':
+    agrega_usuario()
+```
+
+El resultado de ejecutar el al script sin ningún parámetro debería ser el siguiente.
 
 ```console
 $ python agrega-libro.py
@@ -133,10 +238,10 @@ $ python agrega-libro.py
 Agregando un libro a la tabla
 
 ```console
-   Sesion-02/Ejemplo-06 $ python agrega-libro.py "Un puente hacia el infinito" "Zeta Bolsillo" 409 1
+   $ python agrega-libro.py "Un puente hacia el infinito" "Zeta Bolsillo" 409 1
    Se ha agregado el registro ('Un puente hacia el infinito', 'Zeta Bolsillo', 409, '1') a la tabla Libro
 
-   Sesion-02/Ejemplo-06 $ python lista-registros.py Libro
+   $ python lista-registros.py Libro
 
    Tabla: Libro
    --------------
