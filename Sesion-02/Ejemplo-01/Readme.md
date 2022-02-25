@@ -1,56 +1,84 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Ejemplo-01
 
-## Inicializando Django con SQLite3
+## Ejemplo 01: Bases de Datos SQLite3
+## Objetivo
 
-### OBJETIVOS
+- Conocer el procedimiento para inicializar Django con SQLite
+- Utilizar DB Browser para inicializar una base de datos SQLite
 
-- Conocer el procedimiento para inicializar Django con SQLite3
+> *__Nota:__ Para realizar este ejercicio es necesario tener instalado DB Browser. Puedes descargarlo aquí: https://sqlitebrowser.org/*
 
-#### REQUISITOS
-1. Contar con el repositorio actualizado creado por el experto para este módulo.
-1. Abrir una terminal y posicionarse en la carpeta de trabajo
-2. Contar con [DB Browser for SQLite](https://sqlitebrowser.org) instalado 
+## DESARROLLO
 
-### DESARROLLO
-1. Django por defecto trabaja con SQLite por lo que no tendremos que hacer configuraciones especiales.
+SQLite es un motor de base de datos escrito en lenguaje C. No es una aplicación independiente, sino una biblioteca que los desarrolladores de software integran en sus aplicaciones. Como tal, pertenece a la familia de las bases de datos integradas
 
-2. Abriremos nuestro proyecto
+Django por defecto trabaja con SQLite por lo que no tendremos que hacer configuraciones especiales.
 
-	```console
-   $ cd django
-   ```
-	
-3. Recordemos que es importante activar nuestro entorno virtual
+### SQLite como base por defecto en Django.
+***
 
-	```console
-   $ source bin/activate
-   ```
-   ![](img/1.png)
-   
-4. Una vez activado procederemos a ingresar al directorio __Banco__
+Utilizaremos el proyecto `Banco` de la sesión 1. Nos desplazaremos a la carpeta del proyecto.
 
-	```console
-   $ cd Banco
-   ```
-   
-   ![](img/2.png)
-   
-5. Utilizaremos el siguiente comando para realizar la migración de nuestros módelos a nuestra base de datos:
+Cuando creamos nuestra primera aplicación e iniciamos el servidor, debería haber notado un nuevo archivo llamado `db.sqlite3` en el directorio del proyecto.
 
-	```console
-   $ python3 manage.py migrate
-   ```
-   
-    ![](img/3.png)
-     
-6. Abriremos el directorio de nuestro proyecto __Banco__
+![](img/Ejemplo1_1.jpg)
 
-	![](img/4.png)
-	
-7. Realizaremos clic derecho en el archivo __db.sqlite3__ y abiremos con __DB Browser for SQLite__
+Este  archivo es un archivo de base de datos que conservará todos los datos que genera Django. Dado que Django es un framework del lado del servidor, tratará a nuestro equipo como el host cuando ejecutamos el servidor desde la línea de comandos. Este archivo se genera automáticamente ya que la base de datos de Django está configurada como SQLite de forma predeterminada.
 
-	![](img/5.png)
-	
-8. Visualizaremos que las tablas fueron creadas con exito 
+Una vez instalado `DB Browser` procederemos a abrir el archivo `db.sqlite3` que encontramos en nuestro proyecto `Banco`.
 
-	![](img/6.png)
+![](img/Ejemplo1_2.jpg)
+
+Por medio de DB Browser estamos visualizando la información que tiene nuestra base de datos. La base de datos se creo automáticamente y por defecto con Django.
+
+
+### SQLite generado por Django desde settings.py
+***
+
+Al examinar el archivo `settings.py` podemos encontrar el diccionario donde espeficica django como base de datos.
+
+```Python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+```
+
+
+El parametro `ENGINE` especifica la base de datos con la que trabajaremos. Debemos incluir el archivo  `django.db.backends.sqlite3` como valor del parámetro., este refiere a una biblioteca de python para la base de datos sqlite3 que convertirá el código python al lenguaje de base de datos SQL . Como resultado, no necesitaremos escribir ninguna consulta en lenguaje de base de datos  porque todo el código será transformado por Python.
+
+### Trabajando con DB Browser para agregar datosS
+***
+
+Podemos crear una nueva tabla en la base de datos haciendo click sobre el botón Create Table. Esto nos mostrará la siguiente pantalla.
+
+![](img/Ejemplo1_4.jpg)
+
+En esta pantalla podemos comenzar a trabajar con el esquema de nuestra base de datos. Por ejemplo vamos a definir una tabla llamada __Prueba__ con un  campo primario de nombre __ID_Prueba__
+
+![](img/Ejemplo1_5.jpg)
+
+Notemos que en la parte inferior se nos muestra el código SQL asociado a esta operación. Al ejecutar la operación y regresar a la pantalls anterior observamos que nuestra base ahora tiene una tabla.
+
+
+![](img/Ejemplo1_6.jpg)
+
+Para insertar datos en nuestra tabla podemos usar la pestaña __Execute SQL__. En esta pestaña podemos escribir código SQL. Utilizaremos la función `INSERT INTO` para ingresar un dato a `ID_Prueba`
+
+
+```SQL 
+INSERT INTO Prueba (ID_Prueba)
+VALUES (1);
+```
+
+
+![](img/Ejemplo1_7.jpg)
+
+Si examinamos la pestañá de __Browse Data__ veremos que tenemos creado un registro con el valor 1. 
+
+![](img/Ejemplo1_8.jpg)
+
+
+#### ¡Felicidades! Ya sabes conoces los fundamentos de una base SQLite :+1: :1st_place_medal:

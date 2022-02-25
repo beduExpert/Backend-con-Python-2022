@@ -78,3 +78,29 @@ def obtiene_tablas():
     else:
         # Si no hay conexión a la BD regresamos una lista vacía
         return []
+
+def agrega_registro(tabla, valores):
+    """ Agrega un registro en tabla """
+    # Se realiza la conexión a la BD
+    conn = conecta_bd()
+    if conn:
+        # Se obtiene un cursor o indice a la base de datos
+        cur = conn.cursor()
+        # Se arma una tupla con los valores de los campos
+        # Se crea una cadena con tantos símbolos "%s" como valores
+        # tengamos separados por comas
+        signos = ", ".join(["%s"] * len(valores))
+        # Se crea la consulta en SQL
+        sql = "insert into {} values (null, {})".format(tabla, signos)
+        # Se ejecuta la consulta
+        cur.execute(sql, valores)
+        # Se ejecuta un commit para indicar que la inserción se ejecute como una
+        # operación atómica.
+        conn.commit()
+        # Se cierra la BD
+        conn.close()
+        # Se regresa True para indicar que el registro se ha insertado con
+        # éxito
+        return True
+
+    return False  # En caso de error

@@ -5,8 +5,6 @@
 Módulo encargado de realizar imprimir información a la salida estándar (STDOUT)
 """
 
-import datetime
-
 def imprime_registros(registros, titulo=None):
     """
     Imprime la lista de registros en la salida estándar en formato texto, cada
@@ -23,10 +21,6 @@ def imprime_registros(registros, titulo=None):
     if titulo: print(titulo)
     print("-" * len(titulo))
     for reg in registros:
-        # Se cambia los valores None por cademas vacias para impresión
-        reg = tuple(r if r != None else "" for r in reg)
-        # Se combierten las fechas a str
-        reg = tuple(str(r) if type(r) == datetime.date else r for r in reg)
         # Se formatea cada registro en una línea de texto
         reg = zip(reg, anchos)
         reg = ["{:{}}".format(*campo) for campo in reg]

@@ -1,5 +1,5 @@
-`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-01
-## Ejemplo 01: Fundamentos de arquitectura MVT ( Model, View, Template)
+`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-02
+## Ejemplo 02: Fundamentos de arquitectura MVT ( Model, View, Template)
 
 ## Objetivo
 

@@ -78,23 +78,3 @@ def obtiene_tablas():
     else:
         # Si no hay conexión a la BD regresamos una lista vacía
         return []
-
-def ejecuta_sql(sql):
-    """
-    Ejecuta las instrucciones proporcionadas por sql y regresa True en
-    caso de éxtio, False en caso contrario.
-    """
-    # Se realiza la conexión a la base de datos
-    conn = conecta_bd()
-    if conn:
-        # Se obtiene un cursor o indice a la base de datos
-        cur = conn.cursor()
-        # Se ejecuta la consulta
-        cur.execute(sql)
-        # Se cierra la BD
-        conn.close()
-
-        return True
-    else:
-        # Si no hay conexión a la BD regresamos una lista vacía
-        return False
