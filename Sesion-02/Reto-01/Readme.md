@@ -3,7 +3,7 @@
 ## Inicializando un servidor MariaDB y una base de datos haciendo uso de contenedores
 
 ### OBJETIVO
-Inicializar la base de datos en un servidor MariaDB haciendo uso de contenedores para el proyecto BeduTravels.
+Inicializar la base de datos en un servidor MariaDB haciendo uso de contenedores
 
 #### REQUISITOS
 1. Contar con Docker instalado
