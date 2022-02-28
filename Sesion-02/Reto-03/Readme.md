@@ -36,8 +36,10 @@ pip install mysqlclient
 ```
 
 <details><summary>Solución</summary>
+
 Para generar la Tabla libro
-   ```SQL
+
+```SQL
    
    CREATE TABLE "Libro" (
       "id"	INTEGER NOT NULL,
@@ -47,25 +49,24 @@ Para generar la Tabla libro
       "numAutores"	TEXT,
       PRIMARY KEY("id" AUTOINCREMENT)
    );
-   ```
+```
 Para ingresar los libros
-   ```SQL
+
+```SQL
 
    INSERT INTO `Libro` VALUES (1,'Yo, Robot','Gnome Press',374,1),(2,'El fin de la eternidad','Gnome Press',191,1),(3,'El arte de la guerra','Obelisco',112,2);
 
-   ```
+ ```
 Para eliminar el libro con ID 1
 
-   ```SQL
+```SQL
    DELETE FROM Libro WHERE id=1
-   ```
+```
 Para visualizar los cambios 
-   ```SQL
+```SQL
    SELECT * FROM Libro
-   ```
+```
 
 </details>
-
-
 
 Si has llegado hasta este punto __FELICIDADES__, toma __otro__ respiro o ayuda a algún compañero que no lo haya logrado aún o tomate un café te lo mereces.
