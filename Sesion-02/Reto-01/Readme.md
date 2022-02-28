@@ -29,7 +29,7 @@ Para repasar vamos a desplegar un contenedor con una base de datos de tipo postg
 
 
 <details><summary>Solución</summary>
- En una consola escribe lo siguiente: 
+ En una consola escribe lo siguiente:
 
  ```console
 docker pull postgres:latest
