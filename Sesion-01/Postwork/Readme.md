@@ -1,5 +1,5 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Postwork
-## Aplicar los conceptos de la clase a un Proyecto
+## Postwork 01: Creación de una aplicación sencilla en Django
 
 ### OBJETIVOS
 - Crear un entorno virtual para el tú proyecto

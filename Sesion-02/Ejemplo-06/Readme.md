@@ -69,7 +69,7 @@ python manage.py showmigrations
 Aquí, la marca [X] indica que se han aplicado las migraciones. Observa la diferencia entre que se han aplicado las migraciones anteriores de las otras aplicaciones, excepto las de la app Tarjeta. El comando showmigrations se puede ejecutar para entender de mejor forma el estado de la migración, pero esto no es obligatorio al realizar migraciones de modelos.
 
 
-De la misma forma si nos interesa ver el código SQL a detalle de las de las migraciones podemos usar. 
+De la misma forma si nos interesa ver el código SQL a detalle de las de las migraciones podemos usar.
 
 ```python
 python manage.py sqlmigrate tarjeta 0001_initial
@@ -77,7 +77,11 @@ python manage.py sqlmigrate tarjeta 0001_initial
 
 ![](img/Ejemplo1_5.jpg)
 
->*__Nota:__ identifica las sentencias SQL como NOT NULL, PRIMARY KEY y otras instrucciones que agregar automáticamente Django.*
+>*__Nota:__ identifica las sentencias SQL como NOT NULL, PRIMARY KEY y otras instrucciones que agrega automáticamente Django.*
+
+```SQL
+
+```
 
 Finalmente aplicando la migración
 
