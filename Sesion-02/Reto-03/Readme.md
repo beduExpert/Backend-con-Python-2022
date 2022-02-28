@@ -1,37 +1,33 @@
-`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Reto-02
+`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Reto-03
 
-# Reto 02: Conexión Django hacia un contenedor mysql
+# Reto 03: Operaciones CRUD
 
 ### Objetivo
-- Vincular un contenedor Docker hacia Django.
-- Inicializar un esquema en la base de datos.
-- Validar la conexión mediante migraciones.
+- Inicializar un esquema en la base de datos SQLite
+- Aplicar las operaciones CRUD
+- Validar la creación de la información usando DB Browser.
 
 ### Desarrollo
-Durante el work ejemplificamos como conectarnos a distintas bases datos mediante la configuración del archivo settings.py. Esta vez vamos a conectarnos a un contenedor utilizando Django.
+Utilizando DB Browser vamos a implementar una nueva base de datos llamada librería. Esto nos servirá para repasar las instrucciones SQL que nos permiten definir un esquema de datos.
 
-Para realizar este reto utiliza el contenedor mysql que creaste durante los ejemplos. Vamos a generar una nueva base de datos y usuarios.
+1. En una base de datos llamada librería cra una tabla llamada libro. Deberá incluir los siguientes campos:
+   - id
+   - titulo
+   - editorial
+   - numPag
+   - numAutores
+Utiliza los tipos de datos que mejor convengan. Asegurate de que id sea un campo llave primaria y no nulo.
 
-1. Ingresa como usuario root a la base de tu contenedor mysql. e inicializa la base de datos usando el archivo `banco.sql`. Puedes pasarlo como parámetro al final de tu conexión con < banco.sql.
+2. Inserta en la base de datos los siguientes libros:
+ - Titulo: Yo, Robot' Editorial: Gnome Press
+ paginas: 374 autores: 1
+ - Titulo: El fin de la eternida Editorial: Gnome Press
+ paginas: 374 autores: 1
+ - Titulo: El arte de la guerra Editorial: Gnome Press
+ paginas: 374 autores: 1
 
-```SQL
-DROP DATABASE IF EXISTS Banco;
-CREATE DATABASE Banco;
-CREATE USER IF NOT EXISTS 'Banco'@'localhost' IDENTIFIED BY 'Banco';
-CREATE USER IF NOT EXISTS 'Banco'@'%' IDENTIFIED BY 'Banco';
-GRANT ALL PRIVILEGES ON Banco.* TO Banco@'localhost';
-GRANT ALL PRIVILEGES ON Banco.* TO Banco@'%';
-FLUSH PRIVILEGES;
-```
-
-2. Valida que la base de datos se haya inicializado de forma correcta se realiza una conexión a la base de datos Banco usando los datos:
-
-   - __Host:__ localhost
-   - __User:__ Banco
-   - __Pass:__ Banco
-   - __Base de datos:__ Banco
-
-3. Modifica el archivo settings.py para conectarse con mysql. Finalmente corre una migración para verificar que realizó la conexión adecuadamente.
+3. Elimina el libro con el id 1
+   - No olvides mostrar tus resultados usando una clausula select.
 
 > *__Nota:__ No olvides instalado mysqlclient para poder realizar tus migraciones desde Django.*
 
@@ -40,53 +36,36 @@ pip install mysqlclient
 ```
 
 <details><summary>Solución</summary>
+Para generar la Tabla libro
+   ```SQL
+   
+   CREATE TABLE "Libro" (
+      "id"	INTEGER NOT NULL,
+      "titulo"	TEXT,
+      "editorial"	INTEGER,
+      "numPag"	TEXT,
+      "numAutores"	TEXT,
+      PRIMARY KEY("id" AUTOINCREMENT)
+   );
+   ```
+Para ingresar los libros
+   ```SQL
 
-Para conectarse y ejecutar el script
-```console
-docker exec -i pythonsql mysql -hlocalhost -uroot -pBEDU < banco.sql
-```
+   INSERT INTO `Libro` VALUES (1,'Yo, Robot','Gnome Press',374,1),(2,'El fin de la eternidad','Gnome Press',191,1),(3,'El arte de la guerra','Obelisco',112,2);
 
-Para validar el usuario creado.
-```console
-docker exec -it pythonsql mysql -hlocalhost -uBanco -pBanco Banco
-```
-El resultado será:
-  ```console
- mysql -hlocalhost -uBanco -pBanco Banco
-  Welcome to the MariaDB monitor.  Commands end with ; or \g.
-  Your MariaDB connection id is 11
-  Server version: 10.3.15-MariaDB-1:10.3.15+maria~bionic mariadb.org binary distribution
+   ```
+Para eliminar el libro con ID 1
 
-  Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+   ```SQL
+   DELETE FROM Libro WHERE id=1
+   ```
+Para visualizar los cambios 
+   ```SQL
+   SELECT * FROM Libro
+   ```
 
-  Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+</details>
 
-  MariaDB [Banco]> EXIT;
-
-  ```
-Finalmente la configuración el archivo settings.py será:
-
-```
-DATABASES = {
-   'default':{
-      'ENGINE': 'django.db.backends.mysql',
-      'NAME': 'Banco',
-      'USER': 'Banco',
-      'PASSWORD':'Banco',
-      'HOST':'127.0.0.1',
-      'PORT':'33060',
-   }
-}
-```
-y al correr la migración debería arrojar lo siguiente.
-
-![](img/reto1.jpg)
-
-  ***
-  </details>
-
-
-</br>
 
 
 Si has llegado hasta este punto __FELICIDADES__, toma __otro__ respiro o ayuda a algún compañero que no lo haya logrado aún o tomate un café te lo mereces.
