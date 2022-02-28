@@ -49,7 +49,7 @@ DATABASES = {
 
 El parámetro `ENGINE` especifica la base de datos con la que trabajaremos. Debemos incluir el archivo  `django.db.backends.sqlite3` como valor del parámetro., este refiere a una biblioteca de python para la base de datos sqlite3 que convertirá el código python al lenguaje de base de datos SQL . Como resultado, no necesitaremos escribir ninguna consulta en lenguaje de base de datos  porque todo el código será transformado por Python.
 
-### Trabajando con DB Browser para agregar datosS
+### Trabajando con DB Browser para agregar datos
 ***
 
 Podemos crear una nueva tabla en la base de datos haciendo click sobre el botón Create Table. Esto nos mostrará la siguiente pantalla.
@@ -80,5 +80,29 @@ Si examinamos la pestaña de __Browse Data__ veremos que tenemos creado un regis
 
 ![](img/Ejemplo1_8.jpg)
 
+Una vez realizado esto procedemos a guardar la base de datos y cerrar DB Browser.
+
+### Verificando la conexión mediante migraciones
+***
+
+Para verificar que la conexión funciona adecuadamente vamos a realizar una migración a la base de datos. Esto proceso generará todos las tablas e indices necesarios para que Django pueda operar adecuadamente. Si nos desplazamos al directorio de nuestra aplicación `Banco` y corremos una migración.
+
+```console
+$ cd Banco
+$ python3 manage.py migrate
+
+```
+
+Podremos observar que se realizarán varias migraciones. Este proceso aplica código SQL mediante el ORM de Django.
+
+![](img/Ejemplo1_9.jpg)
+
+Podremos verificar la existencia de nuevas tablas e indices si abrimos DB Browser nuevamente.
+
+![](img/Ejemplo1_10.jpg)
+
+Django ha creado por nosotros las tablas necesarias para el backend.
+
+>*__Nota:__Es importante que una vez que termines de explorar la base cierres DB Browser para que se puedan escribir nuevas migraciones desde Django.*
 
 #### ¡Felicidades! Ya sabes conoces los fundamentos de una base SQLite :+1: :1st_place_medal:

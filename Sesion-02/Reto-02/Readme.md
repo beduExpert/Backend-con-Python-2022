@@ -1,62 +1,75 @@
-`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Reto-02
-## Operación READ: Lectura de datos con Python y MariaDB
+`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Reto-03
 
-### OBJETIVO
-Realizar la operación __Read__ a una tabla en un servidor MariaDB desde Python para el proyecto Banco
+# Reto 03: Operaciones CRUD
 
-#### REQUISITOS
-1. Contar con los datos de conexión a la base de datos Banco.
+### Objetivo
+- Inicializar un esquema en la base de datos SQLite
+- Aplicar las operaciones CRUD
+- Validar la creación de la información usando DB Browser.
 
-   __Host:__ localhost
-   __User:__ Banco \
-   __Password:__ Banco \
-   __Base de datos:__ Banco
+### Desarrollo
+Utilizando DB Browser vamos a implementar una nueva base de datos llamada librería. Esto nos servirá para repasar las instrucciones SQL que nos permiten definir un esquema de datos.
 
-1. Usar la carpeta de trabajo `Sesion-02/Reto-02`
+1. En una base de datos llamada librería cra una tabla llamada libro. Deberá incluir los siguientes campos:
+   - id
+   - titulo
+   - editorial
+   - numPag
+   - numAutores
+Utiliza los tipos de datos que mejor convengan. Asegurate de que id sea un campo llave primaria y no nulo.
 
-   ```console
-   $ cd Sesion-02/Reto-02
+2. Inserta en la base de datos los siguientes libros:
+ - Titulo: Yo, Robot' Editorial: Gnome Press
+ paginas: 374 autores: 1
+ - Titulo: El fin de la eternida Editorial: Gnome Press
+ paginas: 374 autores: 1
+ - Titulo: El arte de la guerra Editorial: Gnome Press
+ paginas: 374 autores: 1
 
-   Sesion-02/Reto-02 $
-   ```
+3. Elimina el libro con el id 1
+   - No olvides mostrar tus resultados usando una clausula select.
 
-1. Crear la tabla __Usuario__ e insertar datos desde el archivo `sql/tabla-usuario.sql`
+> *__Nota:__ No olvides instalado mysqlclient para poder realizar tus migraciones desde Django.*
 
-   ![Tabla Usuario](assets/tabla-usuario.jpg)
+```console
+pip install mysqlclient
+```
 
-   ```console
-   Sesion-02/Reto-02 $ docker exec -i pythonsql mysql -hlocalhost -uroot -ppythonsql < sql/tabla-usuario.sql
+<details><summary>Solución</summary>
 
-   Sesion-02/Reto-02 $
-   ```
+```SQL
+CREATE TABLE "Libro" (
+	"id"	INTEGER NOT NULL,
+	"titulo"	TEXT,
+	"editorial"	INTEGER,
+	"numPag"	TEXT,
+	"numAutores"	TEXT,
+	PRIMARY KEY("id" AUTOINCREMENT)
+);
+```
+```SQL
+INSERT INTO `Libro` VALUES (1,'Yo, Robot','Gnome Press',374,1),(2,'El fin de la eternidad','Gnome Press',191,1),(3,'El arte de la guerra','Obelisco',112,2);
+```
 
-### DESARROLLO
-1. __OPERACIÓN READ__ Realizar las modificaciones necesarias en los scripts `lista-registros.py` y `modelomysql.py` para que se imprima en la salida estándar la lista de registros de la tabla proporcionada por el usuario:
+```SQL
+DELETE FROM Libro WHERE id=1
+```
 
-   __Caso: Ejecutando el script sin argumentos__
+```SQL
+SELECT * FROM Libro
+```
 
-   ```console
-   Sesion-02/Reto-02 $ python lista-registros.py
+</details>
+CREATE TABLE `Libro` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(128) DEFAULT NULL,
+  `editorial` varchar(80) DEFAULT NULL,
+  `numPag` int(11) DEFAULT NULL,
+  `autores` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
 
-   Tablas disponibles
-   ------------------
-   Usuario
-   ------------------
-   ```
+</br>
 
-   __Caso: Imprimiendo registros de la tabla Usuario__
 
-   ```console
-   Sesion-02/Reto-02 $ python lista-registros.py Usuario
-
-   Tabla: Usuario
-   --------------
-   Id | Nombre | Apellidos | Edad | Genero
-    1 | Hugo   | Mac Rico  |   10 | M     
-    2 | Paco   | Mac Rico  |   15 | M     
-    3 | Daisy  | Mac Rico  |   18 | H     
-   --------------
-   ```
-   ***
-
-__Nota:__ Este reto se realiza en 3 mins o menos.
+Si has llegado hasta este punto __FELICIDADES__, toma __otro__ respiro o ayuda a algún compañero que no lo haya logrado aún o tomate un café te lo mereces.

@@ -18,6 +18,7 @@ Identificar las bases de datos compatibles con Django, Iniciar  e inicializará 
 Una base de datos es una colección estructurada de datos que ayuda a administrar la información fácilmente. Se utiliza una capa de software denominada Sistema de administración de bases de datos (DBMS) para almacenar, mantener y realizar operaciones en los datos.
 
  - [**`EJEMPLO 01`**](Ejemplo-01)
+ - [**`RETO 01`**](Reto-01)
 
 ***
 #### <ins>Tema 02: Conexiones a bases de datos SQL</ins>
@@ -31,8 +32,8 @@ Puede haber varias bases de datos porque requerimos copias de seguridad, pero s�
 
  - [**`EJEMPLO 02`**](Ejemplo-02)
  - [**`EJEMPLO 03`**](Ejemplo-03)
- - [**`RETO 01`**](Reto-01)
--  [**`EJEMPLO 04`**](Ejemplo-04/Readme.md)
+ - [**`EJEMPLO 04`**](Ejemplo-03)
+ - [**`RETO 02`**](Reto-02)
 
 
 
@@ -47,9 +48,7 @@ Las bases de datos relacionales o las bases de datos de lenguaje de consulta est
 SQL utiliza un conjunto de comandos para realizar una variedad de operaciones de base de datos, como crear una entrada, leer valores, actualizar una entrada y eliminar una entrada. Estas operaciones se denominan colectivamente operaciones CRUD, que significa Crear, Leer, Actualizar y Eliminar. Para comprender las operaciones de la base de datos en detalle, primero obtengamos experiencia práctica con los comandos SQL. La mayoría de las bases de datos relacionales comparten una sintaxis SQL similar; Sin embargo, algunas operaciones diferirán
 
 - [**`EJEMPLO 05`**](Ejemplo-05/Readme.md)
-- [**`RETO 2`**](Reto-02/Readme.md)
-- [**`EJEMPLO 06`**](Ejemplo-06)
-- [**`RETO 03`**](Reto-02)
+- [**`RETO 03`**](Reto-03)
 
 ***
 
@@ -61,7 +60,7 @@ Django tiene su mecanismo de control de versiones, que se conoce como migracione
 
 Cada aplicación que escribes en Django consiste en un paquete de Python que sigue una determinada convención. Django viene con una utilidad que genera automáticamente la estructura de directorios básica de una aplicación, por lo que podemos centrarnos en escribir código en lugar de crear directorios.
 
-- [**`EJEMPLO 07`**](Ejemplo-07/Readme.md)
+- [**`EJEMPLO 06`**](Ejemplo-06/Readme.md)
 
 ***
 

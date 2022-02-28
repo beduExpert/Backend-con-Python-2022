@@ -27,13 +27,13 @@ En el Prework de la sesión identificamos cómo descargar e instalar MySQL en tu
 
 Una vez inicializado realizaremos la conexión con __MySQL Workbench__
 
-	![](img/1.png)
+![](img/1.png)
 
 Procederemos a generar un nuevo Schema, al cual le asignaremos el nombre de base_MySQL
 
-	![](img/2.png)
-	![](img/3.png)
-	![](img/4.png)
+![](img/2.png)
+![](img/3.png)
+![](img/4.png)
 
 Para poder utilizar __MySQL__ en Django es necesario instalar un cliente para Python, por lo cual abriremos nuestro proyecto e iniciaremos nuestro entorno virtual.
 

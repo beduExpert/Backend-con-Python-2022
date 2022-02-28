@@ -1,57 +1,51 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Reto-01
 
-## Inicializando un servidor MariaDB y una base de datos haciendo uso de contenedores
 
-### OBJETIVO
-Inicializar la base de datos en un servidor MariaDB haciendo uso de contenedores para el proyecto BeduTravels.
+# Reto 01: Desplegar un contenedor de Postgres SQL.
 
-#### REQUISITOS
-1. Contar con Docker instalado
-1. Contar con el contenedor __pythonsql__ ya creado en el Ejemplo-01.
-1. Contar con los datos de conexión al servidor MariaDB como usuario root:
-  - __Host:__ localhost
-  - __User:__ root
-  - __Pass:__ pythonsql
-1. Haber actualizado el repositorio
-1. Abrir una terminal y cambiarse a la carpeta de trabajo `Sesion-02/Reto-01`:
+### Objetivo
+- Descargar una imagen de postgres a SQL
+- Inicializar un contenedor con la imagen y los parámetros válidos para recibir conexiones
+- Ejecutar un contenedor válido para aceptar conexiones a Django.
 
-   ```console
-   $ cd Sesion-02/Reto-01
+### Desarrollo
+En el ejemplo 01 se presentaron las bases de datos compatibles con Django y se ejemplificó como utilizar contenedores para desplegar una base de datos mysql.
 
-   Sesion-02/Reto-01 $
-   ```
+Nota:
+- Recuerda que tienes a tu disposición la documentación de docker https://docs.docker.com/engine/reference/run/
 
-### DESARROLLO
-4. Inicializar la base de datos usando el archivo `sql/banco.sql`:
 
-   ```console
-   Sesion-02/Reto-01 $ docker exec -i pythonsql mysql -hlocalhost -uroot -ppythonsql < banco.sql
-   ```
-   ***
+Para repasar vamos a desplegar un contenedor con una base de datos de tipo postgres.
 
-7. Para validar que la base de datos se haya inicializado de forma correcta se realiza una conexión a la base de datos Banco usando los datos:
+1. Utilizando docker realiza un pull de la imagen postgres.
+   - Recuerda ejecutar esto desde una consola y verificar el nombre de la imagen de docker.
+2. Después, genera un contenedor configurando los puertos 5432
+   - Lo lograrás mediante el comando docker run. Verifica la documentación para ver todos los parámetros que te permiten configurar tu contenedor.
+3. Establece 'BEDU' como contraseña para el usuario root.
+   - Puedes utilizar el parámetro -e para establecer la variable de entorno que inicializa el password de root
+```console
+-e POSTGRES_PASSWORD=mypassword
+```
 
-   - __Host:__ localhost
-   - __User:__ Banco
-   - __Pass:__ Banco
-   - __Base de datos:__ Banco
 
-  ```console
-  Sesion-02/Reto-01 $ docker exec -it pythonsql mysql -hlocalhost -uBanco -pBanco Banco
-  Welcome to the MariaDB monitor.  Commands end with ; or \g.
-  Your MariaDB connection id is 11
-  Server version: 10.3.15-MariaDB-1:10.3.15+maria~bionic mariadb.org binary distribution
+<details><summary>Solución</summary>
+ En una consola escribe lo siguiente: 
 
-  Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+ ```console
+docker pull postgres:latest
+ ```
+ postgres es el nombre de la imagen de postgres y especificamos la etiqueta latest para la imagen.
 
-  Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+Revisando la documentación de docker run, especificamos el parámetro -p para establecer el puerto.
 
-  MariaDB [Banco]> EXIT;
+```console
+docker run --postgresql -e POSTGRES_PASWORD=bedu -p 5432:5432 postgres
+```
+![](img/reto1.jpg)
 
-  Sesion-02/Reto-01 $
-  ```
-  ***
-  
-  ![](img/1.png)
+
+</details>
+</br>
+
 
 Si has llegado hasta este punto __FELICIDADES__, toma __otro__ respiro o ayuda a algún compañero que no lo haya logrado aún o tomate un café te lo mereces.

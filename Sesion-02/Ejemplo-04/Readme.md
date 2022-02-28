@@ -33,7 +33,7 @@ Procederemos a generar una nueva base de datos, al cual le asignaremos el nombre
 Para poder utilizar __PostgreSQL__ en Django es necesario instalar un cliente para Python, por lo cual abriremos nuestro proyecto. Recordemos que es importante activar nuestro entorno virtual
 
 ```console
-   $ cd django
+$ cd django
 ```
 
 ```console

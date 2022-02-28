@@ -1,71 +1,92 @@
-`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Reto-03
-## Operación UPDATE: Modificando datos con Python y MariaDB
+`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Reto-02
 
-### OBJETIVO
-Realizar la operación __UPDATE__ para un registro de una tabla con Python y MariaDB.
+# Reto 02: Conexión Django hacia un contenedor mysql
 
-### REQUISITOS
-1. Contar con los datos de conexión a la base de datos BeduTravels.
+### Objetivo
+- Vincular un contenedor Docker hacia Django.
+- Inicializar un esquema en la base de datos.
+- Validar la conexión mediante migraciones.
 
-   __Host:__ localhost <br />
-   __User:__ BeduTravels <br />
-   __Password:__ BeduTravels <br />
-   __Base de datos:__ BeduTravels
+### Desarrollo
+Durante el work ejemplificamos como conectarnos a distintas bases datos mediante la configuración del archivo settings.py. Esta vez vamos a conectarnos a un contenedor utilizando Django.
 
-1. Contar con la tabla __Usuario__ creada y con datos muestra en la base de datos.
+Para realizar este reto utiliza el contenedor mysql que creaste durante los ejemplos. Vamos a generar una nueva base de datos y usuarios.
 
-  ![Tabla Usuario](assets/tabla-usuario.jpg)
+1. Ingresa como usuario root a la base de tu contenedor mysql. e inicializa la base de datos usando el archivo `banco.sql`. Puedes pasarlo como parámetro al final de tu conexión con < banco.sql.
 
-1. Usar la carpeta de trabajo `Sesion-01/Reto-03/`
+```SQL
+DROP DATABASE IF EXISTS Banco;
+CREATE DATABASE Banco;
+CREATE USER IF NOT EXISTS 'Banco'@'localhost' IDENTIFIED BY 'Banco';
+CREATE USER IF NOT EXISTS 'Banco'@'%' IDENTIFIED BY 'Banco';
+GRANT ALL PRIVILEGES ON Banco.* TO Banco@'localhost';
+GRANT ALL PRIVILEGES ON Banco.* TO Banco@'%';
+FLUSH PRIVILEGES;
+```
 
-### DESARROLLO
-1. __OPERACIÓN UPDATE__ Crear el script `actualiza-usuario.py` y realizar las modificaciones en el script `modelomysql.py` para que se pueda modificar un registro a la tabla Usuario en la base de datos BeduTravels desde la línea de comandos. Hacer uso de los módulos `click`, `mysql-connector-python` y `modelomysql`.
+2. Valida que la base de datos se haya inicializado de forma correcta se realiza una conexión a la base de datos Banco usando los datos:
 
-   __Caso: Ejecutando el script sin argumentos__
+   - __Host:__ localhost
+   - __User:__ Banco
+   - __Pass:__ Banco
+   - __Base de datos:__ Banco
 
-   ```console
-   Sesion-01/Reto-03 $ python actualiza-usuario.py
-   Usage: actualiza-usuario.py [OPTIONS] ID NOMBRE APELLIDOS EDAD GENERO
-   Try "actualiza-usuario.py --help" for help.
+3. Modifica el archivo settings.py para conectarse con mysql. Finalmente corre una migración para verificar que realizó la conexión adecuadamente.
 
-   Error: Missing argument "ID".
-   ```
+> *__Nota:__ No olvides instalado mysqlclient para poder realizar tus migraciones desde Django.*
 
-   __Caso: Actualiza un registro a la tabla Usuario en base al id__
+```console
+pip install mysqlclient
+```
 
-   ```console
-   Sesion-01/Reto-03 $ python lista-registros.py Usuario
+<details><summary>Solución</summary>
 
-   Tabla: Usuario
-   --------------
-   Id | Nombre  | Apellidos | Edad | Genero
-    1 | Hugo    | Mac Rico  |   10 | M     
-    2 | Paco    | Mac Rico  |   15 | M     
-    3 | Daisy   | Mac Rico  |   18 | H     
-    4 | Luis    | Mac Rico  |   19 | M     
-    5 | Goku    | Saiyajin  |   47 | M     
-    6 | Vegeta  | Saiyajin  |   50 | M     
-    7 | Chabelo |           |  100 | M     
-   --------------
+Para conectarse y ejecutar el script
+```console
+docker exec -i pythonsql mysql -hlocalhost -uroot -pBEDU < banco.sql
+```
 
-   Sesion-01/Reto-03 $ python actualiza-usuario.py 7 None Lopez None None
-   Se ha actualizado el registro (7, None, 'Lopez', None, None) a la tabla Usuario
+Para validar el usuario creado.
+```console
+docker exec -it pythonsql mysql -hlocalhost -uBanco -pBanco Banco
+```
+El resultado será:
+  ```console
+ mysql -hlocalhost -uBanco -pBanco Banco
+  Welcome to the MariaDB monitor.  Commands end with ; or \g.
+  Your MariaDB connection id is 11
+  Server version: 10.3.15-MariaDB-1:10.3.15+maria~bionic mariadb.org binary distribution
 
-   Sesion-01/Reto-03 $ python lista-registros.py Usuario
-   Tabla: Usuario
-   --------------
-   Id | Nombre  | Apellidos | Edad | Genero
-    1 | Hugo    | Mac Rico  |   10 | M     
-    2 | Paco    | Mac Rico  |   15 | M     
-    3 | Daisy   | Mac Rico  |   18 | H     
-    4 | Luis    | Mac Rico  |   19 | M     
-    5 | Goku    | Saiyajin  |   47 | M     
-    6 | Vegeta  | Saiyajin  |   50 | M     
-    7 | Chabelo | Lopez     |  100 | M     
-   --------------
-   ```
-   ***
+  Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
 
-__Nota:__ Este reto se realiza en 15 mins.
+  Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-__Sugerencia:__ Usar el script `agrega-usuario.py` como base.
+  MariaDB [Banco]> EXIT;
+
+  ```
+Finalmente la configuración el archivo settings.py será:
+
+```
+DATABASES = {
+   'default':{
+      'ENGINE': 'django.db.backends.mysql',
+      'NAME': 'Banco',
+      'USER': 'Banco',
+      'PASSWORD':'Banco',
+      'HOST':'127.0.0.1',
+      'PORT':'33060',
+   }
+}
+```
+y al correr la migración debería arrojar lo siguiente.
+
+![](img/reto1.jpg)
+
+  ***
+  </details>
+
+
+</br>
+
+
+Si has llegado hasta este punto __FELICIDADES__, toma __otro__ respiro o ayuda a algún compañero que no lo haya logrado aún o tomate un café te lo mereces.
