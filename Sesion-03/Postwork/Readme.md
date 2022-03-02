@@ -3,197 +3,106 @@
 
 ### Objetivo
 - Crear las tablas de tu modelo relacional con el modelo de datos de Django
-- Crear las relaciones entre tablas según corresponda con el modelo de datos de Django.
-- Usar las consultas junto a las plantillas de Django para mostrar datos de forma dinámica.
-- Agregar una página con formulario y procesar la información.
-
-
-
+- Registrar un usuario admin en Django
+- Ingresar un nuevo usuario usando Django Admin CRUD
+- Recuperar la información mediante una consulta.
 
 ### Desarrollo
-***
 
-Para este proyecto necesitaremos lo siguiente:
+Para este postwork continuaremos con la creación de nues aplicación To Do es importante que tengas los archivos que generaste en tu primer postwork. Y la conexión válida que tienes en el desarrollo de tu segundo postwork.
 
-1. Constar con la carpeta del repo actualizada.
-1. Usar la carpeta de trabajo `Sesion-03/Postwork/Proyecto/`.
-1. Activar el entorno virtual para tú proyecto.
-1. Página de inicio maquetada del tú proyecto en la carpeta `Sesion-03/Postwork/public_html/`.
+Vamos a generar un modelo que corresponda a un usuario para usarse con el login que hemos construido en la sesión 1. Aplicaremos una inserción de datos mediante el uso del administrador de Django y posteriormente verificaremos que la información exista mediante una consulta en el shell de Django.
 
+#### Asegúrate de comprender:
+- Como se registra un modelo en Django y cómo se especifican los tipos de datos.
+- Qué relación tiene un modelo con las migraciones y los archivos del proyecto de Django.
+- La estructura de archivos que sigue un proyecto de Django
+- Los usuarios administradores de Django y su  relación con el panel de administrar.
+- La consultas desde el shell de Django
 
-1. Usando el modelo entidad-relación, crear el modelo correspondiente a cada tabla.
+Indicaciones generales
 
-   __Creando el modelo para la tabla Tabla1 agregando lo siguiente al archivo `Proyecto/miapp/models.py`:__
+1. Registra un modelo llamado User, que contemple los siguientes campos:
+- nombre: longitud máxima 40 y de tipo CharField.
+- apellidos: longitud máxima 80, con opción para ser null.
+- email: campo válidado para email
+- fechaNacimiento: una fecha con el tipo de dato para fecha
+- genero:campo de tipo opción con las opciones  H, Hombre y M,Mujer. Longitud máxima 1.
+- clave: campo para la contraseña de momento de tipo char. Longitud maxima 45
+- tipo: campo para indicar el tipo de usuario. Longitud máxima 45.
 
-   ```python
-   from django.db import models
+2. Agrega un usuario administrador a Django. Y desde la interfaz de Django agrega un usuario a tu modelo. El usuario deberá llamarse Betito.
 
-   # Create your models here.
-   class Tabla1(models.Model):
-       """ Define la tabla Tabla1 """
-       campo1 = models.???
-       campo2 = models.???
-       campoN = models.???
-   ```
+3. Consulta desde tu shell de Django que la información que agregaste se vea reflejada. Modifica la representación para que se imprima únicamente el nombre y apellido.
 
-   __Antes de continuar, tenemos que indicar a Django algunas configuraciones locales en el archivo `settings.py`:__
+__Expectativa de Resultado__
+El usuario que corresponde al modelo desde Django admin
+![](postwork1.jpg)
+El usuario desde el Shell de Django
+![](postwork4.jpg)
 
-   ```python
-   # Internationalization
-   # https://docs.djangoproject.com/en/2.2/topics/i18n/
+<details>
+<summary>
+Solución</summary>
+Para agregar un modelo debes de modificar el archivo __models.py__ y construir el siguiente modelo:
 
-   LANGUAGE_CODE = 'es-MX'
-   TIME_ZONE = 'America/Mexico_City'
-   ```
+```python
+class User(models.Model):
+    """ Define la tabla User """
+    nombre = models.CharField(max_length=40)
+    apellidos = models.CharField(max_length=80, null=True, blank=True)
+    email = models.EmailField()
+    fechaNacimiento = models.DateField(null=True, blank=True)
+    GENERO = [
+        ("H", "Hombre"),
+        ("M", "Mujer"),
+    ]
+    genero = models.CharField(max_length=1, choices=GENERO)
+    clave = models.CharField(max_length=40, null=True, blank=True)
+    tipo = models.CharField(max_length=45, null=True, blank=True)
 
-   La lista tanto de códigos de lenguaje como de zonas horarias se puede consultar en:
-   - http://www.i18nguy.com/unicode/language-identifiers.html
-   - https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+    def __str__(self):
+        """ Se define la representación en str para User """
+        return "{} {}".format(self.nombre, self.apellidos)
+```
+Corre las migraciónes necesarias con:
 
-   __Avisando a Django que hemos modificado el archivo `models.py`:__
+```
+python manage.py makemigrations
+python manage.py migrate
+```
 
-   ```console
-   (Proyecto) Postwork/Proyecto $ python manage.py makemigrations
-   (Proyecto) Postwork/Proyecto $ python manage.py migrate
-   (Proyecto) Postwork/Proyecto $
-   ```
+Para agregar el administrador utiliza el siguiente comando:
+```
+python manage.py createsuperuser
+```
+Introduce la contraseña de tu preferencia cuando se solicite:
 
-   __Django ya cuenta con un sistema CRUD para nuestros modelos y para activarlo es necesario agregar un Tabla1 administrador cuando menos:__
+```console
+Nombre de usuario (leave blank to use 'betito'):
+Dirección de correo electrónico: betito@gmail.com
+Password: ******
+Password (again): *****
+```
+Ingresa a localhost/admin y verás los modelos que puedes editar desde el administrador gráfico de Django.
 
-   ```console
-   (Proyecto) Postwork/Proyecto $ python manage.py createsuperuser
-   Nombre de Tabla1 (leave blank to use 'rctorr'): Proyecto
-   Dirección de correo electrónico: proyecto@gmail.com
-   Password:
-   Password (again):
-   La contraseña es muy similar a  nombre de Usuario.
-   Bypass password validation and create user anyway? [y/N]: y
-   Superuser created successfully.
+![](postwork2.jpg)
 
-   (Proyecto) Postwork/Proyecto $
-   ```
+Sin, embargo el modelo no se encuentra disponible aún, para realizar esto es necesario que se realicen modificaciones a  el archivo admin.py registra el modelo que agregarás
 
-   Abrir la url http://localhost:8000/admin y usar los siguientes datos para entrar:
-   - Usuario: Proyecto
-   - Clave: Proyecto
-   - Email: proyecto@gmail.com
+```python
+from django.contrib import admin
+from .models import User
+# Register your models here.
 
-   __Agregando el siguiente código al archivo `Proyecto/miapp/admin.py`:__
+admin.site.register(User)
+```
 
-   ```python
-   from django.contrib import admin
-   from .models import Tabla1
+Usa la interfaz gráfica para agregar un nuevo registro.
+![](postwork3.jpg)
 
-   # Register your models here.
-   admin.site.register(Tabla1)
-   ```
+Finalmente desde el shell de Django verifica que tu usuario se pueda recuperar.
 
-   Ahora ya se puede listar, agregar, actualizar o eliminar registros en la tabla Tabla1.
-   ***
+![](postwork4.jpg)
 
-1. Usando el modelo entidad-relación, crear las tablas y sus relaciones.
-
-   ```python
-   class TablaN(models.Model):
-       """ Define la tabla TablaN """
-       tabla1 = models.ForeignKey(Tabla1, on_delete=models.CASCADE)
-       campo1 = ???
-       campon = ???
-
-       def __str__(self):
-           """ Se define la representación en str para TablaN """
-           return ???
-   ```
-
-   __Avisando a Django que hemos modificado el archivo `models.py`:__
-
-   ```console
-   (Proyecto) Ejemplo-02/Proyecto $ python manage.py makemigrations
-   (Proyecto) Ejemplo-02/Proyecto $ python manage.py migrate
-   (Proyecto) Ejemplo-02/Proyecto $
-   ```
-
-   __Agregando la tabla TablaN al administrador de Django y definiendo los campos a mostrar:__
-
-   ```python
-   from .models import Tabla1, TablaN
-
-   class TablaNAdmin(admin.ModelAdmin):
-       # Se sobre escribe lo que hace __str__
-       list_display = ("id", "tabla1", "campo1", "campon")
-   admin.site.register(TablaN, TablaNAdmin)
-   ```
-   Abrir el navegador en la siguiente url ...
-
-   Abrir la url http://localhost:8000/admin y usar los siguientes datos para entrar:
-   - Usuario: Proyecto
-   - Clave: Proyecto
-
-   __Se deberá de ver los distintos modelos agregados y se deberá de poder agregar registros a cada tabla.__
-   ***
--
-1. Usando el __Shell de Django__ definir las consultas que serán usadas para obtener los datos dinámicos para cada una de las páginas que lo requieran.
-
-   __Iniciando el Shell de Django:__
-   ```console
-   (Proyecto) Postwork/Proyecto $ python manage.py shell
-   Python 3.7.3 (default, Mar 27 2019, 22:11:17)
-   [GCC 7.3.0] on linux
-   Type "help", "copyright", "credits" or "license" for more information.
-   (InteractiveConsole)
-   >>>
-   ```
-
-   __Realizando la consulta para obtener todos los registros de la tabla ???:__
-
-   ```python
-   >>> from miapp.models import ???
-   >>> ???.objects.all()
-   <QuerySet [<???: Yo, Robot>, <???: El fin de la eternidad>, <???: El arte de la guerra>]>
-   >>>
-   ```
-   ***
-
-1. Imprime los datos de la tabla ??? el registro con `id = 3`:
-
-   __Dentro el Shell de Django:__
-
-   ```python
-   >>> l3 = ???.objects.get(pk=3)
-   >>> l3
-   <???: El arte de la guerra>
-   ```
-   ***
--
-1. Convertir la plantilla `index.html` en una página base y la página para el index.
-
-   __Realizar una copia del archivo `index.html` y llamarla `base.html`:__
-
-   ```console
-   Postwork/Proyecto $ cp miapp/template/miapp/index.html miapp/template/base.html
-
-   Postwork/Proyecto $
-   ```
-   __Modificar el archivo `base.html` para que se vea similar a lo siguiente:__
-
-   ```html
-   ...
-   <title>Proyecto - {% block title %}título de página{% endblock %}</title>
-   ...
-       {% block contenido %}
-       {% endblock %}
-   ```
-
-   __Ahora se modifica el archivo `index.html` para que se va de la siguiente forma:__
-
-   ```html
-   {% extends "base.html" %}
-   ```
-
-1. A partir de aquí crear las páginas restantes del proyecto siguiendo los siguientes puntos:
-
-   - Agregar la ruta a la página en el archivo `urls.py`
-   - Agregar la vista a la ruta en el archivo `views.py`
-   - Agregar el archivos html que haga uso de base.html y que muestra el html de la página que se está agregando.
-   - Agregar a la vista el código correspondiente a los datos o procesamiento POST necesario para la página en turno.
-   ***
+</summary>

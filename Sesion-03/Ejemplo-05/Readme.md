@@ -6,16 +6,6 @@
 - Crear la ruta y vista para generar el formulario de login
 - Crear la ruta y vista para procesar la información de un formulario vía POST
 
-### Requisitos
-
-Actualizar repositorio
-
-Usar la carpeta de trabajo `Sesion-03/Proyecto`
-
-Diagrama del modelo entidad-relación para el proyecto __Bedutravels__
-
-   ![Modelo entidad-relación para Bedutravels](assets/bedutravels-modelo-er.png)
-
 
 ### Desarrollo
 
@@ -25,8 +15,15 @@ En este ejemplo vamos a conocer como implementar los métodos GET y POST. GET y 
 
 Cualquier solicitud que pueda usarse para cambiar el estado del sistema, por ejemplo, una solicitud que realiza cambios en la base de datos, debes usar POST. GET debe usarse sólo para solicitudes que no afecten el estado del sistema.
 
+Para este ejercicio conviene tener a la mano el siguiente.
 
-#### Formularios
+Diagrama del modelo entidad-relación para el proyecto __Bedutravels__
+
+   ![Modelo entidad-relación para Bedutravels](assets/bedutravels-modelo-er.png)
+
+
+
+#### Implementando un formulario
 ***
 
 

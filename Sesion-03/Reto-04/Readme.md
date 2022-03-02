@@ -8,8 +8,15 @@
 
 ### Desarrollo
 
-El RETO consiste en modificar la página de inicio, en su columna izquierda para que en la lista de Destinos, muestre la lista de Zonas disponibles.
+El reto consiste en modificar la página de inicio, en su columna izquierda para que en la lista de Destinos, muestre la lista de Zonas disponibles.
 
+Para lograr esto debes realizar las siguientes instrucciones:
+
+1. Ir a tu archivo de vistas view.py, modificar la vista que corresponde a index e incluir la consultas para recuperar los datos de tour y zona.
+
+2. Modificar la plantilla para incluir las etiquetas adecuadas dentro del código html.
+
+3. Realizar las migraciones necesarias si es necesario.
 
 __Resultado final:__
 
@@ -17,7 +24,7 @@ __Resultado final:__
 
 
 <details><summary>Solución</summary>
-1. Modificar la vista `index()` para incluir la lista de todas las Zonas:
+Modificar la vista `index()` para incluir la lista de todas las Zonas:
 
    __Realizando cambios al archivo `Bedutravels/tours/views.py`:__
    ```python
@@ -34,7 +41,7 @@ __Resultado final:__
    ```
 
 
-1. Modificar la plantilla `index.html` para que haga uso de los resultados obtenidos en la vista:
+Modificar la plantilla `index.html` para que haga uso de los resultados obtenidos en la vista:
 
    __Realizando cambios al archivo `Bedutravels/tours/template/tours/index.html`:__
    ```html
