@@ -1,5 +1,5 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Postwork
-## Postowork 02: Creación de una aplicación sencilla en Django
+## Postwork 02: Creación de una aplicación sencilla en Django
 
 ### OBJETIVOS
 - Inicializar una base de datos SQL para el proyecto To-DO APP.

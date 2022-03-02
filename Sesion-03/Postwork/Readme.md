@@ -1,19 +1,26 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 03`](../Readme.md) > Postwork
 ## Aplicar los conceptos de la clase a un Proyecto
 
-### OBJETIVOS
+### Objetivo
 - Crear las tablas de tu modelo relacional con el modelo de datos de Django
 - Crear las relaciones entre tablas según corresponda con el modelo de datos de Django.
 - Usar las consultas junto a las plantillas de Django para mostrar datos de forma dinámica.
 - Agregar una página con formulario y procesar la información.
 
-#### REQUISITOS
+
+
+
+### Desarrollo
+***
+
+Para este proyecto necesitaremos lo siguiente:
+
 1. Constar con la carpeta del repo actualizada.
 1. Usar la carpeta de trabajo `Sesion-03/Postwork/Proyecto/`.
 1. Activar el entorno virtual para tú proyecto.
 1. Página de inicio maquetada del tú proyecto en la carpeta `Sesion-03/Postwork/public_html/`.
 
-### DESARROLLO
+
 1. Usando el modelo entidad-relación, crear el modelo correspondiente a cada tabla.
 
    __Creando el modelo para la tabla Tabla1 agregando lo siguiente al archivo `Proyecto/miapp/models.py`:__
@@ -190,5 +197,3 @@
    - Agregar el archivos html que haga uso de base.html y que muestra el html de la página que se está agregando.
    - Agregar a la vista el código correspondiente a los datos o procesamiento POST necesario para la página en turno.
    ***
-
-__Que Django te acompañe!__

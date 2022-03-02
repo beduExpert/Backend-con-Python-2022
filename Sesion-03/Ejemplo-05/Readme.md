@@ -49,7 +49,7 @@ Creamos la vista `views.login`
 
    __Se modifica el archivo `Bedutravels/tours/views.py` agregando las función login():__
 
-   ```python
+```python
    def login(request):
        """ Atiende las peticiones de GET /login/ """
 
@@ -60,7 +60,7 @@ Creamos la vista `views.login`
                "msg":msg,
            }
        )
-   ```
+```
 
 
 #### Creación de una plantilla `login.html`

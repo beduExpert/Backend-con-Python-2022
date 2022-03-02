@@ -32,7 +32,7 @@ Las instalaciones de los SGBD son dependientes del tipo de base de datos que uti
 
 > __Nota:__ Recuerda haber instalado Docker de acuerdo a las instrucciones de tu pre-work. Puedes obtener el instalador en el siguiente enlace: https://www.docker.com/products/docker-desktop
 
-Lo primero que haremos es utilizar el comando __pull__ para traer la imagen que se instalará en nuestro equipo. Nosotros utilizaremos mysql. 
+Lo primero que haremos es utilizar el comando __pull__ para traer la imagen que se instalará en nuestro equipo. Nosotros utilizaremos mysql.
 
 ```console
 docker pull mysql/mysql-server:latest
@@ -78,7 +78,7 @@ docker exec -it [container_name] mysql -uroot -p
 
 > *__Nota:__ Recordemos que el usuario que se creo por defecto al hacer pull de la imagen es root.Así mismo por defecto se auto genera un password.
 
-Para obtener el password podemos utilizar docker desktop e dirigirnos a los __logs__  del contedor. Ahí encontraremos la password que nos asignó. 
+Para obtener el password podemos utilizar docker desktop e dirigirnos a los __logs__  del contedor. Ahí encontraremos la password que nos asignó.
 
 
 ![](img/Ejemplo1_6.jpg)
@@ -103,7 +103,7 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY ['password']
 
 ![](img/Ejemplo1_9.jpg)
 
-Ahora ya tenemos configurado nuestro servidor mysql desde una 
+Ahora ya tenemos configurado nuestro servidor mysql desde una
 
 #### Configuraciones de bases de Datos en Django
 ***
