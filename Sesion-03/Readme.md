@@ -1,6 +1,8 @@
 [`Backend con Python`](../Readme.md) > `Sesión 03`
 # Sesión 3: Modelos, migraciones, consultas y forms
 
+<img src="img/pizarron.png" align="right" height="100" width="100" hspace="10">
+
 ## :dart: Objetivos
 
 Construir consultas mediante el shell de Django, construir vistas que hagan uso de los modelos logrando la construcción de páginas con información dinámica, identificar el uso tablas en un modelo relacional creando relaciones entre tablas e implementar formularios.
@@ -40,14 +42,14 @@ Las relaciones ayudan a mantener la integridad de los datos al establecer las re
 
 ***
 #### <ins>Tema 03: Definir las consultas usando el ORM de Django</ins>
-<img src="img/imagen2.png" align="right" height="100" width="100">
+<img src="img/imagen3.png" align="right" height="100" width="100">
 
    - [Ejemplo 03](Ejemplo-03)
    - [Reto 03](Reto-03)
 
 ***
 #### <ins>Tema 04: Realizar Consultas en las plantillas de Django</ins>
-<img src="img/imagen2.png" align="right" height="100" width="100">
+<img src="img/imagen4.png" align="right" height="100" width="100">
 
 Una vez que se tiene un objeto Template compilado, se puede renderizar un contexto con él. Puedes reutilizar la misma plantilla para renderizarla varias veces con diferentes contextos. Incluso si los datos que queremos presentar deben actualizarse o recuperarse desde nuestra base datos.Mediante el uso de los métodos para recuperación de datos por ejemplo all( ) podemos construir plantillas que recuperen información.
 
@@ -58,7 +60,7 @@ Una vez que se tiene un objeto Template compilado, se puede renderizar un contex
 
 ***
 #### <ins>Tema 05: Definir e implementar formularios</ins>
-<img src="img/imagen2.png" align="right" height="100" width="100">
+<img src="img/imagen5.png" align="right" height="100" width="100">
 
 Un formulario HTML es una colección de elementos internos representados mediante la etiqueta `<form>` que permite al usuario hacer cosas como ingresar texto, seleccionar opciones, manipular objetos o controles y luego enviar esa información al servidor.
 
