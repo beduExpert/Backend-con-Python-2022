@@ -9,7 +9,7 @@
 
 ### Desarrollo
 
-Para este postwork continuaremos con la creación de nues aplicación To Do es importante que tengas los archivos que generaste en tu primer postwork. Y la conexión válida que tienes en el desarrollo de tu segundo postwork.
+Para este postwork continuaremos con la creación de nuestra aplicación To Do es importante que tengas los archivos que generaste en tu primer postwork. Y la conexión válida que tienes en el desarrollo de tu segundo postwork.
 
 Vamos a generar un modelo que corresponda a un usuario para usarse con el login que hemos construido en la sesión 1. Aplicaremos una inserción de datos mediante el uso del administrador de Django y posteriormente verificaremos que la información exista mediante una consulta en el shell de Django.
 
