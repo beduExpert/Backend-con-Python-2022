@@ -1,20 +1,22 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 03`](../Readme.md) > Reto-04
-## El sistema de plantillas de Django
 
-### OBJETIVO
+# Reto 04: El sistema de plantillas de Django
+
+### Objetivo
 - Hacer uso del sistema de consultas de Django.
 - Aplicar las consultas en las plantillas de Django.
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-03/Reto-04`
-1. Diagrama del modelo entidad-relación para el proyecto __Bedutravels__
+### Desarrollo
 
-   ![Modelo entidad-relación para Bedutravels](bedutravels-modelo-er.png)
-
-### DESARROLLO
 El RETO consiste en modificar la página de inicio, en su columna izquierda para que en la lista de Destinos, muestre la lista de Zonas disponibles.
 
+
+__Resultado final:__
+
+![Index dinámico](assets/index-01.png)
+
+
+<details><summary>Solución</summary>
 1. Modificar la vista `index()` para incluir la lista de todas las Zonas:
 
    __Realizando cambios al archivo `Bedutravels/tours/views.py`:__
@@ -30,7 +32,7 @@ El RETO consiste en modificar la página de inicio, en su columna izquierda para
 
        return render(request, "tours/index.html", {"tours":tours, "zonas":zonas})
    ```
-   ***
+
 
 1. Modificar la plantilla `index.html` para que haga uso de los resultados obtenidos en la vista:
 
@@ -52,8 +54,5 @@ El RETO consiste en modificar la página de inicio, en su columna izquierda para
       </div>
     </aside>
    ```
-   ***
+</summary>
 
-__Resultado final:__
-
-![Index dinámico](assets/index-01.png)

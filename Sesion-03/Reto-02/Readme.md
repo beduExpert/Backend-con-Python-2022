@@ -1,25 +1,23 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 03`](../Readme.md) > Reto-02
-## Creando relaciones con el modelo de datos de Django
+# Reto 01: Creando relaciones con el modelo de datos de Django
 
-### OBJETIVO
+### Objetivo
 - Crear una relación entre dos tablas.
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-03/Reto-02`
-1. Diagrama del modelo entidad-relación para el proyecto __Bedutravels__
+### Desarrollo
+1. Usando el modelo entidad-relación, agregar la tabla Salida.
+   - Para realizar esto registra tu modelo con los tipos de campo y opciones adecuadas.
+   - Registra estos cambios en `admin.py`
+   - Registra las migraciones en la app.
+
+Diagrama del modelo entidad-relación para el proyecto __Bedutravels__
+
+
 
    ![Modelo entidad-relación para Bedutravels](assets/bedutravels-modelo-er.png)
 
-1. Documentación de Django referente a modelos:
-   - Descripción de modelos y ejemplos: https://docs.djangoproject.com/en/2.2/topics/db/models/
-   - Referencia a la API de Modelos en Django https://docs.djangoproject.com/en/2.2/ref/models/
-   - Referencia a los tipos de datos que maneja Django https://docs.djangoproject.com/en/2.2/ref/models/fields/#field-types
-
-### DESARROLLO
-1. Usando el modelo entidad-relación, agregar la tabla Salida:
-
-   ```python
+<details><summary>Solución</summary>
+```python
    class Salida(models.Model):
        """ Define la tabla Salida """
        fechaInicio = models.DateField()
@@ -30,28 +28,31 @@
 
        def __str__(self):
            return "{} ({}, {})".format(self.tour, self.fechaInicio, self.fechaFin)
-   ```
+```
 
-   __Avisando a Django que hemos modificado el archivo `models.py`:__
+__Registrando en Django que hemos modificado el archivo `models.py`:__
 
-   ```console
+```console
    (Bedutravels) Reto-02/Bedutravels $ python manage.py makemigrations
    (Bedutravels) Reto-02/Bedutravels $ python manage.py migrate
    (Bedutravels) Reto-02/Bedutravels $
-   ```
+```
 
-   __Agregando el modelo Salida a el archivo `admin.py`:__
+__Agregando el modelo Salida a el archivo `admin.py`:__
 
-   ```python
+```python
    class SalidaAdmin(admin.ModelAdmin):
        # Se sobre escribe lo que hace __str__
        list_display = ("id", "fechaInicio", "fechaFin", "asientos", "precio",
            "tour")
 
    admin.site.register(Salida, SalidaAdmin)
-   ```
+```
 
-   Después de agregar 3 Salida para el Tour de Chiapas Hermoso se observa:
+Después de agregar 3 Salida para el Tour de Chiapas Hermoso se observa:
 
-   ![Django admin agregando una Salida](assets/admin-01.png)
-   ***
+![Django admin agregando una Salida](assets/admin-01.png)
+
+</details>
+
+__FELICIDADES__, toma __otro__ respiro o ayuda a algún compañero que no lo haya.
