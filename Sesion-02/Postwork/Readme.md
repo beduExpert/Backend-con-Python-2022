@@ -41,9 +41,56 @@ Posteriormente modifica el archivo settings.py para copiar los parámetros de co
 Una vez configurada la conexión puedes verificarla haciendo la migración inicial. Recuerda que las opciones a tu disposición están asociadas a `python manage.py`
 </details>
 
-``
+#### Resultado esperado:
+
+Una base de datos inicializada con las siguientes tablas necesarias para el funcionamiento de Django.
+   ![](img/img1.png)
+
+
 <details>
 <summary>
 Solución</summary>
-TBD
+
+1. Inicializar un servidor PostgreSQL, MySQL o SQLite y la base de datos de tu elección Puedes utilizar contenedores, un servidor o SQLite.
+
+Este paso dependerá del servicio que se haya elegido. Como referencia utilizar los ejemplos de la sesión
+
+2. Realiza una conexión desde Django a tu base de datos.
+
+La conexión de la base de datos debe especificarse en el archivo settings.py
+
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'db_name',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '', # default is 5432
+    }
+}
+```
+
+3. Validar la conexión corriendo una primera migración.
+
+Se valida la conexión con:
+
+```console
+python manage.py migrate
+```
+adicionalmente se pueden usar los parametros makemigrations:"
+
+```console
+python manage.py makemigrations nombre
+``
+
+para dar nombre a una migración. y SQLmigrate pare ver las operaciones. 
+
+```console
+python manage.py makemigrations nombre
+```
+
+
 </details>
