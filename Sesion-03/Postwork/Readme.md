@@ -1,5 +1,5 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 03`](../Readme.md) > Postwork
-## Aplicar los conceptos de la clase a un Proyecto
+## Postwork 01: Creación de un modelo e inserción de datos mediante Django Admin.
 
 ### Objetivo
 - Crear las tablas de tu modelo relacional con el modelo de datos de Django
