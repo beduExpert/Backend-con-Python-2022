@@ -22,7 +22,7 @@ Un modelo en Django es un tipo de objeto especial que se guarda en la base de da
 
 ***
 #### <ins>Tema 02: Crear relaciones con el modelo de datos de Django</ins>
-<img src="img/imagen2.png" align="right" height="100" width="100">
+<img src="img/imagen2.png" align="right" height="150" width="150">
 
 
 En una base de datos relacionales, puede haber los siguientes tipos de relaciones
@@ -31,11 +31,9 @@ En una base de datos relacionales, puede haber los siguientes tipos de relacione
 - De muchos a muchos
 - Uno a uno
 
-Esta es nna de las ventajas de las bases de datos relacionales que tienen la capacidad de establecer relaciones entre los datos almacenados en las tablas.
+Esta es una de las ventajas de las bases de datos relacionales que tienen la capacidad de establecer relaciones entre los datos almacenados en las tablas.
 
 Las relaciones ayudan a mantener la integridad de los datos al establecer las referencias correctas entre las tablas, lo que a su vez ayuda a mantener la base de datos. Las reglas de relación, por su parte, garantizan la coherencia de los datos y eviten los duplicados.
-
-
 
    - [Ejemplo 02](Ejemplo-02)
    - [Reto 02](Reto-02)
@@ -43,6 +41,8 @@ Las relaciones ayudan a mantener la integridad de los datos al establecer las re
 ***
 #### <ins>Tema 03: Definir las consultas usando el ORM de Django</ins>
 <img src="img/imagen3.png" align="right" height="100" width="100">
+
+
 
    - [Ejemplo 03](Ejemplo-03)
    - [Reto 03](Reto-03)
