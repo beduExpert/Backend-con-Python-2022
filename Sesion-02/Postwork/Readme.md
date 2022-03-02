@@ -84,13 +84,11 @@ adicionalmente se pueden usar los parametros makemigrations:
 
 ```console
 python manage.py makemigrations nombre
-``
+``` 
 
 para dar nombre a una migración. y SQLmigrate pare ver las operaciones.
 
 ```console
 python manage.py makemigrations nombre
 ```
-
-
 </details>
