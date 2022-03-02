@@ -43,6 +43,22 @@ Las relaciones ayudan a mantener la integridad de los datos al establecer las re
 <img src="img/imagen3.png" align="right" height="100" width="100">
 
 
+Django incluye una capa de mapeo relacional de objetos predeterminada que se puede usar para interactuar con datos de aplicaciones de varias bases de datos relacionales.
+
+¿Qué es ORM?
+
+Object Relational Mapping (modelo de objeto relacional) es un modelo de programación que transforma los datos de un objeto a un formato adecuado para poder guardar toda esa información en una base de datos mapeándolos.  Entre sus ventajas:
+
+Facilidad y velocidad de uso.
+Abstracción de la base de datos utilizada.
+Seguridad de la capa de acceso de datos contra ataques.
+
+Aunque también cuenta con desventajas:
+
+En entornos con gran carga, poner una capa más en el proceso puede afectar el rendimiento.
+Aprende el nuevo lenguaje del ORM.
+
+
 
    - [Ejemplo 03](Ejemplo-03)
    - [Reto 03](Reto-03)
