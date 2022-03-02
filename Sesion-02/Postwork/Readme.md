@@ -1,5 +1,5 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Postwork
-## Postowrk 02: Creación de una aplicación sencilla en Django
+## Postowork 02: Creación de una aplicación sencilla en Django
 
 ### OBJETIVOS
 - Inicializar una base de datos SQL para el proyecto To-DO APP.
@@ -80,13 +80,13 @@ Se valida la conexión con:
 ```console
 python manage.py migrate
 ```
-adicionalmente se pueden usar los parametros makemigrations:"
+adicionalmente se pueden usar los parametros makemigrations:
 
 ```console
 python manage.py makemigrations nombre
 ``
 
-para dar nombre a una migración. y SQLmigrate pare ver las operaciones. 
+para dar nombre a una migración. y SQLmigrate pare ver las operaciones.
 
 ```console
 python manage.py makemigrations nombre

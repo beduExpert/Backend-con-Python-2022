@@ -1,28 +1,27 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 03`](../Readme.md) > Ejemplo-04
-## El sistema de plantillas de Django
 
-### OBJETIVO
+## Ejemplo 04: Realizar una consulta a la base de datos mediante una plantilla.
+
+
+### Objetivo
+
 - Hacer uso del sistema de consultas de Django.
-- Conocer el sistemas de plantillas de Django
+
+- Conocer el sistemas de plantillas de Django.
+
 - Aplicar las consultas en las plantillas de Django.
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-03/Ejemplo-04`
-1. Diagrama del modelo entidad-relación para el proyecto __Bedutravels__
 
-   ![Modelo entidad-relación para Bedutravels](bedutravels-modelo-er.png)
+### Desarrollo
 
-1. Documentación de Django referente a modelos:
-   - Referencia a la API de Modelos en Django https://docs.djangoproject.com/en/2.2/ref/models/
-   - Expresiones en consultas: https://docs.djangoproject.com/en/2.2/ref/models/expressions/
-   - API de consultas https://docs.djangoproject.com/en/2.2/ref/models/querysets/
+Modificar la vista `index()` para que haga uso de las consultas de Django para obtener cada uno de los registros necesarios para mostrar en la lista de Tours.
 
-### DESARROLLO
-1. Modificar la vista `index()` para que haga uso de las consultas de Django para obtener cada uno de los registros necesarios para mostrar en la lista de Tours
+#### Bases de Datos
+***
 
-   __Realizando cambios al archivo `Bedutravels/tours/views.py`:__
-   ```python
+__Realizando cambios al archivo `Bedutravels/tours/views.py`:__
+
+```python
    from .models import Zona, Tour
 
    # Create your views here.
@@ -32,13 +31,13 @@
        tours = Tour.objects.all()
 
        return render(request, "tours/index.html", {"tours":tours})
-   ```
-   ***
+```
 
-1. Modificar la plantilla `index.html` para que haga uso de los resultados obtenidos en la vista:
+Modificar la plantilla `index.html` para que haga uso de los resultados obtenidos en la vista:
 
-   __Realizando cambios al archivo `Bedutravels/tours/template/tours/index.html`:__
-   ```html
+__Realizando cambios al archivo `Bedutravels/tours/template/tours/index.html`:__
+
+```html
    <section id="central">
 
       {% for tour in tours %}
@@ -76,11 +75,13 @@
         </div>
       </div>
       {% endfor %}
-
     </section>
-   ```
-   ***
+```
 
-__Resultado final:__
+#### Visualizando los resultados de la plantilla.
+***
+
 
 ![Index dinámico](assets/index-01.png)
+
+#### ¡Felicidades! has recuperado información desde una base de datos :+1: :1st_place_medal:
