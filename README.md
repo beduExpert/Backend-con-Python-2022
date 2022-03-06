@@ -16,8 +16,8 @@ El alumno será capaz de desarrollar aplicaciones a nivel BackEnd y API´s utili
  - [`Sesión 1`](Sesion-01): Django Fundamentals
  - [`Sesión 2`](Sesion-02): Bases de datos SQL para Django
  - [`Sesión 3`](Sesion-03): Modelos, migraciones, consultas y forms
- - [`Sesión 4`](Sesion-04): Class Based Views,User Authentication y plugins
- - [`Sesión 5`](Sesion-05): Django Admins, Views y Templates
+ - [`Sesión 4`](Sesion-04): Django Admins, Views y Templates
+ - [`Sesión 5`](Sesion-05): Django Rest framework, ( serializadores, generic field,  viewsets)
  - [`Sesión 6`](Sesion-06): Sesiones, autenticación y middleware
- - [`Sesión 7`](Sesion-07): Deploy: Heroku, AWS
+ - [`Sesión 7`](Sesion-07): Deploy: Python AnyWhere, Github, Heroku
  - [`Sesión 8`](Sesion-08): Debug, Testing y Seguridad
