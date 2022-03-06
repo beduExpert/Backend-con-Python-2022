@@ -4,7 +4,7 @@
 
 ### Objetivo
 - Vincular un contenedor Docker hacia Django.
-- Inicializar un esquema en la base de datos.
+- Hacer uso de un esquema en la base de datos.
 - Validar la conexión mediante migraciones.
 
 ### Desarrollo
