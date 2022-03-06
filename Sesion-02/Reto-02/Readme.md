@@ -1,6 +1,6 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 02`](../Readme.md) > Reto-02
 
-# Reto 02: Conexión Django hacia un contenedor mysql
+# Reto 02: Conexión a un contenedor mysql
 
 ### Objetivo
 - Vincular un contenedor Docker hacia Django.
