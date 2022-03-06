@@ -18,7 +18,7 @@ Identificar las bases de datos compatibles con Django, Iniciar  e inicializará 
 Una base de datos es una colección estructurada de datos que ayuda a administrar la información fácilmente. Se utiliza una capa de software denominada Sistema de administración de bases de datos (DBMS) para almacenar, mantener y realizar operaciones en los datos.
 
  - [**`EJEMPLO 01: Bases de Datos`**](Ejemplo-01)
- - [**`RETO 01`**](Reto-01)
+ - [**`RETO 01: Desplegar un contenedor de Postgres SQL.`**](Reto-01)
 
 ***
 #### <ins>Tema 02: Conexiones a bases de datos SQL</ins>
@@ -33,7 +33,7 @@ Puede haber varias bases de datos porque requerimos copias de seguridad, pero s�
  - [**`EJEMPLO 02: Inicialización y conexión a bases de datos SQLite3`**](Ejemplo-02)
  - [**`EJEMPLO 03: Inicialización y conexión a bases de datos MySQL`**](Ejemplo-03)
  - [**`EJEMPLO 04: Inicialización y conexión a bases de datos PostgreSQL`**](Ejemplo-03)
- - [**`RETO 02: Conexión Django hacia un contenedor mysql`**](Reto-02)
+ - [**`RETO 02: Conexión hacia un contenedor mysql`**](Reto-02)
 
 
 
