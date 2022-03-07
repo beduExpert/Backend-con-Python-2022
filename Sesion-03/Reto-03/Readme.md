@@ -37,7 +37,7 @@ Recuerda utilizar los métodos adecuados para realizar la consulta. Así como im
 <summary>
 Solución
 </summary>
-</details>
+
 
 Importar los modelos.
    __Dentro el Shell de Django:__
@@ -82,5 +82,6 @@ Debido a que el objeto zonas es un conjunto iterable podemos utilizar un for con
    2 Yucatán
    3 Chiapas
    4 Guanajuato
-   >>>
+  
    ```
+</details>
