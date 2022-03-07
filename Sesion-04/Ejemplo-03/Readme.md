@@ -1,35 +1,32 @@
-[`Backend con Python`](../../Readme.md) > [`Sesión 04`](../Readme.md) > Ejemplo-01
-## Definiendo y agregando autenticación de entrada usando el modelo User de Django
+[`Backend con Python`](../../Readme.md) > [`Sesión 04`](../Readme.md) > Ejemplo-03
+## Ejemplo 03: Definiendo y agregando autenticación de entrada usando el modelo User de Django
 
-### OBJETIVO
-- Conocer el modelo User de Django
+### Objetivo
+- Hacer uso de el modelo User de Django
 - Crear autenticación de entrada para una página de la aplicación
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesión-04/Ejemplo-01`
-1. Diagrama del modelo entidad-relación para el proyect __Bedutravels__
 
+### Desarrollo
+
+Para este ejemplo usaremos el siguiente modelo entidad relación.
 
 ![Modelo entidad-relación para Bedutravels](assets/bedutravels-modelo-er.png)
 
 
-### DESARROLLO
-1. Conociendo el modelo User de Django:
-
-   __Iniciar el shell de Django:__
-   ```console
+Lo primero es explorar el modelo mediante el shell de Django.
+__Iniciar el shell de Django:__
+```console
    Ejemplo-01/Bedutravels $ python manage.py shell
    Python 3.7.3 (default, Mar 27 2019, 22:11:17)
    [GCC 7.3.0] on linux
    Type "help", "copyright", "credits" or "license" for more information.
    (InteractiveConsole)
    >>>
-   ```
+```
 
-   __Listando los registros en el modelo User:__
+__Listando los registros en el modelo User:__
 
-   ```python
+```python
    >>> from django.contrib.auth.models import User
    >>> User.objects.all()
    <QuerySet [<User: bedutravels>]>
@@ -38,11 +35,11 @@
    'bedutravels'
    >>> u1.email
    'bedutravels@gmail.com'
-   ```
+```
 
-   __Validando datos de usuario contra los datos del modelo User:__
+__Validando datos de usuario contra los datos del modelo User:__
 
-   ```python
+```python
    >>> from django.contrib.auth import authenticate
    >>> username = "bedutravels"
    >>> password = "bedu"
@@ -56,10 +53,10 @@
    >>> acceso = authenticate(username=username, password=password)
    >>> acceso
    <User: bedutravels>
-   ```
+```
    ***
 
-1. Modificando la vista `login()` para incluir la validación usando el modelo User de Django.
+Modificando la vista `login()` para incluir la validación usando el modelo User de Django.
 
    __Modificando los import para poder utilizar la funciones `authenticate` y `login`:__
    ```python
@@ -122,12 +119,12 @@
    ```
 
    Ahora cada vez que se abra la url `/` si no se está registrado en el sistema, no se podrá entrar a ver la lista de tours.
-   ***
 
-1. Modificando el archivo `index.html` para indicar cuando hay usuario activo o no.
 
-   __Realizar las siguientes modificaciones al archivo `Bedutravels/tours/templates/tours/index.html`:__
-   ```html
+Modificando el archivo `index.html` para indicar cuando hay usuario activo o no.
+
+__Realizar las siguientes modificaciones al archivo `Bedutravels/tours/templates/tours/index.html`:__
+```html
    <nav class="menu_main">
        <a class="marca" href="#">
          <strong>BEDUTRAVELS</strong>
@@ -137,7 +134,7 @@
          <a href="/logout/">Salir</a>
        </div>
    </nav>
-   ```
-   Las plantillas o archivos html siempre reciben la información del usuario actual activo.
+```
+Las plantillas o archivos html siempre reciben la información del usuario actual activo.
 
-__Felicidades!__ Otro éxito más, ya sólo falta un detalle así que mira el Reto-02 para resolverlo.
+__Felicidades!__ Otro éxito más

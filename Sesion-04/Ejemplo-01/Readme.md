@@ -1,4 +1,4 @@
-[`Backend con Python`](../../Readme.md) > [`Sesión 03`](../Readme.md) > Ejemplo-01
+[`Backend con Python`](../../Readme.md) > [`Sesión 04`](../Readme.md) > Ejemplo-01
 ## Ejemplo 01:  Creando grupos en Django Admin
 
 ### Objetivo

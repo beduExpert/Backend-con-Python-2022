@@ -1,9 +1,9 @@
-[`Backend con Python`](../../Readme.md) > [`Sesión 03`](../Readme.md) > Ejemplo-01
-## Ejemplo 01:  Creando grupos en Django Admin
+[`Backend con Python`](../../Readme.md) > [`Sesión 04`](../Readme.md) > Ejemplo-01
+## Ejemplo 01:  Vistas Basadas en Clases
 
 ### Objetivo
 
-- Hacer uso de Django Admin.
+- Analizar las Vistas Basadas en Clases 
 
 - Agregar un grupo a Django Admin.
 
