@@ -40,8 +40,7 @@ Las vistas basadas en clases o class based views proporcionan una forma alternat
 - Se pueden utilizar técnicas orientadas a objetos como herencia múltiple para factorizar el código en componentes reutilizables.
 
 
-- [**`EJEMPLO 02:  Creando relaciones con el modelo de datos de Django`**](Ejemplo-02)
- 
+
 ***
 #### <ins>Tema 03: Autenticación</ins>
 <img src="img/imagen3.png" align="right" height="100" width="100">
@@ -61,11 +60,11 @@ Un sistema backend conectable.
  - [**`EJEMPLO 03: Definiendo y agregando autenticación de entrada usando vistas personalizadas y el modelo User de Django.`**](Ejemplo-03)
 
 
-- [RETO 01:  Definiendo y agregando autenticación de salida con vistas personalizadas.](Reto-01)
+- [**`RETO 01:  Definiendo y agregando autenticación de salida con vistas personalizadas.`**](Reto-01)
 
-- [EJEMPLO 04: Definiendo y agregando autenticación de entrada usando vistas predefinidas por Django.](Ejemplo-04)
+- [**`EJEMPLO 04: Definiendo y agregando autenticación de entrada usando vistas predefinidas por Django.`**](Ejemplo-04)
 
-- [RETO 02: Definiendo y agregando autenticación de salida usando vistas predefinidas por Django.](Reto-02)
+- [**`RETO 02: Definiendo y agregando autenticación de salida usando vistas predefinidas por Django.`**](Reto-02)
 
 
 
