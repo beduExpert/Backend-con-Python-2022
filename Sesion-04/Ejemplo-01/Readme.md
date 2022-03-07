@@ -1,143 +1,80 @@
-[`Backend con Python`](../../Readme.md) > [`Sesión 04`](../Readme.md) > Ejemplo-01
-## Definiendo y agregando autenticación de entrada usando el modelo User de Django
+[`Backend con Python`](../../Readme.md) > [`Sesión 03`](../Readme.md) > Ejemplo-01
+## Ejemplo 01:  Creando grupos en Django Admin
 
-### OBJETIVO
-- Conocer el modelo User de Django
-- Crear autenticación de entrada para una página de la aplicación
+### Objetivo
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesión-04/Ejemplo-01`
-1. Diagrama del modelo entidad-relación para el proyect __Bedutravels__
+- Hacer uso de Django Admin.
 
+- Agregar un grupo a Django Admin.
 
-![Modelo entidad-relación para Bedutravels](assets/bedutravels-modelo-er.png)
+- Emplear los diferentes permisos de usuarios
 
 
-### DESARROLLO
-1. Conociendo el modelo User de Django:
 
-   __Iniciar el shell de Django:__
-   ```console
-   Ejemplo-01/Bedutravels $ python manage.py shell
-   Python 3.7.3 (default, Mar 27 2019, 22:11:17)
-   [GCC 7.3.0] on linux
-   Type "help", "copyright", "credits" or "license" for more information.
-   (InteractiveConsole)
-   >>>
-   ```
+## Desarrollo
 
-   __Listando los registros en el modelo User:__
+La interfaz gráfica de Django Admin es una herramienta muy útil para dar una mayor configuración a nuestros proyectos. En este ejemplo demostraremos como utilizarla para incluir nuevos grupos de usuarios. Estos son diferentes modos de segmentar a nuestros usuarios para que puedan realizar ciertas operaciones de mantenimiento sobre nuestro sitio.
 
-   ```python
-   >>> from django.contrib.auth.models import User
-   >>> User.objects.all()
-   <QuerySet [<User: bedutravels>]>
-   >>> u1 = User.objects.get(pk=1)
-   >>> u1.username
-   'bedutravels'
-   >>> u1.email
-   'bedutravels@gmail.com'
-   ```
+Lo primero es ingresar al sitio de Django Admin en  http://127.0.0.1:800/admin
 
-   __Validando datos de usuario contra los datos del modelo User:__
+>*__Nota__: Recuerda que esta es la ruta por defecto. Pero que puede configurarse para otra ruta desde la configuración de Django.
 
-   ```python
-   >>> from django.contrib.auth import authenticate
-   >>> username = "bedutravels"
-   >>> password = "bedu"
-   >>> authenticate(username=username, password=password)
-   >>> acceso = authenticate(username=username, password=password)
-   >>> print(acceso)
-   None
-   >>> acceso == None
-   True
-   >>> password = "bedutravels"
-   >>> acceso = authenticate(username=username, password=password)
-   >>> acceso
-   <User: bedutravels>
-   ```
-   ***
+Así mismo se aconseja verificar que dentro de las aplicaciones instaladas de tu archivo `settings.py` se encuentra activo la ruta correspondiente al administrador.
 
-1. Modificando la vista `login()` para incluir la validación usando el modelo User de Django.
+```python
+INSTALLED_APPS = [
+    'django.contrib.admin', # este es el administrador de Django
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'tarjeta'
+]
+```
 
-   __Modificando los import para poder utilizar la funciones `authenticate` y `login`:__
-   ```python
-   from django.contrib.auth import authenticate, login
-   from django.contrib.auth.decorators import login_required
-   from django.shortcuts import render, redirect
-   from .models import User, Zona, Tour
+![](img/Ejemplo_1.jpg)
 
-   import datetime
-   ```
+Para ingresar al admin utiliza el superusuario que creamos con anterioridad. En caso de no recordar tu usuario puedes generar uno nuevamente desde la consola usando el comando:
 
-   __Modificar la función login() de la sigiente manera:__
-   ```python
-   def login_user(request):
-       """ Atiende las peticiones de GET /login/ """
+```
+python manage.py createsuperuser
+```
+Una vez se ingreso en el sitio de admin es necesario hacer click en la sección de grupos. En el botón __Agregar__
 
-       # Si hay datos vía POST se procesan
-       if request.method == "POST":
-           # Se obtienen los datos del formulario
-           username = request.POST["username"]
-           password = request.POST["password"]
-           next = request.GET.get("next", "/")
-           acceso = authenticate(username=username, password=password)
-           if acceso is not None:
-               # Se agregan datos al request para mantener activa la sesión
-               login(request, acceso)
-               # Y redireccionamos a next
-               return redirect(next)
-           else:
-               # Usuario malo
-               msg = "Datos incorrectos, intente de nuevo!"
-       else:
-           # Si no hay datos POST
-           msg = ""
-   [...]
-   ```
-   Como estamos importando la función `login()` de Django, tenemos que cambiar el nombre de nuestra función para que no entren en conflicto, así que la renombramos a `login_user()`.
+![](img/Ejemplo_2.jpg)
 
-   __Ahora como cambiamos el nombre de la vista, hay que actualizar la ruta en `urls.py`:__
-   ```python
-   path("login/", views.login_user, name="login_user"),
-   ```
+Esto nos mostrará el panel de administración que corresponden a la sección de autenticación y autorización. Estos modelos se crearon por defecto durante la inicialización de tu proyecto Django.
 
-   __Se agrega el decorador a la vista que necesita ser autenticada:__
-   ```python
-   @login_required()
-   def index(request):
-       """ Vista para entender la petición de la url / """
+![](img/Ejemplo_3.jpg)
 
-       # Se obtiene la lista de todos los Tours y Zonas
-       tours = Tour.objects.all()
-       zonas = Zona.objects.all()
-   [...]
-   ```
+Crearemos un grupo de usuarios llamado `Administradores` a estos usuarios les asignaremos diferentes permisos que les permitirán interactuar con el sitio.
 
-   __Se le indica a Django que la url para el login es `/login/` agregando la siguientes líneas al archivos `Bedutravels/Bedutravels/settings.py`:__
-   ```python
-   # Se define la URL para login
-   LOGIN_URL = "/login/"
-   ```
+![](img/Ejemplo_4.jpg)
 
-   Ahora cada vez que se abra la url `/` si no se está registrado en el sistema, no se podrá entrar a ver la lista de tours.
-   ***
+A los usuarios que creemos se les pueden asignar diferentes opciones como la creación y modificación de otros usuarios. La modificación de registros de los modelos que agreguemos a la base de datos entre otras cosas. Además, estos usuarios podrán interactuar con los formularios de autenticación incluidos con Django.
 
-1. Modificando el archivo `index.html` para indicar cuando hay usuario activo o no.
+Seleccionemos los siguientes permisos:
 
-   __Realizar las siguientes modificaciones al archivo `Bedutravels/tours/templates/tours/index.html`:__
-   ```html
-   <nav class="menu_main">
-       <a class="marca" href="#">
-         <strong>BEDUTRAVELS</strong>
-       </a>
-       <div>
-         <a href="#">{{ user.username }}</a>
-         <a href="/logout/">Salir</a>
-       </div>
-   </nav>
-   ```
-   Las plantillas o archivos html siempre reciben la información del usuario actual activo.
+![](img/Ejemplo_5.jpg)
 
-__Felicidades!__ Otro éxito más, ya sólo falta un detalle así que mira el Reto-02 para resolverlo.
+Ahora procederemos a crear un nuevo usuario para agregarlo al grupo que hemos creado. 
+![](img/Ejemplo_51.jpg)
+Es importante seleccionar la opción de __Es Staff__ de esta forma nuestro usuario podrá ingresar al administrador de Django.
+
+
+![](img/Ejemplo_6.jpg)
+
+Cerramos sesión y volvemos a ingresar con nuestro nuevo usuario que es parte del grupo de usuarios Administradores.
+
+![](img/Ejemplo_7.jpg)
+
+Al ingresar, nuestra nueva pantalla de administrador ha cambiado. Nuestro usuario solo tiene acceso a aquella secciones que indicamos.
+
+![](img/Ejemplo_8.jpg)
+
+Así mismo si intentamos modificar un usuario nos encontraremos con el siguiente error. Los permisos que seleccionamos con anterioridad nos permiten ver el botón de agregar más no realizar cambios a los usuarios. Esto fue seleccionado así para demostrar el mensaje de error que arroja Django admin cuando queremos ingresar a una sección restringida.
+![](img/Ejemplo_9.jpg)
+
+
+#### ¡Felicidades! Ya sabes como emplear Django Admin  y agregar usuarios:+1: :1st_place_medal:
