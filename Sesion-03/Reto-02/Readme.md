@@ -1,8 +1,9 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 03`](../Readme.md) > Reto-02
-# Reto 01: Creando relaciones con el modelo de datos de Django
+# Reto 02: Creando relaciones con el modelo de datos de Django
 
 ### Objetivo
 - Crear una relación entre dos tablas.
+- Programar modelos a partir de un diagrama entidad-relacion.
 
 ### Desarrollo
 1. Usando el modelo entidad-relación, agregar la tabla Salida.
@@ -17,6 +18,9 @@ Diagrama del modelo entidad-relación para el proyecto __Bedutravels__
    ![Modelo entidad-relación para Bedutravels](assets/bedutravels-modelo-er.png)
 
 <details><summary>Solución</summary>
+
+Implementando el modelo según el diagrama ER.
+
 ```python
    class Salida(models.Model):
        """ Define la tabla Salida """

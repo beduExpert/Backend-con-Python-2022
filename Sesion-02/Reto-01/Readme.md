@@ -4,8 +4,8 @@
 # Reto 01: Desplegar un contenedor de Postgres SQL.
 
 ### Objetivo
-- Descargar una imagen de postgres a SQL
-- Inicializar un contenedor con la imagen y los parámetros válidos para recibir conexiones
+- Usar una imagen de postgres a SQL
+- Producir un contenedor con la imagen y los parámetros válidos para recibir conexiones
 - Ejecutar un contenedor válido para aceptar conexiones a Django.
 
 ### Desarrollo

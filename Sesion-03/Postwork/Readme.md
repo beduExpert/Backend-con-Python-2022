@@ -9,31 +9,34 @@
 
 ### Desarrollo
 
-Para este postwork continuaremos con la creación de nuestra aplicación To Do es importante que tengas los archivos que generaste en tu primer postwork. Y la conexión válida que tienes en el desarrollo de tu segundo postwork.
+Para este Postwork continuaremos con la creación de nuestra aplicación To Do es importante que tengas los archivos que generaste en tu primer Postwork y la conexión válida que tienes en el desarrollo de tu segundo Postwork.
 
-Vamos a generar un modelo que corresponda a un usuario para usarse con el login que hemos construido en la sesión 1. Aplicaremos una inserción de datos mediante el uso del administrador de Django y posteriormente verificaremos que la información exista mediante una consulta en el shell de Django.
+Vamos a generar un modelo que corresponda a un usuario para usarse con el login que hemos construido en la sesión 1 y se aplicará una inserción de datos mediante el uso del administrador de Django y posteriormente verificaremos que la información exista mediante una consulta en el shell de Django.
 
 #### Asegúrate de comprender:
-- Como se registra un modelo en Django y cómo se especifican los tipos de datos.
-- Qué relación tiene un modelo con las migraciones y los archivos del proyecto de Django.
+- Cómo se registra un modelo en Django y cómo se especifican los tipos de datos.
+- Qué relación tiene un modelo con las migraciones y los archivos del proyecto de Django
 - La estructura de archivos que sigue un proyecto de Django
-- Los usuarios administradores de Django y su  relación con el panel de administrar.
-- La consultas desde el shell de Django
+- Los usuarios administradores de Django y su relación con el panel de administrador
+- La consultas desde el shell de Django.
+
+
 
 Indicaciones generales
 
 1. Registra un modelo llamado User, que contemple los siguientes campos:
 - nombre: longitud máxima 40 y de tipo CharField.
 - apellidos: longitud máxima 80, con opción para ser null.
-- email: campo válidado para email
+- email: campo validado para email
 - fechaNacimiento: una fecha con el tipo de dato para fecha
-- genero:campo de tipo opción con las opciones  H, Hombre y M,Mujer. Longitud máxima 1.
-- clave: campo para la contraseña de momento de tipo char. Longitud maxima 45
-- tipo: campo para indicar el tipo de usuario. Longitud máxima 45.
+- genero:campo de tipo opción con las opciones  H, Hombre y M,Mujer, con longitud máxima 1
+- clave: campo para la contraseña de momento de tipo char, con longitud máxima 45
+- tipo: campo para indicar el tipo de usuario, con longitud máxima 45.
 
-2. Agrega un usuario administrador a Django. Y desde la interfaz de Django agrega un usuario a tu modelo. El usuario deberá llamarse Betito.
+2. Agrega un usuario administrador a Django. Desde la interfaz de Django agrega un usuario a tu modelo, el usuario deberá llamarse Betito.
 
-3. Consulta desde tu shell de Django que la información que agregaste se vea reflejada. Modifica la representación para que se imprima únicamente el nombre y apellido.
+
+3. Consulta desde tu shell de Django que la información que agregaste se vea reflejada y modifica la representación para que se imprima únicamente el nombre y apellido.
 
 __Expectativa de Resultado__
 El usuario que corresponde al modelo desde Django admin

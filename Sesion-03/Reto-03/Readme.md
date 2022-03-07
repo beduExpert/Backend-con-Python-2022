@@ -1,38 +1,70 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 03`](../Readme.md) > Reto-03
-## Definiendo las consultas usando el ORM de Django
+# Reto 03: Definiendo las consultas usando el ORM de Django
 
 ### OBJETIVO
 - Crear consultas entre tablas y sus relaciones
-- Definir una consulta para generar un reporte.
+- Programar una consulta para generar un reporte.
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-03/Reto-03`
-1. Diagrama del modelo entidad-relación para el proyecto __Bedutravels__
+Para este reto es necesario implementar los tablas descritas en el siguiente modelo entidad relación.
 
-   ![Modelo entidad-relación para Bedutravels](assets/bedutravels-modelo-er.jpg)
+![Modelo entidad-relación para Bedutravels](assets/bedutravels-modelo-er.png)
 
-1. Documentación de Django referente a modelos:
-   - Referencia a la API de Modelos en Django https://docs.djangoproject.com/en/2.2/ref/models/
+
 
 ### DESARROLLO
-1. Imprime la lista de todas las Zonas, en cada Zona incluir id, nombre, lista de tours que salen de esa zona, en cada Tour incluir id, nombre, lista de salidas para ese tour y para cada Salida incluir id, fechaInicio, fechaFin.
+Para este realizaremos una consulta desde la consola de Django. Imprime la lista de todas las Zonas, en cada Zona incluir
 
+-id
+- nombre
+- lista de tours que salen de esa zona.
+
+En cada Tour incluir
+- id
+- nombre
+- lista de salidas para ese tour.
+
+Para cada Salida incluir
+- id
+- fechaInicio
+- fechaFin.
+
+Recuerda utilizar los métodos adecuados para realizar la consulta. Así como importar desde tours.models los objetos correspondientes.
+
+>*__Nota__: Recuerda que los resultados de una consulta en Django se almacenan como un QuerySet. Este es un objeto iterable que puedes filtrar y enlistar.*
+
+
+<details>
+<summary>
+Solución
+</summary>
+</details>
+
+Importar los modelos.
    __Dentro el Shell de Django:__
 
    ```python
    >>> from tours.models import Zona, Tour, Salida
+   ```
+Para asignar asignar los objetos a una variable utilizar el método .all() pues no queremos filtrar ningún registro.
+   ```
    >>> zonas = Zona.objects.all()
    >>> zonas
    <QuerySet [<Zona: Ciudad de México>, <Zona: Yucatán>, <Zona: Chiapas>, <Zona: Guanajuato>]>
+   ```
+
+Debido a que el objeto zonas es un conjunto iterable podemos utilizar un for con list comprehension y  dar formato a los tours y salidas.
+   ```
    >>> for zona in zonas:
    ...     print(zona.id, zona)
    ...     for tour in zona.tours_salida.all():
    ...         print("   ", tour.id, tour)
    ...         for salida in tour.salidas.all():
    ...             print("   "*2, salida.id, salida.fechaInicio, salida.fechaFin)
-   ...
 
+
+   ```
+   Resultado
+   ```
    1 Ciudad de México
        1 Chiapas Hermoso
           1 2019-06-21 2019-06-26
@@ -52,4 +84,3 @@
    4 Guanajuato
    >>>
    ```
-   ***

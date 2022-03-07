@@ -4,7 +4,7 @@
 
 ### Objetivo
 - Hacer uso del sistema de consultas de Django.
-- Aplicar las consultas en las plantillas de Django.
+- Programar las consultas en las plantillas de Django.
 
 ### Desarrollo
 

@@ -3,9 +3,9 @@
 # Reto 02: Conexión a un contenedor mysql
 
 ### Objetivo
-- Vincular un contenedor Docker hacia Django.
+- Realizar una conexión de un contenedor Docker hacia Django.
 - Hacer uso de un esquema en la base de datos.
-- Validar la conexión mediante migraciones.
+- Comprobar la conexión mediante migraciones.
 
 ### Desarrollo
 Durante el work ejemplificamos como conectarnos a distintas bases datos mediante la configuración del archivo settings.py. Esta vez vamos a conectarnos a un contenedor utilizando Django.

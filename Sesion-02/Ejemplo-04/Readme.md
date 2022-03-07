@@ -3,9 +3,9 @@
 ## Ejemplo 04: Inicialización y conexión a bases de datos PostgreSQL
 
 ### OBJETIVOS
-- Conocer el procedimiento para inicializar un servidor PostgreSQL
-- Conocer el procedimiento para inicializar la base de datos.
-- Conocer el procedimiento para realizar una conexión a la base de datos con Django.
+- Utilizar el procedimiento para inicializar un servidor PostgreSQL
+- Utilizar el procedimiento para inicializar la base de datos.
+- Utilizar el procedimiento para realizar una conexión a la base de datos con Django.
 
 > *__Nota:__ Para realizar este ejercicio es necesario tener instalado PostreSQL. Puedes descargarlo aquí: https://www.postgresql.org*
 

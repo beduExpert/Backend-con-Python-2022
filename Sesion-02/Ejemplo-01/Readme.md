@@ -2,9 +2,9 @@
 ## Ejemplo 01: Bases de Datos
 ## Objetivo
 
-- Conocer las bases de Datos Compatibles con Django
+- Mostrar las bases de Datos Compatibles con Django
 - Identificar los configuraciones necesarias en Django para trabajar con bases de datos.
-- Instalar una base de datos relacional en un contenedor Docker.
+- Operar una base de datos relacional en un contenedor Docker.
 
 
 

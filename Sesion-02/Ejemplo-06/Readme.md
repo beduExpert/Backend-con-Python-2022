@@ -3,7 +3,7 @@
 ## Ejemplo 06: Introducción a las migraciones
 ## Objetivo
 
-- Conocer los distintas operaciones CRUD que se pueden utilizar en SQL
+- Usar las distintas operaciones CRUD que se pueden utilizar en SQL
 - Utilizar DB Browser para interactuar con una base SQL y visualizar los resultados de las operaciones CRUD.
 
 > *__Nota:__ Para realizar este ejercicio es necesario tener instalado DB Browser. Puedes descargarlo aquí: https://sqlitebrowser.org/*

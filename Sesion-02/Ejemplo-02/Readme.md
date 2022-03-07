@@ -3,7 +3,7 @@
 ## Ejemplo 02: Inicialización y conexión a bases de datos SQLite3
 ## Objetivo
 
-- Conocer el procedimiento para inicializar Django con SQLite
+- Programar el procedimiento para inicializar Django con SQLite
 - Utilizar DB Browser para inicializar una base de datos SQLite
 
 > *__Nota:__ Para realizar este ejercicio es necesario tener instalado DB Browser. Puedes descargarlo aquí: https://sqlitebrowser.org/*

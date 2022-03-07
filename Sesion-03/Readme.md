@@ -5,20 +5,22 @@
 
 ## :dart: Objetivos
 
-Construir consultas mediante el shell de Django, construir vistas que hagan uso de los modelos logrando la construcción de páginas con información dinámica, identificar el uso tablas en un modelo relacional creando relaciones entre tablas e implementar formularios.
+- Programar consultas mediante el shell de Django.
+- Construir vistas que hagan uso de los modelos logrando páginas con información dinámica.
+- Hacer uso de tablas en un modelo relacional creando relaciones entre estas e implementando formularios.
 
 ### 📂 Organización de la clase
 ***
 
 
-#### <ins>Tema 01: Crear una tabla con el modelo de datos de Django</ins>
+#### <ins>Tema 01: Modelos en Django</ins>
 <img src="img/imagen1.png" align="right" height="100" width="100">
 
 Un modelo en Django es un tipo de objeto especial que se guarda en la base de datos. De acuerdo a la documentación oficial de Django, ésta define a un modelo como la fuente única y definitiva de información sobre los datos. Contiene campos y comportamientos esenciales de los datos que se están almacenando. Generalmente, cada modelo se asigna a una sola tabla de base de datos.
 
 
-   - [**`EJEMPLO 01`**](Ejemplo-01)
-   - [**`RETO 01`**](Reto-01)
+   - [**`EJEMPLO 01: Creando una tabla con el modelo de datos de Django`**](Ejemplo-01)
+   - [**`RETO 01: Creando una tabla con el modelo de datos de Django`**](Reto-01)
 
 ***
 #### <ins>Tema 02: Crear relaciones con el modelo de datos de Django</ins>
@@ -35,8 +37,8 @@ Esta es una de las ventajas de las bases de datos relacionales que tienen la cap
 
 Las relaciones ayudan a mantener la integridad de los datos al establecer las referencias correctas entre las tablas, lo que a su vez ayuda a mantener la base de datos. Las reglas de relación, por su parte, garantizan la coherencia de los datos y eviten los duplicados.
 
-   - [**`EJEMPLO 02`**](Ejemplo-02)
-   - [**`RETO 02`**](Reto-02)
+   - [**`EJEMPLO 02:  Creando relaciones con el modelo de datos de Django`**](Ejemplo-02)
+   - [**`RETO 02: Creando relaciones con el modelo de datos de Django`**](Reto-02)
 
 ***
 #### <ins>Tema 03: Definir las consultas usando el ORM de Django</ins>
@@ -60,8 +62,8 @@ Aprende el nuevo lenguaje del ORM.
 
 
 
-   - [**`EJEMPLO 03`**](Ejemplo-03)
-   - [**`RETO 03`**](Reto-03)
+   - [**`EJEMPLO 03: Definiendo las consultas usando el ORM de Django`**](Ejemplo-03)
+   - [**`RETO 03: Definiendo las consultas usando el ORM de Django`**](Reto-03)
 
 ***
 #### <ins>Tema 04: Realizar Consultas en las plantillas de Django</ins>
@@ -71,11 +73,11 @@ Una vez que se tiene un objeto Template compilado, se puede renderizar un contex
 
 
 
-   - [**`EJEMPLO 04`**](Ejemplo-04)
-   - [**`RETO 04`**](Reto-04)
+   - [**`EJEMPLO 04: : Realizar una consulta a la base de datos mediante una plantilla.`**](Ejemplo-04)
+   - [**`RETO 04: El sistema de plantillas de Django`**](Reto-04)
 
 ***
-#### <ins>Tema 05: Definir e implementar formularios</ins>
+#### <ins>Tema 05: Definir e implementar formularios en la aplicación</ins>
 <img src="img/imagen5.png" align="right" height="100" width="100">
 
 Un formulario HTML es una colección de elementos internos representados mediante la etiqueta `<form>` que permite al usuario hacer cosas como ingresar texto, seleccionar opciones, manipular objetos o controles y luego enviar esa información al servidor.
@@ -83,16 +85,10 @@ Un formulario HTML es una colección de elementos internos representados mediant
 Algunos de estos elementos de la interfaz de formulario (entrada de texto o casillas de verificación) están integrados en el propio HTML. Otros son mucho más complejos; una interfaz que muestra un selector de fechas o que permite mover un control deslizante o manipular controles normalmente requiere de JavaScript y CSS, así como de elementos `<input>` del formulario HTML para lograr estos efectos.
 
 
-   - [**`EJEMPLO 05`**](Ejemplo-05)
+   - [**`EJEMPLO 05: Definiendo y agregando una página con formulario de la aplicación web`**](Ejemplo-05)
 
 
 ### Postwork :memo:
 Aplica lo todo lo que aprendiste durante la sesión siguiendo un proyecto guiado.
 
 - [**`POSTWORK SESIÓN 3`**](Postwork/Readme.md)
-
-<br/>
-
-
-
-`Fullstack con Python` > [`Backend con Python`](../Readme.md) > `Sesión 03`

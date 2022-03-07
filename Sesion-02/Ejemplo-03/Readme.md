@@ -4,9 +4,9 @@
 ## Ejemplo 03: Inicialización y conexión a bases de datos MySQL
 ## Objetivo
 
-- Conocer el procedimiento para inicializar un servidor MySQL
-- Conocer el procedimiento para inicializar la base de datos.
-- Conocer el procedimiento para realizar una conexión a la base de datos con Django.
+- Utilizar el procedimiento para inicializar un servidor MySQL
+- Utilizar el procedimiento para inicializar la base de datos.
+- Utilizar el procedimiento para realizar una conexión a la base de datos con Django.
 
 
 __Nota:__ Para realizar este ejercicio es necesario tener instalado un servidor MySQL y un cliente como MySQL Workbench. Puedes descargarlos aquí:

@@ -3,9 +3,9 @@
 # Reto 03: Operaciones CRUD
 
 ### Objetivo
-- Inicializar un esquema en la base de datos SQLite
-- Aplicar las operaciones CRUD
-- Validar la creación de la información usando DB Browser.
+- Utilizar un esquema en la base de datos SQLite
+- Programar las operaciones CRUD
+- Comprobar la creación de la información usando DB Browser.
 
 ### Desarrollo
 Utilizando DB Browser vamos a implementar una nueva base de datos llamada librería. Esto nos servirá para repasar las instrucciones SQL que nos permiten definir un esquema de datos.
