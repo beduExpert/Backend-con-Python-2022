@@ -1,5 +1,5 @@
-[`Backend con Python`](../../Readme.md) > [`Sesión 04`](../Readme.md) > Ejemplo 05
-## Ejemplo 05: Reutilizando Elementos con Bootstrap
+[`Backend con Python`](../../Readme.md) > [`Sesión 04`](../Readme.md) > Ejemplo 06
+## Ejemplo 06: Reutilizando Elementos con Bootstrap
 
 ### Objetivo
 - Programar plantillas que puedan reutilizar elementos comunes
