@@ -92,6 +92,6 @@ Una vez realizados estos cambios realiza los cambios a tu plantilla para ejempli
 </html>
 ```
 Tu resultado debería ser el siguiente:
-![](img/Ejemplo2.jpg)
+![](img/Ejemplo3.jpg)
 
 
