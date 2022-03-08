@@ -39,7 +39,7 @@ Las vistas basadas en clases o class based views proporcionan una forma alternat
 
 - Se pueden utilizar técnicas orientadas a objetos como herencia múltiple para factorizar el código en componentes reutilizables.
 
-  - [**`EJEMPLO 02: Creando grupos en Django Admin`**](Ejemplo-02)
+  - [**`EJEMPLO 02: Vistas Basadas en Clases`**](Ejemplo-02)
 
 ***
 #### <ins>Tema 03: Autenticación</ins>
