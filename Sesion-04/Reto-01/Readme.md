@@ -1,5 +1,5 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 04`](../Readme.md) > Reto-01
-## Definiendo y agregando autenticación de salida usando el modelo User de Django
+## Reto 01: Definiendo y agregando autenticación de salida usando el modelo User de Django
 
 ### OBJETIVO
 - Crear autenticación de salida para una página de la aplicación
