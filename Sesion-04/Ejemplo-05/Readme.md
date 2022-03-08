@@ -1,124 +1,102 @@
-[`Backend con Python`](../../Readme.md) > [`Sesión 04`](../Readme.md) > Ejemplo 05
-## Ejemplo 05: Reutilizando Elementos con Bootstrap
+[`Backend con Python`](../../Readme.md) > [`Sesión 04`](../Readme.md) > Ejemplo-05
 
-### Objetivo
-- Programar plantillas que puedan reutilizar elementos comunes
-- Hacer uso de librerías de estilo de plantillas como Bootstrap
+## Ejemplo 05: Definiendo elementos necesarios para otorgar permisos para eliminar datos.
 
-### Desarrollo
-
-Bootstrap es un marco de trabajo de hojas de estilo en cascada (CSS) de código abierto que es particularmente bueno para el diseño de páginas responsivas que funcionan en los navegadores de escritorio y móviles.
-
-Vamos a implementar bootstrap en una plantilla que permita hacer uso de herencia. Para esto utilizaremos la etiqueta `{% extends %}` esta etiqueta nos permitirá heredar elementos de otras plantillas antes definidas.
-
-En primer lugar es de nuestro interés construir una plantilla base. La agregaremos a la ruta de templates de nuestra aplicación y la nombraremos `base.html`
-
-![](img/EJemplo1.jpg)
-
-Para implementar bootstrap utilizaremos una distribución CDN.Incluiremos los siguiente es nuestro código.
-
-```HTML
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-```
-
-La plantilla que nosotros usaremos toma algunos de los componentes de las librerias de bootstrap y los implementa de la siguiente forma:
-
-```HTML
-{% load static %}
-<!DOCTYPE html>
-{% load static %}
-<!DOCTYPE html>
-<html data-lt-installed="true" lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+### OBJETIVO
+- Crear la ruta y vista para eliminar un registro de una Tabla.
+- Definir permisos en base a grupos para la eliminación de registros.
 
 
-    <title>Plantilla base con Bootstrap</title>
+### DESARROLLO
 
-  </head>
 
-  <body>
+Para este ejemplo vamos a usar la carpeta de trabajo `Sesion-04/Proyecto`. En este ejemplo se va a modificar la aplicación para poder eliminar tours.Lo primero es agregar una opción para borrar un __Tour__ si el usuario pertenece el grupo __editores__.
 
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-      <a class="navbar-brand" href="#">Navegación</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+   __Modificando la plantilla `index.html` como sigue:__
 
-      </div>
-    </nav>
+   ```html
+   <div class="buttons-tour">
+     <div>
+       <a href="/tour/{{ tour.id }}/">
+         <button class="button-tour">Ver tour</button>
+       </a>
+     </div>
+     <div>
+       <a href="/tour/eliminar/{{ tour.id }}/">
+         <button class="eliminar-tour">Eliminar tour</button>
+       </a>
+     </div>
+   </div>
+   ```
+   Esto deberá mostrar el botón __Eliminar tour__ como se muestra a continuación:
 
-    {% block content %}
-    {% endblock content %}
+   ![Botón eliminar tour](assets/eliminar-01.png)
 
-</body></html>
-```
-Tu plantilla se verá parecida a esta:
-![](img/Ejemplo2.jpg)
+En el paso anterior, el botón se muestra, pero uno de los requerimientos es que sólo los usuarios en el grupo __editores__ seán quienes puedan eliminar, así que el botón debe aparecer sólo cuando el usuario pertenece al grupo mencionado, así que se agrega una condición al código html del archivo `index.html` como sigue:
 
-Aquellos elementos que se encuentren entre las etiquetas de bloque podrán ser sustituidos más adelante:
+   ```html
+   {% if es_editor %}
+   <div>
+     <a href="/tour/eliminar/{{ tour.id }}/">
+       <button class="eliminar-tour">Eliminar tour</button>
+     </a>
+   </div>
+   {% endif %}
+   ```
+   Ahora se obtiene lo siguiente porque la variable `es_editor` no está definida en la vista:
 
-```
-    {% block content %}
-    {% endblock content %}
-```
+   ![Botón eliminar tour](assets/eliminar-02.png)
+   ***   
 
->*__Nota__: Puedes usar otros componentes de bootstrap en nuestro caso solo usaremos la barra de navegación un título y un botón.*
+Se modifica la vista `index()` para que se agregue la variable `es_editor` al contexto de la plantilla:
 
-Nos gustaría agregar lo siguiente en una plantilla de nombre `hija.html` Con el objetivo de que esta plantilla incluya siempre los elementos definidos en base.
+   ```python
+   # Se determina si el usuario pertenece o no al grupo editores
+   es_editor = request.user.groups.filter(name="editores").exists()
 
-![](img/Ejemplo3.jpg)
+   return render(request, "tours/index.html",
+       {"tours":tours, "zonas":zonas, "es_editor":es_editor})
+   ```
+   si en este momento se actualiza la página de tours se verá exactamente lo mismo, así que antes de ello se procede a agregar el grupo __editores__ usando el administrador de Django:
 
-Para lograr esto el código de hija.html debe de implementarse utilizando la etiqueta __extends__ e incluyendo todo los elementos dentro de un bloque de content.
+   ![Agregando grupo editores](assets/eliminar-03.png)
 
-```HTML
-{% extends 'tarjeta/base.html' %}
-{% block content %}
-<main role="main" class="container">
-    <div class="jumbotron">
-      <h1>Plantilla base</h1>
-      <p class="lead">Este es un ejemplo de uso de bootstrap.</p>
-      <a class="btn btn-lg btn-primary">Botón</a>
-    </div>
-  </main>
+   Luego se modifica el usuario __bedutravels__ para que pertenezca al grupo __editores__
 
-</main>
-{% endblock %}
+   ![Usuario bedutravels con grupo editores](assets/eliminar-04.png)
 
-```
->*__Nota__: Recuerda usar la ruta que corresponde a tu app, en este caso la App se llama tarjeta.*
+   Si se recarga la página de inicio ya se debería de observar el botón de __eliminar tour__.
+   ***
 
-La configuración para las rutas es la siguiente:
+Después de las modificaciones anteriores ahora cada tour tiene la acción para poder ser eliminado usando una url `/tour/eliminar/idTour/` por lo que se tiene que crear la ruta y vistas respectivas:
 
-```python
-from django.urls import path
-from tarjeta import views
+   __Creando la ruta para atender la url mencionada por lo que se agrega el siguiente código al archivo `Bedutravels/tours/urls.py`__
 
-urlpatterns = [
+   ```python
+   path("tour/eliminar/<int:idTour>/",
+       views.eliminar_tour, name="eliminar_tour"),
+   ```
+   Notas como el sistema de rutas de Django nos permite agregar variables en las url's y además indicar el tipo de dato. Ver https://docs.djangoproject.com/en/2.2/topics/http/urls/
 
-    path('base', views.base, name="base"),
-    path('hija', views.hija, name="hija")
-]
-```
-No hace falta agregar algo en especial además de la definición en el archivo de vistas.
+   __Creando la vista correspondiente en el archivo `Bedutravels/tours/views.py`:__
 
-```python
-def base(request):
-    return render(request, "tarjeta/base.html")
+   ```python
+   @login_required()
+   def eliminar_tour(request, idTour):
+       """
+       Atiende la petición GET
+          /tour/eliminar/<int:idTour>/
+       """
+       # Se obtienen los objetos correspondientes a los id's
+       tour = Tour.objects.get(pk=idTour)
 
-def hija(request):
-    return render(request, "tarjeta/hija.html")
-```
+       # Se elimina el tour
+       tour.delete()
 
-Al correr el ser de Django, el resultado debería de ser el siguiente:
+       return redirect("/")
+   ```
+   Notar que la vista incluye del decorador `@login_required()` ya que no cualquiera puede eliminar un libro de un préstamo, así que ahora agregaremos los permisos usando el grupo __eliminar__.
 
-![](img/Ejemplo4.jpg)
+   Se sugiere agregar otro __Tour__ de prueba desde el administrador de Django y luego proceder a eliminarlo desde la página de la lista de tours.
 
-Los elementos como la navegación podrán ser reutilizados en tantas páginas desees mientras que el contenido puede cambiar según la vista. Siempre y cuando hereden la plantilla que has indicado.
+   ![Eliminando tour de prueba](assets/eliminar-05.png)
