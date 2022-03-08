@@ -4,9 +4,6 @@
 ### OBJETIVO
 - Crear autenticación de salida usando la vista auth_views.logout de Django.
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-04/Reto-02`
 
 ### DESARROLLO
 1. Modificar la ruta `/logout` para hacer uso de la vista

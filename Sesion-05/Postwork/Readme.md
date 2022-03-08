@@ -1,7 +1,7 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 05`](../Readme.md) > Postwork
-## Aplicar los conceptos de la clase a tú Proyecto
+## Postwork
 
-### OBJETIVOS
+### Objetivos
 - Aplicar el concepto Django Rest a tú Proyecto
 - Crear cada operación CRUD para las tablas de tú Proyecto en el API
 
