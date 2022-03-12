@@ -55,7 +55,9 @@ django-admin startproject <nombre del proyecto>
 <details><summary>
 3. Agrega la aplicación beduflix a tu proyecto
 </summary>
+  <br>
 Para agregar una nueva aplicación utiliza el comando manage.py
+
 ```console
 mange.py startapp <nombre de la app>
 ```
@@ -63,10 +65,13 @@ En este punto además, deberás crear las estructura de una aplicación base de 
 </details>
 
 #### Resultado esperado:
-Estructura del proyecto inicializada. Incluyendo lo siguiente: 
+__Estructura del proyecto inicializada. Incluyendo lo siguiente__:
 - Carpeta del proyecto, en este ejemplo de nombre beduflix.
 - Carpeta de la app ,  en este ejemplo de nombre beduflix_app
 - Entorno Virtual Activo, en este ejemplo el entorno tiene el nombre bedu.
+  <br>
 ![](Postwork1.jpg)
-Configura tu proyecto para correr la pantalla de inicio de Django.
+  <br>
+__Configura tu proyecto para correr la pantalla de inicio de Django.__
+  <br>
 ![](Postwork2.jpg)
