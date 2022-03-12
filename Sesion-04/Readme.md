@@ -102,8 +102,3 @@ Las plantillas cuentan con otra propiedad llamada herencias. Esto permite que el
 Aplica lo todo lo que aprendiste durante la sesión siguiendo un proyecto guiado.
 
 - [**`POSTWORK SESIÓN 3`**](Postwork/Readme.md)
-
-
-## Postwork
- - Aplicar los conceptos de la clase a tú Proyecto
-   - [Ver lineamientos](Postwork)
