@@ -62,11 +62,6 @@ mange.py startapp <nombre de la app>
 En este punto además, deberás crear las estructura de una aplicación base de Django. Los directorios para plantillas, archivos estáticos si tu proyecto lo requiere.
 </details>
 
-<details>
-<summary>
-
-</details>
-
 #### Resultado esperado:
 Estructura del proyecto inicializada. Incluyendo lo siguiente: 
 - Carpeta del proyecto, en este ejemplo de nombre beduflix.
