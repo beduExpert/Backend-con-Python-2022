@@ -32,7 +32,7 @@ Puede haber varias bases de datos porque requerimos copias de seguridad, pero s�
 
  - [**`EJEMPLO 02: Inicializaci처n y conexi처n a bases de datos SQLite3`**](Ejemplo-02)
  - [**`EJEMPLO 03: Inicializaci처n y conexi처n a bases de datos MySQL`**](Ejemplo-03)
- - [**`EJEMPLO 04: Inicializaci처n y conexi처n a bases de datos PostgreSQL`**](Ejemplo-03)
+ - [**`EJEMPLO 04: Inicializaci처n y conexi처n a bases de datos PostgreSQL`**](Ejemplo-04)
  - [**`RETO 02: Conexi처n hacia un contenedor mysql`**](Reto-02)
 
 
