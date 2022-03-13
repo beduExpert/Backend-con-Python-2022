@@ -8,6 +8,9 @@
 ### DESARROLLO
 
 Realizaremos un proyecto guiado que te ayudará a solidificar los fundamentos de Django. La aplicación que desarrollaremos será una prototipo de una aplicación de streaming. Dentro de esta app tendremos galería de contenido. Funciones para hacer login con usuarios y un par de funciones básicas propias de este tipo de aplicación.
+<p align="center">
+ <img src="beduflix.jpg" />
+</p>
 
 Con esta aplicación desarrollaremos habilidades en las siguientes areas:
 
@@ -55,13 +58,22 @@ django-admin startproject <nombre del proyecto>
 <details><summary>
 3. Agrega la aplicación beduflix a tu proyecto
 </summary>
-  <br>
 Para agregar una nueva aplicación utiliza el comando manage.py
 
 ```console
-mange.py startapp <nombre de la app>
+manage.py startapp <nombre de la app>
 ```
 En este punto además, deberás crear las estructura de una aplicación base de Django. Los directorios para plantillas, archivos estáticos si tu proyecto lo requiere.
+</details>
+
+<details><summary>
+4. Crea tu primera plantilla y vincula una ruta por defecto.
+</summary>
+Programa tu plantilla para BEDUFLIX. Utiliza como referencia la pagina: https://www.netflix.com/mx/. Puedes usar los logos y fondos que se encuentran en la carpeta assets de este repositorio de postwork. No es necesario que programes toda la plantilla solo el primer bloque como se muestra en la sección de Resultado esperado.
+
+- Recuerda registrar tu plantilla en `urls.py`
+- En `settings.py` realiza la configuración para la instalación de tu app en Django y establecer las carpetas estáticas de tus plantillas.
+
 </details>
 
 #### Resultado esperado:
@@ -69,9 +81,20 @@ __Estructura del proyecto inicializada. Incluyendo lo siguiente__:
 - Carpeta del proyecto, en este ejemplo de nombre beduflix.
 - Carpeta de la app ,  en este ejemplo de nombre beduflix_app
 - Entorno Virtual Activo, en este ejemplo el entorno tiene el nombre bedu.
-  <br>
+
 ![](Postwork1.jpg)
-  <br>
-__Configura tu proyecto para correr la pantalla de inicio de Django.__
-  <br>
+
+<p>
+&nbsp;
+<p>
+
+__Servidor configurado para tu proyecto__
+
 ![](Postwork2.jpg)
+
+<p>
+&nbsp;
+<p>
+
+__Primera pantalla de BEDUFLIX__
+![](Postwork3.jpg)

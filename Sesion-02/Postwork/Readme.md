@@ -2,14 +2,14 @@
 ## Postwork 02: Conexión de una App a la base de Datos
 
 ### OBJETIVOS
-- Aplicar una base de datos SQL para el proyecto To-DO APP.
+- Aplicar una base de datos SQL para el proyecto BEDUFLIX.
 - Configurar la conexión a la base de datos.
 - Comprobar la conexión realizando una migración inicial
 
 ### DESARROLLO
-La finalidad de la siguiente actividad es aplicar los conceptos vistos en esta sesión a tu proyecto ToDo App, por lo que es necesario seguir las siguientes instrucciones.
+La finalidad de la siguiente actividad es aplicar los conceptos vistos en esta sesión a tu proyecto BEDUFLIX, por lo que es necesario seguir las siguientes instrucciones.
 
-Recuerda que en tu Postwork pasado ya inicializamos un ambiente virtual y cargaste una primera pantalla. En este ejercicio nos vamos a centrar en el backend de la aplicación. Configurando la base de datos y la conexión hacia esta desde Django.
+Recuerda que en tu Postwork pasado ya inicializamos un ambiente virtual. En este ejercicio nos vamos a centrar en el backend de la aplicación. Configurando la base de datos y la conexión hacia esta desde Django y generando las tablas de base de datos que necesita Django.
 
 
 #### Asegúrate de comprender:
@@ -19,7 +19,7 @@ Recuerda que en tu Postwork pasado ya inicializamos un ambiente virtual y cargas
 - Los elementos necesarios para configurar una conexión bases de datos en Django.
 
 <details><summary>
-1. Inicializa un servidor de bases de datos relaciones, se sugiere SQLite pero puedes usar algún otro de los vistos en clase.
+1. Inicializa un servidor de bases de datos relaciones, se sugiere una base MySQL pero puedes usar algún otro de los vistos en clase.
 </summary>
 Instala la base de datos de tu preferencia. Es importante que verifiques que el usuario exista y tenga los permisos adecuados, además debe de estar expuesta y accesible mediante el host y los puertos que Django espera recibir en el string de conexión.
 </details>
@@ -60,7 +60,7 @@ La conexión de la base de datos debe especificarse en el archivo settings.py
 ```python
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'db_name',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
