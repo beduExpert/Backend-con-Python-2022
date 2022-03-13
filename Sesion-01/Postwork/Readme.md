@@ -45,7 +45,8 @@ pip install Django
 </details>
 
 <details><summary>
-2. Genera un proyecto llamado __beduflix__</summary>
+2. Genera un proyecto llamado beduflix
+</summary>
 Utiliza el comando de consola django-admin para inicializar tu proyecto. Recuerda haber configurado adecuadamente tu ambiente virtual si deseas trabajar con algún editor de texto como vscode.
 
 El comando para iniciar un proyecto es:

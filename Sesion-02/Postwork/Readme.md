@@ -22,37 +22,7 @@ Recuerda que en tu Postwork pasado ya inicializamos un ambiente virtual. En este
 1. Inicializa un servidor de bases de datos relaciones, se sugiere una base MySQL pero puedes usar algún otro de los vistos en clase.
 </summary>
 Instala la base de datos de tu preferencia. Es importante que verifiques que el usuario exista y tenga los permisos adecuados, además debe de estar expuesta y accesible mediante el host y los puertos que Django espera recibir en el string de conexión.
-</details>
 
-
-<details><summary>
-2. Realiza una conexión desde Django a tu base de datos.
-
-</summary>
-Para lograr esto debes de instalar el módulo de conexión a base de datos que corresponda al engine que decidiste usar, estos se instalan con `pip` dentro del entorno virtual donde ejecutas la app, posteriormente modifica el archivo settings.py para copiar los parámetros de conexión de la base que configuraste anteriormente.
-</details>
-
-
-<details><summary>
-3. Validar la conexión corriendo una primera migración.
-
-</summary>
-Una vez configurada la conexión puedes verificarla haciendo la migración inicial, recuerda que las opciones a tu disposición están asociadas a `python manage.py`
-</details>
-
-#### Resultado esperado:
-
-Una base de datos inicializada con las siguientes tablas necesarias para el funcionamiento de Django.
-   ![](img/img1.png)
-
-
-<details>
-<summary>
-Solución</summary>
-
-1. Inicializar un servidor de bases de datos relaciones. Este paso dependerá del servicio que se haya elegido. Como referencia utilizar los ejemplos de la sesión.
-
-2. Realiza una conexión desde Django a tu base de datos.
 
 La conexión de la base de datos debe especificarse en el archivo settings.py
 
@@ -69,8 +39,22 @@ DATABASES = {
     }
 }
 ```
+</details>
 
+
+<details><summary>
+2. Realiza una conexión desde Django a tu base de datos.
+
+</summary>
+Para lograr esto debes de instalar el módulo de conexión a base de datos que corresponda al engine que decidiste usar, estos se instalan con `pip` dentro del entorno virtual donde ejecutas la app, posteriormente modifica el archivo settings.py para copiar los parámetros de conexión de la base que configuraste anteriormente.
+</details>
+
+
+<details><summary>
 3. Validar la conexión corriendo una primera migración.
+
+</summary>
+Una vez configurada la conexión puedes verificarla haciendo la migración inicial, recuerda que las opciones a tu disposición están asociadas a `python manage.py`
 
 Se valida la conexión con:
 
@@ -89,3 +73,23 @@ Recuerda nombre a una migración. y SQLmigrate pare ver las operaciones.
 python manage.py makemigrations nombre
 ```
 </details>
+
+<details><summary>
+4. Agrega dos plantillas para inicio de sesión y registro.
+
+</summary>
+
+Configura dos nuevas plantillas para el inicio de sesión y el registro. Recuerda vincularlas utilizando las configuraciones adecuadas en `urls.py` y en `views.py`. En sesiones futuras aprenderemos a realizar la validación de los formulario. De momento solo e necesario que construyas los formularios con placeholders.
+
+</details>
+
+#### Resultado esperado:
+
+Una base de datos inicializada con las siguientes tablas necesarias para el funcionamiento de Django.
+   ![](img/img1.png)
+
+Plantilla para el inicio de sesión
+![](iniciosesion.jpg)
+Plantilla para el registro.
+![](registro.jpg)
+
