@@ -181,7 +181,7 @@ A continuación un ejemplo del uso de etiquetas para recuperar información:
 
 
 <details><summary>
-6. Agrega una nuevs plantilla en la que puedas visualizar la información de las películas de la app.
+6. Agrega una nueva plantilla en la que puedas visualizar la información de las películas de la app.
 </summary>
 
 - Recuerda que todos los modelos están definidos en el postwork 3.
