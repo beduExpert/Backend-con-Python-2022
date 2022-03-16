@@ -1,6 +1,6 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 01`](../Readme.md) > Ejemplo-01
 ## Ejemplo 01: Django
-## Objetivo
+## Objetivos
 
 - Conocer Django
 - Identificar los casos de usos de Django
