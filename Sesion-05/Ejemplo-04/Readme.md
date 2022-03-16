@@ -1,20 +1,18 @@
-`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 05`](../Readme.md) > Proyecto
-## Creando un API para realizar las operaciones CRUD de una tabla
+`Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 05`](../Readme.md) > Ejemplo-04
+## Ejemplo 04: Visualizando las relaciones de una tabla en la API
 
-### OBJETIVOS
-- Agregar la relación entre los modelos __Tour__ y __Salida__.
-- Realizar operaciones de CRUD vía API para la tabla __Salida__ incluyendo los tours asociados.
+### Objetivos
+- Programar la relación entre los modelos __Tour__ y __Salida__.
+- Utilizar operaciones de CRUD vía API para la tabla __Salida__ incluyendo los tours asociados.
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-05/Proyecto`
-1. Activar el entorno virtual __Bedutravels__
-1. Diagrama de entidad-relación del proyecto Bedutravels
+### Desarrollo
+
+
+Para esta actividad ten a la mano el diagrama de entidad-relación del proyecto Bedutravels
 
    ![Diagrama entidad-relación](assets/bedutravels-modelo-er.png)
 
-### DESARROLLO
-1. Se modifica el archivo `serializers.py` para que se muestre la lista de salidas:
+Vamos a modificar el archivo `serializers.py` para que se muestre la lista de salidas:
 
    ```python
    class SalidaSerializer(serializers.HyperlinkedModelSerializer):
@@ -26,13 +24,12 @@
            fields = ('id', 'fechaInicio', 'fechaFin', 'asientos', 'precio', 'tour')
    ```
 
-   __Se agrega la url `/api/salidas/`:__
+Agrega la url `/api/salidas/`:
 
    ```python
    router.register(r'salidas', views.SalidaViewSet)   
    ```
-
-   __Se agrega la vista:__
+Agrega la vista:
 
    ```python
    class SalidaViewSet(viewsets.ModelViewSet):
@@ -48,12 +45,12 @@
        serializer_class = SalidaSerializer
    ```
 
-   __El resultado debe ser como el siguiente:__
+El resultado debe ser como el siguiente:
 
    ![Lista de salidas](assets/api-salidas-01.png)
    ***
 
-1. Se actualiza el serializador `TourSerializer` en el archivo `Bedutravels/tours/serializers.py` para agregar el campo `salidas` para que muestre la lista de salidas por cada tour:
+Actualiza el serializador `TourSerializer` en el archivo `Bedutravels/tours/serializers.py` para agregar el campo `salidas` para que muestre la lista de salidas por cada tour:
 
    ```python        
            # Se definen los campos a incluir
@@ -61,9 +58,9 @@
                'descripcion', 'img', 'pais', 'zonaSalida', 'zonaLlegada',
                'salidas')
    ```
-   ***
 
-1. Acceso y uso de la __API__ `/api/tours`
+
+Acceso y uso de la __API__ `/api/tours`
 
    __Para tener acceso al API abrir la siguiente url:__
 
@@ -80,4 +77,6 @@
    Se deberá de observar algo similar a lo siguiente:
 
    ![bedutravels API un tour](assets/api-salidas-03.png)
-   ***
+
+
+#### ¡Felicidades! Ya puedes aplicar relaciones de Django :+1: :1st_place_medal:

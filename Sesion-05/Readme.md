@@ -1,5 +1,5 @@
 [`Backend con Python`](../Readme.md) > `Sesión 05`
-# Sesión 5: Django REST Framework
+# Sesión 5: Django Rest framework, ( serializadores, generic field, viewsets)
 
 
 <img src="img/pizarron.png" align="right" height="100" width="100" hspace="10">
@@ -35,11 +35,11 @@ API significa Interfaz de programación de aplicaciones. Las API se utilizan par
 
 - [**`EJEMPLO 02: Creando un API para realizar las operaciones CRUD de una tabla tipo catálogo`**](Ejemplo-02)
 
-- [**`RETO 02`**](Reto-01)
+- [**`RETO 01`**](Reto-01)
 
-- [**`EJEMPLO 03: Creando un API para realizar las operaciones CRUD de una tabla con relaciones uno a muchos.`**](Ejemplo-03)
+- [**`EJEMPLO 03: Implementando las relaciones una tabla con relaciones uno a muchos.`**](Ejemplo-03)
 
-- [**`EJEMPLO 04: Creando un API para realizar las operaciones CRUD de una tabla`**](Ejemplo-04)
+- [**`EJEMPLO 04: Visualizando las relaciones de una tabla en la API`**](Ejemplo-04)
 
 
 

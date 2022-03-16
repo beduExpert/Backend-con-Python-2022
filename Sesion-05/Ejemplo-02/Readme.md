@@ -1,22 +1,22 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 05`](../Readme.md) > Ejemplo-02
-## Creando un API para realizar las operaciones CRUD de una tabla tipo catálogo.
+## Ejemplo 02: Creando un API para realizar las operaciones CRUD de una tabla tipo catálogo.
 
-### OBJETIVOS
+### Objetivos
 - Configurar Django Rest Framework
 - Definir la url para el modelo __User__ en el __API__
 - Integrar Django Rest Framework en el proyecto Bedutravels
 - Realizar operaciones de CRUD vía API
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-05/Ejemplo-02`
-1. Activar el entorno virtual __Bedutravels__
-1. Diagrama de entidad-relación del proyecto Bedutravels
+
+## Desarrollo
+Para este ejercicio trabajaremos sobre el ejemplo de bedutravels recuerda utilizar el diagrama entidad relación. 
+
+
+ Diagrama de entidad-relación del proyecto Bedutravels
 
    ![Diagrama entidad-relación](assets/bedutravels-modelo-er.png)
 
-### DESARROLLO
-1. Agregando Django Rest Framework a la configuración en el archivo `settings.py` como una aplicación adicional:
+ Agregando Django Rest Framework a la configuración en el archivo `settings.py` como una aplicación adicional:
 
    ```python
    INSTALLED_APPS = [
@@ -32,7 +32,7 @@
    ```
    ***
 
-1. Se crea la ruta para la url `/api/users` modificando el archivo `Bedutravels/Bedutravels/urls.py`:
+Crea la ruta para la url `/api/users` modificando el archivo `Bedutravels/Bedutravels/urls.py`:
 
    ```python
    # Imports
@@ -52,9 +52,8 @@
    path("api/auth/", include("rest_framework.urls", namespace="rest_framework")),
    [...]
    ```
-   ***
 
-1. Se crea la vista para el api de la tabla __User__ aunque en este caso en lugar de generar y regresar HTML será JSON.
+Crea la vista para el api de la tabla __User__ aunque en este caso en lugar de generar y regresar HTML será JSON.
 
    __Abrir el archivo `Bedutravels/tours/views.py` y agregar el siguiente contenido:__
 
@@ -86,7 +85,7 @@
    ```
    ***
 
-1. Se crea el serializador `UserSerializer` en el archivo `Bedutravels/tours/serializers.py`.
+Crea el serializador `UserSerializer` en el archivo `Bedutravels/tours/serializers.py`.
 
    ```python
    from rest_framework import serializers
@@ -103,7 +102,7 @@
    ```
    ***
 
-1. Acceso y uso de la __API__ `/api/users`
+Acceso y uso de la __API__ `/api/users`
 
    __Para tener acceso al API abrir la siguiente url:__
 
@@ -119,7 +118,7 @@
 
    ![User agregado](assets/api-users-03.png)
 
-   __Agregando un nuevo usuario vía consola:__
+Agregando un nuevo usuario vía consola:
 
    ```console
    (Bedutravels) Ejemplo-02 $ curl -d '{"nombre": "Donald", "apellidos": "Mac Pato", "email":"donald@pato.org", "fechaNacimiento":"2000-01-01", "genero": "H"}' -H 'Content-Type: application/json' http://localhost:8000/api/users/
@@ -131,14 +130,14 @@
 
    También se puede verificar actualizando la lista de Users en la vista del api del navegador.
 
-   __Creando el usuario Pluto vía consola:__
+Creando el usuario Pluto vía consola
 
    ```console
    (Bedutravels) Ejemplo-02 $ curl -d '{"nombre": "Pluto", "apellidos": "Mac Perro", "email":"pluto@pato.org", "fechaNacimiento":"2000-01-01", "genero": "H"}' -H 'Content-Type: application/json' http://localhost:8000/api/users/
    {"id":6,"nombre":"Pluto","apellidos":"Mac Perro","email":"pluto@pato.org","fechaNacimiento":"2000-01-01","genero":"H","clave":null,"tipo":null}
    ```
 
-   __Eliminando el usuario Pluto vía consola:__
+Eliminando el usuario Pluto vía consola:
 
    ```console
    (Bedutravels) Ejemplo-02 $ curl -X DELETE http://localhost:8000/api/users/6/
@@ -146,3 +145,6 @@
    (Bedutravels) Ejemplo-02 $
    ```
    Sin más el usuario se elimina y se puede verificar en la vista web.
+
+#### ¡Felicidades! Ya programaste tu primera API con Django REST Framework :+1: :1st_place_medal:
+

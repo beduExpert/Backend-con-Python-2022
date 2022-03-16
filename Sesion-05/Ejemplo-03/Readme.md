@@ -1,27 +1,29 @@
 `Fullstack con Python` > [`Backend con Python`](../../Readme.md) > [`Sesión 05`](../Readme.md) > Ejemplo-03
-## Creando un API para realizar las operaciones CRUD de una tabla con relaciones uno a muchos.
+## Ejemplo 03: Implementando las relaciones una tabla con relaciones uno a muchos.
 
-### OBJETIVOS
-- Agregar el modelo __Tour__ a el __API__ de la Bedutravels
-- Realizar operaciones de CRUD vía API para la tabla __Tour__
+## Objetivos
+- Programar operaciones CRUD
+- Implementar relaciones.
+- Programar serializadores para mostrar la información del modelo de datos.
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-05/Ejemplo-03`
-1. Activar el entorno virtual __Bedutravels__
-1. Diagrama de entidad-relación del proyecto Bedutravels
+### Desarrollo
+
+En este ejemplo vamos a agregar el modelo __Tour__ a el __API__ de la Bedutravels.
+Posteriormente realizaremos operaciones de CRUD vía API para la tabla __Tour__
+
+
+No olvides tener a la mano el diagrama de entidad-relación del proyecto Bedutravels
 
    ![Diagrama entidad-relación](assets/bedutravels-modelo-er.png)
 
-### DESARROLLO
-1. Se crea la ruta para la url `/api/tours` modificando el archivo `Bedutravels/Bedutravels/urls.py`:
+Crea la ruta para la url `/api/tours` modificando el archivo `Bedutravels/Bedutravels/urls.py`:
 
    ```python
    router.register(r'tours', views.TourViewSet)
    ```
    ***
 
-1. Se crea la vista para el api de la tabla __Tour__ aunque en este caso en lugar de generar y regresar HTML será JSON.
+Crea la vista para el api de la tabla __Tour__ aunque en este caso en lugar de generar y regresar HTML será JSON.
 
    __Abrimos el archivo `Bedutravels/tours/views.py` y agregar el siguiente contenido:__
 
@@ -40,9 +42,8 @@
       # en formato JSON a objetos de Django y de Django a JSON.
       serializer_class = TourSerializer
    ```
-   ***
 
-1. Se crea el serializador `TourSerializer` en el archivo `Bedutravels/tours/serializers.py`.
+Crea el serializador `TourSerializer` en el archivo `Bedutravels/tours/serializers.py`.
 
    ```python
    from .models import User, Zona, Tour
@@ -70,9 +71,8 @@
            fields = ('id', 'nombre', 'descripcion', 'latitud', 'longitud', 'tours_salida', 'tours_llegada')
    ```
    __Nota:__ Es importante el nuevo orden de las clases
-   ***
 
-1. Acceso y uso de la __API__ `/api/tours`
+Acceso y uso de la __API__ `/api/tours`
 
    __Para tener acceso al API abrir la siguiente url:__
 
@@ -89,3 +89,7 @@
    Se deberá de observar algo similar a lo siguiente:
 
    ![bedutravels API Tours](assets/api-tours-02.png)
+
+
+#### ¡Felicidades! Ya conoces como realizar operaciones CRUD en Django Rest Framework :+1: :1st_place_medal:
+
