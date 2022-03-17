@@ -1,5 +1,5 @@
 [`Backend con Python`](../Readme.md) > `Sesión 04`
-# Sesión 4: Class Based Views y User Authentication
+# Sesión 4: Django Admins, Views y Templates
 
 
 <img src="img/pizarron.png" align="right" height="100" width="100" hspace="10">
