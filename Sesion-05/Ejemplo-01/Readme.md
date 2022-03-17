@@ -2,7 +2,7 @@
 ## Ejemplo 01: Configuración Inicial DRF
 
 ### Objetivo
-- Conocer Django Rest Framework
+- Utilizar Django Rest Framework
 - Instalando Django Rest Framework
 
 ### DESARROLLO
