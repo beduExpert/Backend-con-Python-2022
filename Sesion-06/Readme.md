@@ -1,5 +1,5 @@
 [`Backend con Python`](../Readme.md) > `Sesión 06`
-# Sesión 6: Middleware
+# Sesión 6: Middleware & GraphQL
 
 
 <img src="img/pizarron.png" align="right" height="100" width="100" hspace="10">
