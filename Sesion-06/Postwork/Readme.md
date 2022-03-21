@@ -13,7 +13,7 @@ Para nuestra aplicación BEDUFLIX vamos a programar una serie de operaciones CRU
 Para realizar este proceso usaremos Django Grahene
 
 ```console
-pip install djangorestframework
+pip install graphene
 ```
 
 #### Asegúrate de comprender:
