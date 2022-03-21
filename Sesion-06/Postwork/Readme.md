@@ -8,9 +8,9 @@
 
 ### Desarrollo
 
-Para nuestra aplicación BEDUFLIX vamos a programar una REST API. Esta nos permitirá integrar una serie de endpoints en los que podremos aplicar los métodos POST, GET, y otros aquellos que definamos según lo necesitemos.
+Para nuestra aplicación BEDUFLIX vamos a programar una serie de operaciones CRUD con GRAPH . Esta nos permitirá integrar un nuevo modo de interacción para implementar nuestro backend con otros frameworks que se comuniquen mendiante el lenguaje de queries de GraphQL
 
-Para realizar este proceso usaremos Django Rest Framework. No olvides agregarlo a tu entorno virtual con:
+Para realizar este proceso usaremos Django Grahene
 
 ```console
 pip install djangorestframework
@@ -22,8 +22,6 @@ pip install djangorestframework
 - Como actualizar el archivo de configuración
 - Como agregar rutas y validar su acceso
 - Operaciones CRUD
-
-
 
 #### Indicaciones Generales
 1. Configura Django Graphene en tu entorno virtual.
