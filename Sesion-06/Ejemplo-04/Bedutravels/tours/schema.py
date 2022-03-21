@@ -116,50 +116,9 @@ class EliminarZona(graphene.Mutation):
         return EliminarZona(ok=ok)
 
 
-class ModificarZona(graphene.Mutation):
-    """ Permite realizar la operación de modificar en la tabla Zona """
-    class Arguments:
-        """ Define los argumentos para modificar una Zona """
-        id = graphene.ID(required=True)
-        nombre = graphene.String()
-        descripcion = graphene.String()
-        longitud = graphene.Float()
-        latitud = graphene.Float()
-
-    # El campo regresado como respuesta de la mutación, en este caso se regresa
-    # la zona modificada.
-    zona = graphene.Field(ZonaType)
-
-    def mutate(self, info, id, nombre=None, descripcion=None, longitud=None,
-        latitud=None):
-        """
-        Se encarga de modificar la Zona identificada por el id.
-        """
-        try:
-            # Si la zona existe se modifica
-            zona = Zona.objects.get(pk=id)
-            # Si algunos de los atributos es proporcionado, entonces se
-            # actualiza
-            if nombre is not None:
-              zona.nombre = nombre
-            if descripcion is not None:
-              zona.descripcion = descripcion
-            if latitud is not None:
-              zona.latitud = latitud
-            if longitud is not None:
-              zona.longitud = longitud
-            zona.save()
-        except Zona.DoesNotExist:
-            # Si la zona no existe, se procesa la excepción
-            zona = None
-        # Se regresa una instancia de esta mutación
-        return ModificarZona(zona=zona)
-
-
 class Mutaciones(graphene.ObjectType):
     crear_zona = CrearZona.Field()
     eliminar_zona = EliminarZona.Field()
-    modificar_zona = ModificarZona.Field()
 
 
 # Se crea un esquema que hace uso de la clase Query
