@@ -38,9 +38,9 @@ class Tour(models.Model):
     img = models.CharField(max_length=256, null=True, blank=True)
     pais = models.CharField(max_length=45)
     zonaSalida = models.ForeignKey(Zona, on_delete=models.SET_NULL, null=True,
-        blank=True, related_name="tours_salida")
+        blank=True, related_name="Tours_zonaSalida")
     zonaLlegada = models.ForeignKey(Zona, on_delete=models.SET_NULL, null=True,
-        blank=True, related_name="tours_llegada")
+        blank=True, related_name="Tours_zonaLlegada")
 
     def __str__(self):
         return "{}".format(self.nombre)
@@ -60,7 +60,7 @@ class Salida(models.Model):
     fechaFin = models.DateField()
     asientos = models.PositiveSmallIntegerField(null=True, blank=True)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
-    tour = models.ForeignKey(Tour, related_name="salidas", on_delete=models.CASCADE)
+    tour = models.ForeignKey(Tour, on_delete=models.CASCADE)
 
     def __str__(self):
         return "{} ({}, {})".format(self.tour, self.fechaInicio, self.fechaFin)
