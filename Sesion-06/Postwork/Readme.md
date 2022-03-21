@@ -1,37 +1,50 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 06`](../Readme.md) > Postwork
-## Aplicar los conceptos de la clase a tú Proyecto
+## Postwork 06: Implementación de una REST API
 
-### OBJETIVOS
-- Aplicar el concepto API GraphQL a tú Proyecto
-- Crear cada operación CRUD para las tablas de tú Proyecto
+### Objetivo
+- Aplicar el concepto API GraphQL al proyecto
+- Crear cada operación CRUD para las tablas del proyecto
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-06/Postwork`
 
-### DESARROLLO
-1. __INSTALACIÓN__ de Django Graphene se realiza con el comando `pip install graphene-django`
+### Desarrollo
 
-   __Se actualiza el archivo `requeriments.txt` para incluir el módulo instalado__
+Para nuestra aplicación BEDUFLIX vamos a programar una REST API. Esta nos permitirá integrar una serie de endpoints en los que podremos aplicar los métodos POST, GET, y otros aquellos que definamos según lo necesitemos.
 
-1. Agregando Django Graphene a la configuración en el archivo `settings.py` como una aplicación adicional.
+Para realizar este proceso usaremos Django Rest Framework. No olvides agregarlo a tu entorno virtual con:
 
-1. Se crea la ruta para la url `/graphql` modificando el archivo `Bedutravels/tours/urls.py`.
+```console
+pip install djangorestframework
+```
 
-1. Se crea el esquema (schema) en el archivo `Proyecto/miapp/schema.py` para atender las peticiones.
+#### Asegúrate de comprender:
 
-   Finalmente se crea la variable `schema` que define el esquema de los posibles campos y consultas.
+- Como iniciar una API GraphQL
+- Como actualizar el archivo de configuración
+- Como agregar rutas y validar su acceso
+- Operaciones CRUD
 
-1. Validar el acceso y uso de la __API__ `/graphql` en la url http://localhost:8000/graphql
 
-1. Crear la operación agregar a la __API GraphQL__ para las tabla de tu Proyecto.
 
-   Validar que la operación agregar, adicionando nuevos datos a cada tabla
+#### Indicaciones Generales
+1. Configura Django Graphene en tu entorno virtual.
+   - Recuerda que esto se realiza con el comando `pip install graphene-django`
+   - No olvides actualizar el archivo `requeriments.txt` para incluir el módulo instalado
+   - Agrega Django Graphene a la configuración en el archivo `settings.py` como una aplicación adicional.
 
-1. Crear la operación modificar para para cada tabla.
+1. Crea las ruta para la url `/graphql` modificando el archivo `urls.py`.
 
-  Validar que la operación modificar, realizando cambios en los datos de cada tabla
+1. Crea el esquema (schema) en el archivo `Proyecto/miapp/schema.py` para atender las peticiones.
+   - Crea la variable `schema` que define el esquema de los posibles campos y consultas.
 
-1. Crear la operación eliminar para las tablas de tu Proyecto.
+1. Valida el acceso y uso de la __API__ `/graphql` en la url http://localhost:8000/graphql
 
-  Validar que la operación eliminar, agregando nuevos datos y eliminandolos posteriormente.
+1. Crea la operaciónes CRUD en __API GraphQL__ para las tabla de tu Proyecto.
+   - Valida que la operación agregar, adicionando nuevos datos a cada tabla
+   - Crea la operación modificar para para cada tabla.
+   - Validar que la operación modificar, realizando cambios en los datos de cada tabla
+   - Crea la operación eliminar para las tablas de tu Proyecto.
+   - Validar que la operación eliminar, agregando nuevos datos y eliminandolos posteriormente.
+
+#### Resultado esperado:
+Implementación de las operaciones para la base de películas BEDUFLIX
+![](movies.png)
