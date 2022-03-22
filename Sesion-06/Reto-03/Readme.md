@@ -1,19 +1,30 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 06`](../Readme.md) > Reto-03
-## Definiendo mutaciones (operaciones) para el API GraphQL
+## Reto 03: Definiendo mutaciones (operaciones) para el API GraphQL
 
-### OBJETIVOS
-- Aplicar el concepto de mutaciones de GraphQL
-- Crear una mutación para modificar una Zona existente
+### Objetivos
+- Utilizar mutaciones de GraphQL
+- Crear mutaciones para modificar una Zona existente
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-06/Reto-03`
-1. Activar el entorno virtual __Bedutravels__
-1. Diagrama de entidad-relación del proyecto Bedutravels
+### Desarollo
+
+Para este reto utilizaremos el la información del proyecto Bedutravels, ten a la mano el diagrama diagrama de entidad-relación del proyecto Bedutravels
    ![Diagrama entidad-relación](assets/bedutravels-modelo-er.png)
 
-### DESARROLLO
-1. Crear la mutación __ModificarZona__ en el archivo `Bedutravels/tours/schema.py` que permita modificar un registro a la tabla __Zona__
+Con la API que has construido durante los ejemplos y retos
+aplicaremos el concepto de mutaciones.
+
+Crea una mutación Modificar Zona, que permita modificar los registros del modelo Zona. No olvides crear la clase asociada.
+
+  - Recuerda implementar tu clase con los argumentos necesarios de graphene.
+  - Considera las expceciones adecuadas si la zona existe.
+
+<details>
+<summary>
+Solución
+</summary>
+Agrega las configuraciones para crear, modificar y  eliminar los registros
+
+Crear la mutación __ModificarZona__ en el archivo `Bedutravels/tours/schema.py` que permita modificar un registro a la tabla __Zona__
 
    Se crea la clase __ModificarZona__ de la siguiente manera:
 
@@ -58,9 +69,8 @@
            return ModificarZona(zona=zona)
    ```
    En este caso el único argumento necesario para modificar una Zona es el id, los demás atributos son opciones y son los posibles atributos a modificar.
-   ***
 
-1. Agregar la nueva mutación al esquema (schema) en el archivo `Bedutravels/tours/schema.py`
+Agregar la nueva mutación al esquema (schema) en el archivo `Bedutravels/tours/schema.py`
 
    Por lo tanto hay que modificar la clase __Mutaciones__ de la siguiente manera:
 
@@ -70,9 +80,8 @@
        eliminar_zona = EliminarZona.Field()
        modificar_zona = ModificarZona.Field()
    ```
-   ***
 
-1. Modificando una Zona usando la __API__ `/graphql`
+Modificando una Zona usando la __API__ `/graphql`
 
    __Creando la zona Michoacán:__
 
@@ -112,3 +121,4 @@
 
    ![ModificarZona](assets/mutaciones-02.png)
    Observar que la descripción de la Zona Michoacán haya cambiado.
+</details>

@@ -23,7 +23,8 @@ GraphQL es un lenguaje de consulta para API's y un tiempo de ejecución del lado
   - Solicitar datos en una consulta que describa exactamente sus requisitos de datos.
   - Recibir datos en una respuesta que contenga solo los datos que solicitó.
 
-  - [**`EJEMPLO 01: Configuración inicial de Graphene`**](Ejemplo-01)
+  - [**`EJEMPLO 01: GraphQL`**](Ejemplo-01)
+  - [**`RETO 01: Realizando consultas en GraphQL`**](Reto-01)
 
 
 ***
@@ -41,10 +42,10 @@ Graphene está completamente equipado con integraciones para los marcos web y OR
 Primero se envía una consulta solicitando solo un campo (hello) y se especifica un valor para el argumento name.
 
 
-  - [**`EJEMPLO 02: Esquemas API GraphQL`**](Ejemplo-02)
-  - [**`RETO 01: Vistas Basadas en Clases`**](Reto-01)
+  - [**`EJEMPLO 02: Definiendo esquemas para crear un API GraphQL y realizar consultas de datos`**](Ejemplo-02)
+  - [**`RETO 02: Definiendo esquemas para crear un API GraphQL y realizar consultas de datos`**](Reto-01)
   - [**`EJEMPLO 03: Mutaciones`**](Ejemplo-03)
-  - [**`RETO 02: Vistas Basadas en Clases`**](Reto-02)
+  - [**`RETO 03: Definiendo mutaciones (operaciones) para el API GraphQL`**](Reto-02)
 
 ***
 #### <ins>Tema 03: Middleware</ins>
@@ -60,9 +61,6 @@ La filosofía que utiliza Django para la implementación del middleware es imple
 
 
  - [**`EJEMPLO 05: Manejo de Sesiones`**](Ejemplo-04)
-
-
-
 
 ### Postwork :memo:
 Aplica lo todo lo que aprendiste durante la sesión siguiendo un proyecto guiado.

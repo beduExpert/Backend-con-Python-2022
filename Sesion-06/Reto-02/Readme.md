@@ -1,30 +1,42 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 06`](../Readme.md) > Reto-02
-## Definiendo esquemas para crear un API GraphQL y realizar consultas de datos
+## Reto 02: Definiendo esquemas para crear un API GraphQL y realizar consultas de datos
 
-### OBJETIVOS
+### Objetivos
 - Definir el esquemas para modelos de Django
 - Realizar operaciones de consulta vía __API GraphQL__ a modelos simples
 - Realizar operaciones de consulta a modelos con relaciones
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-06/Reto-02`
-1. Activar el entorno virtual __Bedutravels__
-1. Diagrama de entidad-relación del proyecto Bedutravels
+
+### Desarrollo
+
+Para este reto estaremos trabajando con el proyecto de Bedutravels, asegurate de tener a la mano la información como el diagrama de entidad-relación del proyecto Bedutravels
    ![Diagrama entidad-relación](assets/bedutravels-modelo-er.png)
-1. Carpeta de proyecto `Reto-02/Bedutravels/` con los siguientes datos de acceso al admin de Django :
+
+Y la carpeta de proyecto `Reto-02/Bedutravels/` con los siguientes datos de acceso al admin de Django :
    - Usuario: bedutravels
    - Clave: bedutravels
 
-### DESARROLLO
-1. Se crea la ruta para la url `/graphql` modificando el archivo `Bedutravels/tours/urls.py`.
+Vamos a implementar una API GraphQL en el proyecto. Para esto, realiza los siguientes pasos.
 
-   Debido a que GraphQL sólo necesita un punto de entrada, no es necesario estar creando o adicionando más rutas, así que puedes continuar.
-   ***
+- Crea la ruta para la url `/graphql` modificando el archivo `Bedutravels/tours/urls.py`.
 
-1. Crear el esquema (schema) en el archivo `Bedutravels/tours/schema.py` para atender las consultas que obtiene la lista de todos los registros de los modelos __Tour__ y __Salidas__
+- Crear el esquema (schema) en el archivo `Bedutravels/tours/schema.py` para atender las consultas que obtiene la lista de todos los registros de los modelos __Tour__ y __Salidas__. No olvides agregar las variables que correspondan al esquema de salida.
 
-   Se necesitan los tipos __TourType__ y __SalidasType__:
+Verifica Acceso y uso de la __API__ `/graphql` a sólo una tabla
+
+Escribe una consulta que recupere la información de los tours, incluyendo, id, nombre, operador, tipoDeTour, descripción, img, pais.
+
+Escribe una consulta que recupere la información de las salidas de los tours. No olvides incluir fechaInicio,fechaFin, preci, asientos.
+
+Obtener la lista de todas las Zonas con todos los Tours de salida para cada zona y con todas las Salidas para cada Tour.
+
+
+<details>
+<summary>Solución</summary>
+Para tener acceso al API abrir la siguiente url:
+http://localhost:8000/graphql
+
+ Se necesitan los tipos __TourType__ y __SalidasType__:
 
    ```python
    class TourType(DjangoObjectType):
@@ -56,17 +68,8 @@
        # Responde con la lista de todos registros
        return Salida.objects.all()
    ```
-   ***
 
-1. Acceso y uso de la __API__ `/graphql` a sólo una tabla
-
-   __Para tener acceso al API abrir la siguiente url:__
-
-   http://localhost:8000/graphql
-
-   __Obteniendo la lista de todos los registros del modelo Tour:__
-
-   Escribir la siquiente consulta en formato __GraphQL__ y ejecutar la consulta:
+Escribela siquiente consulta en formato GraphQL y ejecuta la consulta:
 
    ```json
    query {
@@ -79,9 +82,9 @@
        img
        pais
      }
-   }   
+   }
    ```
-   el resultado deberá ser similar al siguiente:
+   Este es el resultado:
 
    ![allUser id](assets/api-graphql-01.png)
 
@@ -96,20 +99,20 @@
        asientos
        precio
      }
-   }   
+   }
    ```
    El resultado será similar a:
 
    ![allUser, allZona](assets/api-graphql-02.png)
-   ***
 
-1. Acceso y uso de la __API__ `/graphql` a tablas con relaciones
 
-   __El acceso al API sigue siendo el mismo:__
+Acceso y uso de la __API__ `/graphql` a tablas con relaciones
+
+El acceso al API sigue siendo el mismo:
 
    http://localhost:8000/graphql
 
-   __Obtener la lista de todas las salidas y su tour relacionado (ver diagrama del modelo-er):__
+   Obtener la lista de todas las salidas y su tour relacionado (ver diagrama del modelo-er):
 
    La consulta en GraphQL es:
 
@@ -126,7 +129,7 @@
          nombre
        }
      }
-   }   
+   }
    ```
    El resultado deberá ser similar a:
    ![Todas las salidas y su tour relacionado](assets/api-graphql-03.png)
@@ -159,12 +162,12 @@
          precio
        }
      }
-   }   
+   }
    ```
    El resultado deberá ser similar a:
    ![Todos los tours y sus salidas disponibles](assets/api-graphql-04.png)
 
-   __Obtener la lista de todas las Zonas con todos los Tours de salida para cada zona y con todas las Salidas para cada Tour:__
+   Obtener la lista de todas las Zonas con todos los Tours de salida para cada zona y con todas las Salidas para cada Tour:
 
    Para hacer esta consulta más simple, se recomienda realizar la siguiente modificación al archivo `Bedutravels/tours/models.py`:
 
@@ -199,7 +202,9 @@
          }
        }
      }
-   }   
+   }
    ```
    El resultado deberá ser similar a:
    ![Todas las zonas con sus tours y salidas disponibles](assets/api-graphql-05.png)
+<details>
+
