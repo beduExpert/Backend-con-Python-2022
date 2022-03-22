@@ -25,7 +25,7 @@ pip install djangorestframework
 - Cómo crear una ruta para una vista basada en clase.
 - Cómo programar un serializador para tus modelos.
 
-Indicaciones Generales
+#### Indicaciones Generales
 
 <details><summary>
 1. Instala y agrega Django Rest Framework a la configuración en el archivo `settings.py`.
