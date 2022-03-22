@@ -1,20 +1,22 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 06`](../Readme.md) > Ejemplo-03
-## Ejemplo 03: Definiendo mutaciones (operaciones) para el API GraphQL
+## Definiendo mutaciones (operaciones) para el API GraphQL
 
-### Objetivos
-- Utilizar mutaciones de GraphQL
+### OBJETIVOS
+- Comprender y aplicar el concepto de mutaciones de GraphQL
 - Crear una mutación para agregar una nueva Zona
 - Crear una mutación para eliminar una Zona existente
 
-### Desarolllo
-
-Para este ejercicio utilizaremos el diagrama de entidad-relación del proyecto Bedutravels
+### REQUISITOS
+1. Actualizar repositorio
+1. Usar la carpeta de trabajo `Sesion-06/Ejemplo-03`
+1. Activar el entorno virtual __Bedutravels__
+1. Diagrama de entidad-relación del proyecto Bedutravels
    ![Diagrama entidad-relación](assets/bedutravels-modelo-er.png)
 
+### DESARROLLO
+1. Crear la mutación en el archivo `Bedutravels/tours/schema.py` que permite agregar un registro a la tabla __Zona__
 
-Crea la mutación en el archivo `Bedutravels/tours/schema.py` que permite agregar un registro a la tabla __Zona__
-
-Se necesitan el tipo __ZoneType__ que ya está definido en el archivo, así que lo primero es crear la clase __CrearZona__ de la siguiente manera:
+   Se necesitan el tipo __ZoneType__ que ya está definido en el archivo, así que lo primero es crear la clase __CrearZona__ de la siguiente manera:
 
    ```python
    class CrearZona(graphene.Mutation):
@@ -48,31 +50,31 @@ Se necesitan el tipo __ZoneType__ que ya está definido en el archivo, así que 
            # creada.
            return CrearZona(zona=zona)
    ```
-Por cada operación como Crear, Modificar o Eliminar es necesario crear una clase que hereda de __graphene.Mutation__ en este caso __CrearZona__ que se encargue de realizar la operación correspondiente.
+   Por cada operación como Crear, Modificar o Eliminar es necesario crear una clase que hereda de __graphene.Mutation__ en este caso __CrearZona__ que se encargue de realizar la operación correspondiente.
 
-También es necesario crear la subclase __Arguments__ que define los argumentos y tipos que necesita la mutación, así como si son opcionales u obligatorios.
+   También es necesario crear la subclase __Arguments__ que define los argumentos y tipos que necesita la mutación, así como si son opcionales u obligatorios.
 
-Al igual que en las consultas, se definen los campos que se regresa como resultado de la ejecución de la mutación, en este caso la variable __zona__ que regresará la Zona creada.
+   Al igual que en las consultas, se definen los campos que se regresa como resultado de la ejecución de la mutación, en este caso la variable __zona__ que regresará la Zona creada.
 
-Finalmente, el método __mutate__ que es donde se realiza la operación de crear una nueva Zona con los datos recibidos.   
+   Finalmente, el método __mutate__ que es donde se realiza la operación de crear una nueva Zona con los datos recibidos.   
    ***
 
-Agregar la mutación al esquema (schema) en el archivo `Bedutravels/tours/schema.py` para dar acceso a cada una de las mutaciones
+1. Agregar la mutación al esquema (schema) en el archivo `Bedutravels/tours/schema.py` para dar acceso a cada una de las mutaciones
 
-Para ello se crea una clase que contendrá todas las mutaciones posibles, done cada mutación es un argumento. La clase es la siguiente:
+   Para ello se crea una clase que contendrá todas las mutaciones posibles, done cada mutación es un argumento. La clase es la siguiente:
 
    ```python
    class Mutaciones(graphene.ObjectType):
        crear_zona = CrearZona.Field()
    ```
 
-Ahora agregamos esta lista de mutaciones (operaciones) al esquema:
+   Ahora agregamos esta lista de mutaciones (operaciones) al esquema:
 
    ```python
    schema = graphene.Schema(query=Query, mutation=Mutaciones)
    ```
 
-Agregando una nueva Zona usando la __API__ `/graphql`
+1. Agregando una nueva Zona usando la __API__ `/graphql`
 
    __Abrir la url:__
 
@@ -94,11 +96,11 @@ Agregando una nueva Zona usando la __API__ `/graphql`
      }
    }
    ```
-el resultado deberá ser similar al siguiente:
+   el resultado deberá ser similar al siguiente:
 
    ![Crearzona](assets/mutaciones-01.png)
 
-   Creando la zona Michoacán:
+   __Creando la zona Michoacán:__
 
    ```json
    mutation Crearzona {
@@ -115,9 +117,9 @@ el resultado deberá ser similar al siguiente:
        }
      }
    ```
-Hemos creado una zona erronea, hay que eliminarla y volver a crearla, por lo que a continuación se creará la mutación __EliminarZona__
+   Ha! Hemos creado una zona erronea, hay que eliminarla y volver a crearla, por lo que a continuación se creará la mutación __EliminarZona__
 
-Crear la mutación __EliminarZona__ en el archivo `Bedutravels/tours/schema.py` que permite eliminar un registro a la tabla __Zona__
+1. Crear la mutación __EliminarZona__ en el archivo `Bedutravels/tours/schema.py` que permite eliminar un registro a la tabla __Zona__
 
    Se crea la clase __EliminarZona__ de la siguiente manera:
 
@@ -152,7 +154,7 @@ Crear la mutación __EliminarZona__ en el archivo `Bedutravels/tours/schema.py` 
    En este caso el único argumento necesario para borrar una Zona es el id, además de que el valor regresado por la mutación no es una Zona, si no, una variable de tipo lógico (Boolean) que regresa un valor de __true__ si se ha encontrado y eliminado la Zona o __false__ en caso contrario.
    ***
 
-Agregar la nueva mutación al esquema (schema) en el archivo `Bedutravels/tours/schema.py`
+1. Agregar la nueva mutación al esquema (schema) en el archivo `Bedutravels/tours/schema.py`
 
    Por lo tanto hay que modificar la clase __Mutaciones__ de la siguiente manera:
 
@@ -165,7 +167,7 @@ Agregar la nueva mutación al esquema (schema) en el archivo `Bedutravels/tours/
    Como el esquema ya incluye la clase de mutaciones, ya no es necesario agregarla.
    ***
 
-Eliminando una Zona usando la __API__ `/graphql`
+1. Eliminando una Zona usando la __API__ `/graphql`
 
    __Abrir la url:__
 
