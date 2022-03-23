@@ -1,5 +1,5 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 06`](../Readme.md) > Proyecto
-## Creando una API GraphQL con todas las operaciones CRUD sobre una tabla
+## Ejemplo 04: Creando una API GraphQL con todas las operaciones CRUD sobre una tabla
 
 ### OBJETIVOS
 - Aplicar el concepto de mutaciones de GraphQL
