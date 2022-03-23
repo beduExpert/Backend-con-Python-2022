@@ -1,187 +1,133 @@
-[`Backend con Python`](../../Readme.md) > [`Sesión 06`](../Readme.md) > Ejemplo-03
-## Definiendo mutaciones (operaciones) para el API GraphQL
+[`Backend con Python`](../../Readme.md) > [`Sesión 06`](../Readme.md) > Ejemplo-04
+## Ejemplo 04: Manejo de Sesiones
 
-### OBJETIVOS
-- Comprender y aplicar el concepto de mutaciones de GraphQL
-- Crear una mutación para agregar una nueva Zona
-- Crear una mutación para eliminar una Zona existente
+## Objetivo
+- Recuperar la información de las sesiones.
+- Aplicar los métodos para conocer el contenido de una sesión.
+- Almacenar información en una sesión.
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-06/Ejemplo-03`
-1. Activar el entorno virtual __Bedutravels__
-1. Diagrama de entidad-relación del proyecto Bedutravels
-   ![Diagrama entidad-relación](assets/bedutravels-modelo-er.png)
+### Desarrollo
 
-### DESARROLLO
-1. Crear la mutación en el archivo `Bedutravels/tours/schema.py` que permite agregar un registro a la tabla __Zona__
+En este ejercicio vamos visuailizar los contenidos de una sesión. Además, demostraremos como se pueden utilizar los métodos de request para almacenar y recuperar información.
 
-   Se necesitan el tipo __ZoneType__ que ya está definido en el archivo, así que lo primero es crear la clase __CrearZona__ de la siguiente manera:
+Todos los proyectos de una base de dato Django cuentan con una serie de tablas creadas automáticamente por Django.
 
-   ```python
-   class CrearZona(graphene.Mutation):
-       """ Permite realizar la operación de crear en la tabla Zona """
+Utilizando mysql workbench o nuestro visor de DB-Browser podemos recuperar esta información.
 
-       class Arguments:
-           """ Define los argumentos para crear una Zona """
-           nombre = graphene.String(required=True)
-           descripcion = graphene.String()
-           latitud = graphene.Decimal()
-           longitud = graphene.Decimal()
 
-       # El atributo usado para la respuesta de la mutación
-       zona = graphene.Field(ZonaType)
 
-       def mutate(self, info, nombre, descripcion=None, latitud=None,
-           longitud=None):
-           """
-           Se encarga de crear la nueva Zona donde sólo nombre es obligatorio, el
-           resto de los atributos son opcionales.
-           """
-           zona = Zona(
-               nombre=nombre,
-               descripcion=descripcion,
-               latitud=latitud,
-               longitud=longitud
-           )
-           zona.save()
+Si hacemos una consulta a la tabla
 
-           # Se regresa una instancia de esta mutación y como parámetro la Zona
-           # creada.
-           return CrearZona(zona=zona)
-   ```
-   Por cada operación como Crear, Modificar o Eliminar es necesario crear una clase que hereda de __graphene.Mutation__ en este caso __CrearZona__ que se encargue de realizar la operación correspondiente.
+```SQL
+SELECT * FROM django_session
+```
+![](img/Ejemplo1.jpg)
 
-   También es necesario crear la subclase __Arguments__ que define los argumentos y tipos que necesita la mutación, así como si son opcionales u obligatorios.
+Al examinar los datos notamos que tenemos varios campos. utilizando el comando de definición del esquema podemos recuperar la información de definición de la tabla.
 
-   Al igual que en las consultas, se definen los campos que se regresa como resultado de la ejecución de la mutación, en este caso la variable __zona__ que regresará la Zona creada.
+```SQL
+SHOW CREATE TABLE django_session
+```
+El resultado de esta consulta será el siguiente:
 
-   Finalmente, el método __mutate__ que es donde se realiza la operación de crear una nueva Zona con los datos recibidos.   
-   ***
+```SQL
+CREATE TABLE IF NOT EXISTS "django_session" ("session_key" varchar(40) NOT NULL PRIMARY KEY, "session_data" text NOT NULL, "expire_date" datetime NOT NULL);
+```
 
-1. Agregar la mutación al esquema (schema) en el archivo `Bedutravels/tours/schema.py` para dar acceso a cada una de las mutaciones
+La información de la sesión está códificada en base64. para explorar más a detalle los datos podemos utilizar los paquetes base64 y json.
 
-   Para ello se crea una clase que contendrá todas las mutaciones posibles, done cada mutación es un argumento. La clase es la siguiente:
 
-   ```python
-   class Mutaciones(graphene.ObjectType):
-       crear_zona = CrearZona.Field()
-   ```
+Para decodificar un string solo hace falta utilizar los métodos correspondientes
+```python
+import base64
+encodedStr = "xc7ez6f70jvvwug37c3eumn1"
 
-   Ahora agregamos esta lista de mutaciones (operaciones) al esquema:
+decodedBytes = base64.b64decode(encodedStr)
+decodedStr = str(decodedBytes, "utf-8")
 
-   ```python
-   schema = graphene.Schema(query=Query, mutation=Mutaciones)
-   ```
+print(decodedStr)
+```
+Sin embargo la información de la sesión suele estar concatenada utilizando el simbolo `:`. Sabiendo esto podemos adaptar el siguiente código para decodificar la información de la sesión
 
-1. Agregando una nueva Zona usando la __API__ `/graphql`
+```python
+import base64
+import json
 
-   __Abrir la url:__
+session_key = 'incluye la sesión de tu base de datos'
+binary_key, payload = base.64.b64decode(session_key).split(b':', 1)
+json.loads(payload.decode()))
+```
+Al correr este código dentro de una consola de Python podemos visualizar el contenido de la sesión.
 
-   http://localhost:8000/graphql
+![](img/Ejemplo2.jpg)
 
-   __Creando la zona Oaxaca:__
+Para trabajar con sesiones en nuestro proyecto debemos asegurarnos que se encuentran incluidas en INSTALLED_APPS y MIDDLEWARE dentro de nuestro archivo `settings.py`
 
-   ```json
-   mutation Crearzona {
-     crearZona(
-       nombre:"Oaxaca",
-       descripcion:"Oaxaca"
-     ) {
-       zona {
-         id
-         nombre
-         descripcion
-       }
-     }
-   }
-   ```
-   el resultado deberá ser similar al siguiente:
+```python
+INSTALLED_APPS = [
+    ...
+    'django.contrib.sessions',
+    ....
 
-   ![Crearzona](assets/mutaciones-01.png)
+MIDDLEWARE = [
+    ...
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    ....
+```
+Las sesiones se pueden manejar haciendo uso de operaciones set, get y delete.
 
-   __Creando la zona Michoacán:__
+```python
+# Obtener el valo de la variable my_car, arrojando un error si no se encuentra. 
+my_car = request.session['my_car']
 
-   ```json
-   mutation Crearzona {
-     mutation Crearzona {
-       crearZona(
-         nombre:"Michoacán",
-         descripcion:"Oaxaca"
-       ) {
-         zona {
-           id
-           nombre
-           descripcion
-         }
-       }
-     }
-   ```
-   Ha! Hemos creado una zona erronea, hay que eliminarla y volver a crearla, por lo que a continuación se creará la mutación __EliminarZona__
+#obtener el valor de my_car y en caso de no encontrarlo regresar mini como default
+my_car = request.session.get('my_car', 'mini')
 
-1. Crear la mutación __EliminarZona__ en el archivo `Bedutravels/tours/schema.py` que permite eliminar un registro a la tabla __Zona__
+# establecer el valor de my_car como mini
+request.session['my_car'] = 'mini'
 
-   Se crea la clase __EliminarZona__ de la siguiente manera:
+# borrar el valor de la sesión
+del request.session['my_car']
+```
 
-   ```python
-   class EliminarZona(graphene.Mutation):
-       """ Permite realizar la operación de eliminar en la tabla Zona """
-       class Arguments:
-           """ Define los argumentos para eliminar una Zona """
-           id = graphene.ID(required=True)
+Un ejemplo del uso de sesiónes puede ser la implementación de un contador de visitas.
 
-       # El atributo usado para la respuesta de la mutación, en este caso sólo se
-       # indicará con la variuable ok true en caso de éxito o false en caso
-       # contrario
-       ok = graphene.Boolean()
+En nuestro proyecto django podemos reemplazar la vista index por el siguiente código. 
 
-       def mutate(self, info, id):
-           """
-           Se encarga de eliminar la nueva Zona donde sólo es necesario el atributo
-           id y además obligatorio.
-           """
-           try:
-               # Si la zona existe se elimina sin más
-               zona = Zona.objects.get(pk=id)
-               zona.delete()
-               ok = True
-           except Zona.DoesNotExist:
-               # Si la zona no existe, se procesa la excepción
-               ok = False
-           # Se regresa una instancia de esta mutación
-           return EliminarZona(ok=ok)
-   ```
-   En este caso el único argumento necesario para borrar una Zona es el id, además de que el valor regresado por la mutación no es una Zona, si no, una variable de tipo lógico (Boolean) que regresa un valor de __true__ si se ha encontrado y eliminado la Zona o __false__ en caso contrario.
-   ***
+```python
+from django.shortcuts import render
 
-1. Agregar la nueva mutación al esquema (schema) en el archivo `Bedutravels/tours/schema.py`
+# Create your views here.
+def index(request):
+    num_visits = request.session.get('num_visits', 0)
+    request.session['num_visits'] = num_visits + 1
 
-   Por lo tanto hay que modificar la clase __Mutaciones__ de la siguiente manera:
+    context = {
+        'num_visits': num_visits,
+    }
+    return render(request, 'index.html', context=context)
+```
 
-   ```python
-   class Mutaciones(graphene.ObjectType):
-       crear_zona = CrearZona.Field()
-       eliminar_zona = EliminarZona.Field()
-   ```
+Hemos incluido un valor que depende de nuestra sesión y que se alamacena por defecto en una cookie.
 
-   Como el esquema ya incluye la clase de mutaciones, ya no es necesario agregarla.
-   ***
+SI implementamos una vista sencilla asociada podremos observar que el valor de visitas se incrementará cada que visitemos una página.
 
-1. Eliminando una Zona usando la __API__ `/graphql`
+```HTML
+<h2>Manejo de una sesión</h2>
 
-   __Abrir la url:__
+<p>Has visitado esta página {{ num_visits }}</p>
+```
+![](img/Ejemplo3.jpg)
 
-   http://localhost:8000/graphql
+Al visitar la página nuevamente la información de nuestra visitar persiste.
+![](img/Ejemplo4.jpg)
 
-   __Elimando la zona Michoacán:__
+Debido a que esta información se almacena en una cookie si borramos las cookies se borrará la información. De acuerdo a la configuración que hayamos establecido.
 
-   ```json
-   mutation EliminarZona {
-     eliminarZona(id:"11") {
-       ok
-     }
-   }
-   ```
-   el resultado deberá ser similar al siguiente:
+Algunas configuraciones adicionales para la sesión son:
 
-   ![Crearzona](assets/mutaciones-02.png)
+- set_expiry (valor): Establece el tiempo de caducidad de la sesión.
+- get_expiry_age(): Devuelve el número de segundos hasta que caduque esta sesión.
+- get_expiry_date(): Devuelve la fecha en que expirará esta sesión.
+- clear_expired() − Elimina las sesiones caducadas del almacén de sesiones.
+- get_expire_at_browser_close(): Devuelve True o False, dependiendo de si las cookies de sesión del usuario han caducado cuando se cierra el navegador web del usuario.

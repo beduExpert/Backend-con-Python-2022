@@ -60,7 +60,7 @@ La filosofía que utiliza Django para la implementación del middleware es imple
 
 
 
- - [**`EJEMPLO 05: Manejo de Sesiones`**](Ejemplo-04)
+ - [**`EJEMPLO 04: Manejo de Sesiones`**](Ejemplo-04)
 
 ### Postwork :memo:
 Aplica lo todo lo que aprendiste durante la sesión siguiendo un proyecto guiado.
