@@ -1,19 +1,15 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 07`](../Readme.md) > Ejemplo-02
-## Preparando entorno de producción en el hospedaje del Proveedor.
+## Ejemplo 02: Preparando entorno de producción en el hospedaje del Proveedor.
 
-### OBJETIVOS
-- Conocer el procedimiento para subir nuestra aplicación al espacio de hospedaje del proveedor.
+### Objetivo
+- Analizar el procedimiento para subir nuestra aplicación al espacio de hospedaje del proveedor.
 - Crear un entorno virtual para instalar los módulos para nuestra aplicación.
-- Creando una aplicación para configurar el entorno de la aplicación
+- Utilizar una aplicación para configurar el entorno de la aplicación
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-07/Ejemplo-02`
-
-### DESARROLLO
+### Desarollo
 El subir los archivos de nuestra aplicación se puede realizar de varias formas, pero la más recomendada por la cantidad de archivos y para el manejo de versiones es hacer uso de git.
 
-1. Lo primer que hay que hacer es tener los archivos de nuestro proyecto en un repositorio, por lo que vamos a crear un nuevo repo sólo con la carpeta __Bedutravels__:
+Lo primer que hay que hacer es tener los archivos de nuestro proyecto en un repositorio, por lo que vamos a crear un nuevo repo sólo con la carpeta __Bedutravels__:
 
    __Copiar la carpeta `Bedutravels` fuera dela carpeta de la carpeta del repo:__
 
@@ -71,7 +67,7 @@ El subir los archivos de nuestra aplicación se puede realizar de varias formas,
    Actualiza la página del repo en github y comprobar que ya existen los archivos del proyecto Bedutravels.
    ***
 
-1. __Clonando repo__: Estándo en la opción de __Dashboard__ dar click en el botón __$ Bash__ de la sección __New console__ lo que iniciará una consola o terminal de trabajo:
+__Clonando repo__: Estándo en la opción de __Dashboard__ dar click en el botón __$ Bash__ de la sección __New console__ lo que iniciará una consola o terminal de trabajo:
 
    ![Abriendo consola en PythonAnyWhere](assets/consola-01.png)
 
@@ -99,7 +95,7 @@ El subir los archivos de nuestra aplicación se puede realizar de varias formas,
    Con esto ya se cuenta con el proyecto Bedutravels en el hospedaje de PythonAnyWhere.
    ***
 
-1. Creando un entorno virtual para nuestro proyecto en PythonAnyWhere
+Creando un entorno virtual para nuestro proyecto en PythonAnyWhere
 
    ```console
    1:23 ~ $ mkvirtualenv Bedutravels --python=/usr/bin/python3.7
@@ -124,7 +120,7 @@ El subir los archivos de nuestra aplicación se puede realizar de varias formas,
    - Desactivar: `deactivate`
    ***
 
-1. Instalando los requerimientos de módulos. Asegurarse que el entorno __Bedutravels__ está activo.
+Instalando los requerimientos de módulos. Asegurarse que el entorno __Bedutravels__ está activo.
 
    ```console
    (Bedutravels) 11:24 ~ $ cd Bedutravels/
@@ -154,7 +150,7 @@ El subir los archivos de nuestra aplicación se puede realizar de varias formas,
    Con esto ya estarán los módulos necesarios para que nuestra aplicación funcione.
    ***
 
-1. Creando y configurando una aplicación en PythonAnyWhere para hacer uso del entorno virtual y de los archivos de nuestra aplicación Bedutravels.
+Creando y configurando una aplicación en PythonAnyWhere para hacer uso del entorno virtual y de los archivos de nuestra aplicación Bedutravels.
 
    ![Opción Web del Dashboard](assets/dashboard-web-01.png)
 

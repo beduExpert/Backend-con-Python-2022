@@ -1,21 +1,17 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 07`](../Readme.md) > Ejemplo-04
-## Archivos estáticos y base de datos en producción
+## Ejemplo 04: Archivos estáticos y base de datos en producción
 
-### OBJETIVOS
-- Preparar el entorno de producción para los archivos estáticos
+### Objetivo
+- Utilizar el entorno de producción para los archivos estáticos
 - Configurar la base de datos en producción
 
-### REQUISITOS
-1. Actualizar repositorio __Backend-con-Python__
-1. La carpeta de referencia es `Sesion-07/Ejemplo-04/Bedutravels/`
-1. Contar con repo __Bedutravels__ en equipo local
-1. La carpeta de trabajo debe ser `Bedutravels/`
-1. Contar con repo __Bedutravels__ en Github
-1. Contar con repo __Bedutravels__ en Pythonanywhere
-1. Contar con el proyecto ya configurado en Pythonanywhere
+### Desarrollo
 
-### DESARROLLO
-1. Nuestra aplicación en producción actualmente se ve sin estilos y para corregir esto en la carpeta `Bedutravels/` en el equipo local agregar el siguiente código al archivo `Bedutravels/Bedutravels/settings-prod.py`:
+Para este ejemplo necesitas contar con repositorio __Bedutravels__ en Github.
+Contar con el repositorio __Bedutravels__ en Pythonanywhere.
+Contar con el proyecto ya configurado en Pythonanywhere
+
+Nuestra aplicación en producción actualmente se ve sin estilos y para corregir esto en la carpeta `Bedutravels/` en el equipo local agregar el siguiente código al archivo `Bedutravels/Bedutravels/settings-prod.py`:
 
    ```python
    STATIC_ROOT = os.path.join(BASE_DIR, "static")
@@ -79,7 +75,7 @@
    Y finalmente actualiza la página en el navegador y el resultado debería ser similar al siguiente:
    ![Aplicación con estilos](assets/produccion-02.png)
 
-1. La base de datos a usar en producción es MySQL con los datos obtenidos anteriormente, se configuran en el archivo `Bedutravels/Bedutravels/settings-prod.py` en la sección de base de datos quedando de la siguiente forma:
+La base de datos a usar en producción es MySQL con los datos obtenidos anteriormente, se configuran en el archivo `Bedutravels/Bedutravels/settings-prod.py` en la sección de base de datos quedando de la siguiente forma:
 
    ```python
    # Database

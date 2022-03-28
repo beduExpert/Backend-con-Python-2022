@@ -1,5 +1,6 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 07`](../Readme.md) > Postwork
-## Aplicar los conceptos de la clase a tú Proyecto.
+
+## Despliegue de la aplicación BEDUFLIX
 
 ### OBJETIVOS
 - Generar un registro y base de datos para el proyecto
@@ -10,10 +11,6 @@
 - Preparar el entorno de producción para los archivos estáticos
 - Configurar la base de datos en producción
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-07/Postwork`
-1. Contar con repo local del Proyecto funcional
 
 ### DESARROLLO
 El desarrollo consiste en realizar las actividades de los Ejemplos del 1 al 4 pero aplicándolo a tú Proyecto con la misión de que realices cada uno de los objetivos marcados en este Prework.

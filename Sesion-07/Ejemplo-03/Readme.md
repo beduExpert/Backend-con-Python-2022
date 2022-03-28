@@ -1,16 +1,12 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 07`](../Readme.md) > Ejemplo-03
-## El archivo `settings.py` para desarrollo y producción.
+## Ejemplo 03: El archivo `settings.py` para desarrollo y producción.
 
 ### OBJETIVOS
-- Conocer una propuesta para organizar el entorno de desarrollo y producción.
+- Analizar una propuesta para organizar el entorno de desarrollo y producción.
 - Preparar el archivo `settings.py` para producción
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Bedutravels/`
-
-### DESARROLLO
-1. __Separando configuraciones__ Debido a que las configuraciones entre Desarrollo y Producción pueden variar se recomienda usar dos archivos distintos para cada entorno.
+### Desarollo
+ __Separando configuraciones__ Debido a que las configuraciones entre Desarrollo y Producción pueden variar se recomienda usar dos archivos distintos para cada entorno.
 
    __Renombrar el archivo `Bedutravels/Bedutravels/settings.py` a `Bedutravels/Bedutravels/settings-dev-py` y luego realizar una copia con el nombre `settings-prod.py`:__
 
@@ -52,7 +48,7 @@
    ```
    Esto es para que el archivo `settings.py` sea independiente de desarrollo y producción, cada quien tiene el suyo.
 
-1. Ahora actualizamos el archivo `settings-prod.py` para corregir el error obtenido en el ejemplo anterior:
+Ahora actualizamos el archivo `settings-prod.py` para corregir el error obtenido en el ejemplo anterior:
 
    ```python
    ALLOWED_HOSTS = ["rctorr.pythonanywhere.com"]
@@ -125,4 +121,4 @@
    Se actualiza la página de la aplicación y se debería observar algo similar a:
 
    ![aplicación funcionando en producción](assets/produccion-01.png)
-   
+

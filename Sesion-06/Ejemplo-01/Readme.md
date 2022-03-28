@@ -86,7 +86,7 @@ GET /api'equipo?id=2 Content-Type: application JSON
 - Resolver: Los resolutores proporcionan las direcciones para convertir la operación GraphQL en datos. Resuelven la consulta a los datos mediante la definición de funciones de resolución.
 
 
-Utilizando los conceptos anteriormente dichos construyamos una consulta que nos permita recuperar la cantidad de usuarios que han hecho fork a un repositorio. 
+Utilizando los conceptos anteriormente dichos construyamos una consulta que nos permita recuperar la cantidad de usuarios que han hecho fork a un repositorio.
 
 ```javasvript
 {

@@ -1,17 +1,15 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 07`](../Readme.md) > Ejemplo-01
-## Proveedores, requisitos, registro y bases de datos.
+## Ejemplo 01:  Proveedores, requisitos, registro y bases de datos.
 
-### OBJETIVOS
-- Conocer algunos proveedores para hospedar nuestra aplicación web creada en Django.
-- Elegir un proveedor, obtener los datos y requisitos para publicar nuestra aplicación.
+### Objetivo
+- Analizar algunos proveedores para hospedar nuestra aplicación web creada en Django.
+- Utilizar un proveedor, obtener los datos y requisitos para publicar nuestra aplicación.
 - Generar un registro y base de datos.
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-07/Ejemplo-01`
 
-### DESARROLLO
-1. Algunos proveedores que pueden ser usados para hospedar nuestra aplicación creada con Python son:
+### Desarrollo
+
+Algunos proveedores que pueden ser usados para hospedar nuestra aplicación creada con Python son:
 
    - PythonAnyWhere https://www.pythonanywhere.com *
    - Heroku https://www.heroku.com
@@ -21,7 +19,7 @@
    - Amazon Web Services https://aws.amazon.com/es/
    - Infra estructura propia
 
-1. El proveedor elegido será PythonAnyWhere, por lo que lo primero es registrarse para contar con usuario y clave.
+El proveedor elegido será PythonAnyWhere, por lo que lo primero es registrarse para contar con usuario y clave.
 
    - https://www.pythonanywhere.com/registration/register/beginner/
 
@@ -37,7 +35,7 @@
 
    - https://help.pythonanywhere.com/pages/DeployExistingDjangoProject
 
-1. Creando una base de datos para nuestro proyecto Bedutravels, lo primero es ir a la opción __Databases__ y asignar la clave para el usuario administrador del servidor MySQL y usaremos la misma clave usada en los contenedores __pythonsql__.
+Creando una base de datos para nuestro proyecto Bedutravels, lo primero es ir a la opción __Databases__ y asignar la clave para el usuario administrador del servidor MySQL y usaremos la misma clave usada en los contenedores __pythonsql__.
 
    ![Asignando clave al usuario root de MySQL](assets/bd-01.png)
 
@@ -52,7 +50,7 @@
    - Host: tu-usuario.mysql.pythonanywhere-services.com
    ***
 
-1. Estándo en la misma página del punto anterior, existe la opción para crear nuestra base de datos a la que llamaremos __Bedutravels__:
+ Estándo en la misma página del punto anterior, existe la opción para crear nuestra base de datos a la que llamaremos __Bedutravels__:
 
    ![Creando la base de datos Bedutravels](assets/bd-04.png)
 
