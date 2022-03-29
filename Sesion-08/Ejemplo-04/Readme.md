@@ -312,7 +312,7 @@ Las siguientes pruebas al final de la clase de prueba. Éstos comprueban que sol
 	        self.assertEqual(resp.context['form'].initial['renewal_date'], date_3_weeks_in_future )
 	```
 
-La siguiente prueba verifica que la vista redirija a una lista de todos los libros prestados si la renovación tiene éxito. Lo que se diferencia aquí es que por primera vez mostramos cómo se pueden `POST` datos utilizando el cliente. Los datos de publicación son el segundo argumento de la función de publicación y se especifican como un diccionario de clave / valores.
+La siguiente prueba verifica que la vista redirija a una lista de todos los libros prestados si la renovación tiene éxito. Lo que se diferencia aquí es que por primera vez mostramos  `POST` datos utilizando el cliente. Los datos de publicación son el segundo argumento de la función de publicación y se especifican como un diccionario de clave / valores.
 
 	```python
 	def test_redirects_to_all_borrowed_book_list_on_success(self):
