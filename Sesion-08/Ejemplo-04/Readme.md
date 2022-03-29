@@ -1,30 +1,29 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 08`](../Readme.md) > Ejemplo-04
-## Prueba de Formularios
+## Pruebas para vistas
 
 ### OBJETIVOS
-- Crear pruebas para Formularios
+- Crear pruebas para vistas
+- Implementar  clases de pruebas para vistas
+- Utilizar pruebas para vistas con formularios
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-08/Ejemplo-04`
 
 ### DESARROLLO
 
-1. Crear un entorno virtual para el proyecto **django-locallibrary-tutorial** con Django usando el siguiente comando:
+Crear un entorno virtual para el proyecto **django-locallibrary-tutorial** con Django usando el siguiente comando:
 
 `conda create --name django-locallibrary-tutorial python=3.7`
 
 ![](img/1.jpeg)
 
-2. Activaremos el entorno virtual con el comando:
+Activaremos el entorno virtual con el comando:
 
 	`conda activate django-locallibrary-tutorial`
 
-1. Entramos al directorio django-locallibrary-tutorial**
+Entramos al directorio django-locallibrary-tutorial**
 
 	`cd django-locallibrary-tutorial`
 
-1. Instalaremos los requerimientos del archivo requirements.txt y procederemos a realizar las migraciones y crear el super usuario con los siguientes comandos:**
+Instalaremos los requerimientos del archivo requirements.txt y procederemos a realizar las migraciones y crear el super usuario con los siguientes comandos:**
 
    ```
    pip3 install -r requirements.txt
@@ -38,7 +37,7 @@
 
 ### Pruebas en vistas
 
-1. En algunos casos, querrá probar una vista que está restringida a usuarios que solo inician sesión. Por ejemplo, nuestra `LoanedBooksByUserListView` es muy similar a nuestra vista anterior, pero solo está disponible para los usuarios que han iniciado sesión y solo muestra los `BookInstance` registros que el usuario actual tomó prestados, que tienen el estado 'en préstamo' y están ordenados como "más antiguos primero".
+En algunos casos, necesitaremos probar una vista que está restringida a usuarios que solo inician sesión. Por ejemplo, nuestra `LoanedBooksByUserListView` es muy similar a nuestra vista anterior, pero solo está disponible para los usuarios que han iniciado sesión y solo muestra los `BookInstance` registros que el usuario actual tomó prestados, que tienen el estado 'en préstamo' y están ordenados como "más antiguos primero".
 
 	```python
 	from django.contrib.auth.mixins import LoginRequiredMixin
@@ -55,10 +54,10 @@
 	        return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
 	```
 
-1. Agregue el siguiente código de prueba a **/catalog/tests/test_views.py** . Aquí primero usamos `SetUp()` para crear algunas cuentas y `BookInstance` objetos de inicio de sesión de usuario (junto con sus libros asociados y otros registros) que usaremos más adelante en las pruebas. Cada usuario de prueba toma prestados la mitad de los libros, pero inicialmente establecimos el estado de todos los libros en "mantenimiento". Hemos utilizado en `SetUp()` lugar de `setUpTestData()` porque modificaremos algunos de estos objetos más adelante.
+Agrega el siguiente código de prueba a **/catalog/tests/test_views.py** . Primero usamos el método  `SetUp()` para crear algunas cuentas y `BookInstance` para generar objetos  que usaremos más adelante en las pruebas. Hemos utilizado en `SetUp()` lugar de `setUpTestData()` porque modificaremos algunos de estos objetos más adelante.
 
-	> Nota: El `setUp()` código a continuación crea un libro con una especificación **Language**, pero es posible que su código no incluya el Languagemodelo, ya que se creó como un desafío . Si este es el caso, simplemente comente las partes del código que crean o importan objetos de Lenguaje. También debe hacer esto en la  `RenewBookInstancesViewTestsección` que sigue.
-	
+> Nota: El método `setUp()` código a continuación crea un libro con una especificación **Language**, pero es posible que su código no incluya el Languagemodelo, ya que se creó como un desafío . Si este es el caso, simplemente comente las partes del código que crean o importan objetos de Lenguaje. También debe hacer esto en la  `RenewBookInstancesViewTestsección` que sigue.
+
 	```python
 	import datetime
 	from django.utils import timezone
@@ -113,9 +112,9 @@
 	        self.assertTemplateUsed(resp, 'catalog/bookinstance_list_borrowed_user.html')
 	```
 
-1. Para verificar que la vista redirigirá a una página de inicio de sesión si el usuario no ha iniciado sesión usamos assertRedirects, como se demuestra en test_redirect_if_not_logged_in(). Para verificar que la página se muestra para un usuario que inició sesión, primero iniciamos sesión en nuestro usuario de prueba, y luego accedemos a la página nuevamente y verificamos que obtenemos un status_code200 (éxito). 
+Para verificar que la vista redirigirá a una página de inicio de sesión si el usuario no ha iniciado sesión usamos `assertRedirects`, como se demuestra en `test_redirect_if_not_logged_in()`. Para verificar que la página se muestra para un usuario que inició sesión, primero iniciamos sesión en nuestro usuario de prueba, y luego accedemos a la página nuevamente y verificamos que obtenemos un status_code200 (éxito). 
 
-1. El resto de la prueba verifica que nuestra vista solo devuelve libros que están prestados a nuestro prestatario actual. Copie el código (que se explica por sí mismo) al final de la clase de prueba anterior.
+El resto de la prueba verifica que nuestra vista solo devuelve libros que están prestados a nuestro prestatario actual. Implementa el siguiente código en tu clase:
 
 	```python
 	def test_only_borrowed_books_in_list(self):
@@ -180,7 +179,7 @@
 	
 ### Prueba de vistas con formularios
 
-1. Probar vistas con formularios es un poco más complicado que en los casos anteriores, porque necesita probar más rutas de código: visualización inicial, visualización después de que la validación de datos haya fallado y visualización después de que la validación haya tenido éxito. La buena noticia es que usamos el cliente para realizar pruebas casi exactamente de la misma manera que lo hicimos para las vistas de solo visualización.
+1. Probar vistas con formularios es un poco más complicado que en los casos anteriores, porque  se necesita probar más rutas de código como la visualización inicial, visualización después de que la validación de datos haya fallado y visualización después de que la validación haya tenido éxito. La buena noticia es que usamos el cliente para realizar pruebas casi exactamente de la misma manera que lo hicimos para las vistas de solo visualización.
 
 1. Para demostrarlo, escribamos algunas pruebas para la vista utilizada para renovar libros (`renew_book_librarian()`):
 
@@ -216,9 +215,9 @@
 	
 	    return render(request, 'catalog/book_renew_librarian.html', {'form': form, 'bookinst':book_inst})
 	```
-1. Necesitaremos probar que la vista solo está disponible para los usuarios que tienen el `can_mark_returned` permiso, y que los usuarios son redirigidos a una página de error HTTP 404 si intentan renovar una `BookInstance` que no existe. Debemos verificar que el valor inicial del formulario esté sembrado con una fecha de tres semanas en el futuro, y que si la validación se realiza correctamente, se nos redirige a la vista "Todos los libros prestados". Como parte de la verificación de las pruebas de validación fallida, también verificaremos que nuestro formulario envíe los mensajes de error apropiados.
+Necesitaremos probar que la vista solo está disponible para los usuarios que tienen el permiso `can_mark_returned` , y que los usuarios son redirigidos a una página de error HTTP 404 si intentan renovar una instancia `BookInstance` que no existe. Debemos verificar que el valor inicial del formulario esté sembrado con una fecha de tres semanas en el futuro, y que si la validación se realiza correctamente, se nos redirige a la vista de libros prestados.
 
-1. Agregue la primera parte de la clase de prueba (que se muestra a continuación) al final de **/catalog/tests/test_views.py** . Esto crea dos usuarios y dos instancias de libros, pero solo le otorga a un usuario el permiso necesario para acceder a la vista. El código para otorgar permisos durante las pruebas se muestra en negrita:
+:a primera parte de la clase de prueba (que se muestra a continuación) se debe de incluir al final de **/catalog/tests/test_views.py** . Esto crea dos usuarios y dos instancias de libros, pero solo le otorga a un usuario el permiso necesario para acceder a la vista. El código para otorgar permisos durante las pruebas se muestra en negrita:
 
 	```
 	from django.contrib.auth.models import Permission # Required to grant the permission needed to set a book as returned.
@@ -255,7 +254,7 @@
 	        self.test_bookinstance2=BookInstance.objects.create(book=test_book,imprint='Unlikely Imprint, 2016', due_back=return_date, borrower=test_user2, status='o')
 	```
 	
-1. Agregue las siguientes pruebas al final de la clase de prueba. Éstos comprueban que solo los usuarios con los permisos correctos ( testuser2 ) puedan acceder a la vista. Comprobamos todos los casos: cuando el usuario no está conectado, cuando un usuario está conectado pero no tiene los permisos correctos, cuando el usuario tiene permisos pero no es el prestatario (debería tener éxito), y qué sucede cuando intenta acceder a un `BookInstance` que no existe. También comprobamos que se utilice la plantilla correcta.
+Las siguientes pruebas al final de la clase de prueba. Éstos comprueban que solo los usuarios con los permisos correctos ( testuser2 ) puedan acceder a la vista. Comprobamos todos los casos: cuando el usuario no está conectado, cuando un usuario está conectado pero no tiene los permisos correctos, cuando el usuario tiene permisos pero no es el prestatario (debería tener éxito), y qué sucede cuando intenta acceder a un `BookInstance` que no existe. También comprobamos que se utilice la plantilla correcta.
 
 	```python
 	def test_redirect_if_not_logged_in(self):
@@ -313,7 +312,7 @@
 	        self.assertEqual(resp.context['form'].initial['renewal_date'], date_3_weeks_in_future )
 	```
 
-1. La siguiente prueba (agregue esto a la clase también) verifica que la vista redirija a una lista de todos los libros prestados si la renovación tiene éxito. Lo que se diferencia aquí es que por primera vez mostramos cómo se pueden `POST` datos utilizando el cliente. Los datos de publicación son el segundo argumento de la función de publicación y se especifican como un diccionario de clave / valores.
+La siguiente prueba verifica que la vista redirija a una lista de todos los libros prestados si la renovación tiene éxito. Lo que se diferencia aquí es que por primera vez mostramos cómo se pueden `POST` datos utilizando el cliente. Los datos de publicación son el segundo argumento de la función de publicación y se especifican como un diccionario de clave / valores.
 
 	```python
 	def test_redirects_to_all_borrowed_book_list_on_success(self):
@@ -322,7 +321,7 @@
 	        resp = self.client.post(reverse('renew-book-librarian', kwargs={'pk':self.test_bookinstance1.pk,}), {'renewal_date':valid_date_in_future} )
 	        self.assertRedirects(resp, reverse('all-borrowed') )
 	```
-1. Copie las dos últimas funciones en la clase, como se ve a continuación. Estos vuelven a probar las POSTsolicitudes, pero en este caso con fechas de renovación no válidas. Usamos assertFormError() para verificar que los mensajes de error sean los esperados.
+:as dos últimas funciones en la clase, como se ve a continuación. Estos vuelven a probar las solicitudes POST, pero en este caso con fechas de renovación no válidas. Usamos assertFormError() para verificar que los mensajes de error sean los esperados.
 
 	```	
 	 def test_form_invalid_renewal_date_past(self):
@@ -339,7 +338,7 @@
 	        self.assertEqual( resp.status_code,200)
 	        self.assertFormError(resp, 'form', 'renewal_date', 'Invalid date - renewal more than 4 weeks ahead')
 	```
-1. Ejecute las pruebas ahora.
+Realizamos la prueba 
  
 ```console
 python3 manage.py test

@@ -1,30 +1,32 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 08`](../Readme.md) > Ejemplo-01
-## Descripción general de la estructura de prueba
+## Ejemplo 01: Descripción general de la estructura de prueba
 
-### OBJETIVOS
-- Identificar dónde y cómo se definen las pruebas en django.
+### Objetivos
+- Analizar la estructura de pruebas django.
+- Implementar librerias de pruebas que integra django
+- Recuperar información adicional sobre las pruebas ejecutadas
 
-### REQUISITOS
-1. Actualizar repositorio
-1. Usar la carpeta de trabajo `Sesion-08/Ejemplo-01`
 
-### DESARROLLO
 
-1. Crear un entorno virtual para el proyecto **django-locallibrary-tutorial** con Django usando el siguiente comando:
+### Desarrollo
 
-`conda create --name django-locallibrary-tutorial python=3.7`
+>*__Nota__: Para los ejercicios de esta sesión utiliza el ejemplo provisto en django-locallibrary-tutorial*
+
+Crear un entorno virtual para el proyecto **django-locallibrary-tutorial** con Django usando el siguiente comando:
+
+`conda create --name django-locallibrary-tutorial python=3.8`
 
 ![](img/1.jpeg)
 
-2. Activaremos el entorno virtual con el comando:
+Activaremos el entorno virtual con el comando:
 
 	`conda activate django-locallibrary-tutorial`
 
-1. Entramos al directorio django-locallibrary-tutorial**
+ Entramos al directorio django-locallibrary-tutorial**
 
 	`cd django-locallibrary-tutorial`
 
-1. Instalaremos los requerimientos del archivo requirements.txt y procederemos a realizar las migraciones y crear el super usuario con los siguientes comandos:**
+Instalaremos los requerimientos del archivo requirements.txt y procederemos a realizar las migraciones y crear el super usuario con los siguientes comandos:**
 
    ```
    pip3 install -r requirements.txt
@@ -36,7 +38,7 @@
    ```
 ![](img/2.jpeg)
 
-1. Django utiliza el descubrimiento de pruebas integrado del módulo unittest (built-in test discovery), que descubrirá pruebas en el directorio de trabajo actual en cualquier archivo nombrado con el patrón **test*.py**. Siempre que asigne un nombre a los archivos de forma adecuada, puede utilizar la estructura que desee. Recomendamos crear un módulo para su código de prueba y que tenga archivos separados para modelos, vistas, formularios y cualquier otro tipo de código que necesite probar. Por ejemplo:
+Django utiliza el descubrimiento de pruebas integrado del módulo unittest (built-in test discovery), que descubrirá pruebas en el directorio de trabajo actual en cualquier archivo nombrado con el patrón **test*.py**. Siempre que asigne un nombre a los archivos de forma adecuada, puede utilizar la estructura que desee. Recomendamos crear un módulo para su código de prueba y que tenga archivos separados para modelos, vistas, formularios y cualquier otro tipo de código que necesite probar. Por ejemplo:
 
 	```console
 	catalog/
@@ -47,17 +49,17 @@
 		    test_views.py
 	```
 
-1. Cree una estructura de archivo como se muestra arriba en su proyecto  LocalLibrary. El  `__init__.py` debe ser un archivo vacío (esto le dice a Python que el directorio es un paquete). Puede crear los tres archivos de prueba copiando y cambiando el nombre del archivo de prueba de esqueleto /catalog/tests.py.
+Cree una estructura de archivo como se muestra arriba en su proyecto  LocalLibrary. El  `__init__.py` debe ser un archivo vacío (esto le dice a Python que el directorio es un paquete). Puede crear los tres archivos de prueba copiando y cambiando el nombre del archivo de prueba de esqueleto /catalog/tests.py.
 
-1. Abre el archivo /catalog/tests/test_models.py. El archivo debe importar django.test.TestCase, como se muestra:
+Abre el archivo /catalog/tests/test_models.py. El archivo debe importar django.test.TestCase, como se muestra:
 
 	```python
 		from django.test import TestCase
 
 		# Create your tests here.
 	```
-	
-1. Agregue la clase de prueba a continuación al final del archivo. La clase demuestra cómo construir una clase de caso de prueba derivando de TestCase.
+
+Agregue la clase de prueba a continuación al final del archivo. La clase demuestra cómo construir una clase de caso de prueba derivando de TestCase.
 
 	```python
 		class YourTestClass(TestCase):
@@ -84,7 +86,7 @@
         self.assertEqual(1 + 1, 2)
     ```
 
-1. La nueva clase define dos métodos que puede utilizar para la configuración previa a la prueba (por ejemplo, para crear modelos u otros objetos que necesitará para la prueba):
+La nueva clase define dos métodos que puede utilizar para la configuración previa a la prueba (por ejemplo, para crear modelos u otros objetos que necesitará para la prueba):
 
 	* setUpTestData() se llama una vez al comienzo de la ejecución de prueba para la configuración a nivel de clase. Usaría esto para crear objetos que no se modificarán ni cambiarán en ninguno de los métodos de prueba.
 	
@@ -131,11 +133,11 @@
 	
 ![](img/3.jpeg)
 
-1. Aquí vemos que tuvimos una falla de prueba, y podemos ver exactamente qué función falló y por qué (se espera esta falla, porque False no es True!).
+Aquí vemos que tuvimos una falla de prueba, y podemos ver exactamente qué función falló y por qué (se espera esta falla, porque False no es True!).
 
 ### Mostrando más información de las pruebas
 
-1. Si deseas obtener más información sobre la ejecución de prueba, puede cambiar el nivel de detalle. Por ejemplo, para enumerar los éxitos y fallas de la prueba (y una gran cantidad de información sobre cómo está configurada la base de datos de prueba), puede establecer la verbosidad en "2" como se muestra:
+Si deseas obtener más información sobre la ejecución de prueba, puede cambiar el nivel de detalle. Por ejemplo, para enumerar los éxitos y fallas de la prueba (y una gran cantidad de información sobre cómo está configurada la base de datos de prueba), puede establecer la verbosidad en "2" como se muestra:
 
 	```console
 	python3 manage.py test --verbosity 2
