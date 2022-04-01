@@ -43,9 +43,9 @@ Primero se envía una consulta solicitando solo un campo (hello) y se especifica
 
 
   - [**`EJEMPLO 02: Definiendo esquemas para crear un API GraphQL y realizar consultas de datos`**](Ejemplo-02)
-  - [**`RETO 02: Definiendo esquemas para crear un API GraphQL y realizar consultas de datos`**](Reto-01)
+  - [**`RETO 02: Definiendo esquemas para crear un API GraphQL y realizar consultas de datos`**](Reto-02)
   - [**`EJEMPLO 03: Mutaciones`**](Ejemplo-03)
-  - [**`RETO 03: Definiendo mutaciones (operaciones) para el API GraphQL`**](Reto-02)
+  - [**`RETO 03: Definiendo mutaciones (operaciones) para el API GraphQL`**](Reto-03)
 
 ***
 #### <ins>Tema 03: Middleware</ins>

@@ -206,5 +206,5 @@ El acceso al API sigue siendo el mismo:
    ```
    El resultado deberá ser similar a:
    ![Todas las zonas con sus tours y salidas disponibles](assets/api-graphql-05.png)
-<details>
+</details>
 
