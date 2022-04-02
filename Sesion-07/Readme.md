@@ -41,6 +41,7 @@ Usaremos un virtualenv, al igual que en nuestra PC.  Tendremos una copia de nues
 
   - [**`EJEMPLO 02: Preparando entorno de producción en el hospedaje del Proveedor. `**](Ejemplo-02)
   - [**`EJEMPLO 03: El archivo settings.py para desarrollo y producción.`**](Ejemplo-03)
+  - [**`Reto 01: Carga de proyecto en PythonAnywhere.`**](Reto-01)
   - [**`EJEMPLO 04: Archivos estáticos y base de datos en producción `**](Ejemplo-04)
 
 ***
@@ -51,6 +52,7 @@ Usaremos un virtualenv, al igual que en nuestra PC.  Tendremos una copia de nues
 Amazon Web Services (AWS abreviado) es una colección de servicios de computación en la nube pública (también llamados servicios web) que en conjunto forman una plataforma de computación en la nube, ofrecidas a través de Internet por Amazon.com. Es usado en aplicaciones populares como Dropbox, Foursquare, HootSuite. Es una de las ofertas internacionales más importantes de la computación en la nube.
 
  - [**`EJEMPLO 05: AWS ElasticBeanstalk`**](Ejemplo-05)
+ - [**`Reto 02: Carga de proyecto en AWS ElacticBeanstalk.`**](Reto-01)
 
 ### Postwork :memo:
 Aplica lo todo lo que aprendiste durante la sesión siguiendo un proyecto guiado.
