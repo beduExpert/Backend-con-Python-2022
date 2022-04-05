@@ -4,9 +4,7 @@
 ### Objetivos
 - Analizar la estructura de pruebas django.
 - Implementar librerias de pruebas que integra django
-- Recuperar información adicional sobre las pruebas ejecutadas
-
-
+- Reunir información adicional sobre las pruebas ejecutadas
 
 ### Desarrollo
 
