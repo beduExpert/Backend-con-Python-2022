@@ -1,121 +1,168 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 08`](../Readme.md) > Ejemplo-03
-## Prueba de Formularios
+## Ejemplo 03: Unittest - pruebas a clases
 
-### OBJETIVOS
-- Crear pruebas para Formularios
-- Implementar una clase de prueba para el formulario
+### Objetivos
+- Realizar pruebas a clases utilizando unitest
+- Gestionar las instancias de prueba de una clase utilizando script de pruebas
+
+### Desarrollo
+
+En este ejemplo vamos a implementar unittest para realizar pruebas un poco más complejas que las anteriores. Para realizar esto vamos a crear la siguiente clase:
 
 
+```python
+class Empleado:
 
-### DESARROLLO
+    cantidad_aumento = 1.05
 
-Crear un entorno virtual para el proyecto **django-locallibrary-tutorial** con Django usando el siguiente comando:
+    def __init__(self, fisrt, last, pay):
+        self.first = first
+        self.last = last
+        self.pay = pay
 
-`conda create --name django-locallibrary-tutorial python=3.7`
+    @property
+    def email(self):
+        return '{}.{}@email.com'.format(self.first, self.last)
 
-![](img/1.jpeg)
+    @property
+    def nombre_completo(self):
+        return '{}.{}'.format(self.first, self.last)
 
-Activaremos el entorno virtual con el comando:
-
-	`conda activate django-locallibrary-tutorial`
-
-Entramos al directorio django-locallibrary-tutorial**
-
-	`cd django-locallibrary-tutorial`
-
-Instalaremos los requerimientos del archivo requirements.txt y procederemos a realizar las migraciones y crear el super usuario con los siguientes comandos:**
-
-   ```
-   pip3 install -r requirements.txt
-   python3 manage.py makemigrations
-   python3 manage.py migrate
-   python3 manage.py collectstatic
-   python3 manage.py createsuperuser
-   python3 manage.py runserver
-   ```
-![](img/2.jpeg)
-
-### Pruebas en formularios
-
-La filosofía para probar formularios es la misma que para probar  modelos. Se debe probar todo lo que se  haya codificado
-
-Generalmente, esto significa que debe probar que los formularios tengan los campos que desea y que estos se muestren con las etiquetas y el texto de ayuda adecuados. Utilizando nuestro fomrulario de ejemplo RenwBookForm. Vamos a validar los distintos campos de la clase de prueba. 
-
-	```python
-	class RenewBookForm(forms.Form):
-	    """
-	    Form for a librarian to renew books.
-	    """
-	    renewal_date = forms.DateField(help_text="Enter a date between now and 4 weeks (default 3).")
-	
-	    def clean_renewal_date(self):
-	        data = self.cleaned_data['renewal_date']
-	
-	        #Check date is not in past.
-	        if data < datetime.date.today():
-	            raise ValidationError(_('Invalid date - renewal in past'))
-	        #Check date is in range librarian allowed to change (+4 weeks)
-	        if data > datetime.date.today() + datetime.timedelta(weeks=4):
-	            raise ValidationError(_('Invalid date - renewal more than 4 weeks ahead'))
-	
-	        # Remember to always return the cleaned data.
-	        return data
+    def aplicar_aumento(self):
+        self.pay = int(self.pay * self.cantidad_aumento)
 ```
 
-Abre el archivo **/catalog/tests/test_forms.py** y reemplaza cualquier código existente con el siguiente código de prueba para el `RenewBookForm` formulario. Comenzamos importando nuestro formulario y algunas bibliotecas de Python y Django para ayudar a probar la funcionalidad. Luego declaramos nuestra clase de prueba de formulario de la misma manera que lo hicimos para los modelos, usando un nombre descriptivo para nuestra `TestCase`
+Vamos a implentar pruebas a esta clase, utilizando la calse de prueba TestCase y el método assert. La primera función que nos interesa probar email, probará la lógica que genera el email del empleado su primer nombre y segundo nombre ( first , last) @email.com
 
-	```python
-	from django.test import TestCase
-	
-	# Create your tests here.
-	
-	import datetime
-	from django.utils import timezone
-	from catalog.forms import RenewBookForm
-	
-	class RenewBookFormTest(TestCase):
-	
-	    def test_renew_form_date_field_label(self):
-	        form = RenewBookForm()        
-	        self.assertTrue(form.fields['renewal_date'].label == None or form.fields['renewal_date'].label == 'renewal date')
-	
-	    def test_renew_form_date_field_help_text(self):
-	        form = RenewBookForm()
-	        self.assertEqual(form.fields['renewal_date'].help_text,'Enter a date between now and 4 weeks (default 3).')
-	
-	    def test_renew_form_date_in_past(self):
-	        date = datetime.date.today() - datetime.timedelta(days=1)
-	        form_data = {'renewal_date': date}
-	        form = RenewBookForm(data=form_data)
-	        self.assertFalse(form.is_valid())
-	
-	    def test_renew_form_date_too_far_in_future(self):
-	        date = datetime.date.today() + datetime.timedelta(weeks=4) + datetime.timedelta(days=1)
-	        form_data = {'renewal_date': date}
-	        form = RenewBookForm(data=form_data)
-	        self.assertFalse(form.is_valid())
-	
-	    def test_renew_form_date_today(self):
-	        date = datetime.date.today()
-	        form_data = {'renewal_date': date}
-	        form = RenewBookForm(data=form_data)
-	        self.assertTrue(form.is_valid())
-	        
-	    def test_renew_form_date_max(self):
-	        date = timezone.now() + datetime.timedelta(weeks=4)
-	        form_data = {'renewal_date': date}
-	        form = RenewBookForm(data=form_data)
-	        self.assertTrue(form.is_valid())
-	```
+Comenzemos escribiendo la primera prueba. Email Test.
 
-Las dos primeras funciones prueban que los campos `label` y `help_text` sean los esperados. Tenemos que acceder al campo utilizando el diccionario de campos (por ejemplo `form.fields['renewal_date'`]). Ten en cuenta  que también tenemos que probar si el valor de la etiqueta es `None`.
+```python 
+import unittest
+from empleado import Empleado
 
-El resto de las funciones prueban que el formulario sea válido para fechas de renovación que están dentro del rango aceptable y no válido para valores fuera del rango. Observa cómo construimos valores de fecha de prueba alrededor de nuestra fecha actual (`datetime.date.today()`) usando `datetime.timedelta()`(en este caso especificando un número de días o semanas). Luego, simplemente creamos el formulario, pasamos nuestros datos y probamos si es válido.
+class TestEmpleado(unittest.TestCase):
+    
+    def test_email(self):
+        print('Email Test')
 
-> Nota: Aquí no usamos la base de datos o el cliente de prueba. Considere modificar estas pruebas para usar SimpleTestCase. También necesitamos validar que se generan los errores correctos si el formulario no es válido; sin embargo, esto generalmente se hace como parte del procesamiento de la vista, por lo que nos ocuparemos de eso en la siguiente sección.
+        self.emp_1 = Empleado('Corey', 'Schafer', 24000)
+        self.emp_2 = Empleado('Beto', 'Smith', 60000)
 
-```console
-python3 manage.py test
+        self.assertEqual(self.emp_1.email, 'Corey.Schafer@email.com')
+        self.assertEqual(self.emp_2.email, 'Beto.Smith@email.com')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Juan'
+
+        self.assertEqual(self.emp_1.email, 'John.Schafer@email.com')
+        self.assertEqual(self.emp_2.email, 'Juan.Smith@email.com')
 ```
 
-![](img/3.png)
+Al correr nuestra prueba podemos implementar sentencias print() que nos permitan dan más información sobre el código que se está ejecutando. El resultado de la prueba es el siguiente: 
+
+```python
+Email Test
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.001s
+```
+
+Supongamos que nos intersa agregar una segunda prueba.Una prueba para aplicar aumento a nuestros empleados. 
+
+```
+    def test_aumento(self):
+        print('Aumento Test')
+        self.emp_1.aplicar_aumento()
+        self.emp_2.aplicar_aumento()
+
+        self.assertEqual(self.emp_1.pay, 52500)
+        self.assertEqual(self.emp_2.pay, 63000)
+```
+Al intentar correr este fragmento de código. Nos toparemos con el problema de que debido al scope nuestra variable no es posible realizar la prueba pues no existen empleados.
+
+Una solución es generar los empleados en cada prueba. Recuerda que el aumento se definió como un 5% sobre el salario base.
+
+```python
+    def test_aumento(self):
+        print('Aumento Test')
+        self.emp_1 = Empleado('Corey', 'Schafer',50000)
+        self.emp_2 = Empleado('Beto', 'Smith', 60000)
+
+        self.emp_1.aplicar_aumento()
+        self.emp_2.aplicar_aumento()
+
+        self.assertEqual(self.emp_1.pay, 52500)
+        self.assertEqual(self.emp_2.pay, 63000)
+```
+
+Al ejecutar la prueba obtenemos el resultado esperado. Las dos pruebas se ejecutan con éxito.
+
+```python
+Aumento Test
+.Email Test
+.
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
+```
+
+Sin embargo, generar empleados para cada prueba no resulta conveniente. Debido a esto unittest nos ofrece un método para manejar todos los datos de prueba que utilizaremos durante el caso de prueba.
+
+```python
+    def setUp(self):
+        self.emp_1 = Empleado('Corey', 'Schafer', 50000)
+        self.emp_2 = Empleado('Beto', 'Smith', 60000)
+```
+El métdodo setUp nos permite inicializar todos los aspectos necesarios para realizar nuestras pruebas. Adaptando el código de forma acorde tenemos lo siguiente:
+
+```python
+import unittest
+from empleado import Empleado
+
+class TestEmpleado(unittest.TestCase):
+
+    def setUp(self):
+        print('setUp')
+        self.emp_1 = Empleado('Corey', 'Schafer', 50000)
+        self.emp_2 = Empleado('Beto', 'Smith', 60000)
+
+    def test_email(self):
+        print('Email Test')
+
+        self.assertEqual(self.emp_1.email, 'Corey.Schafer@email.com')
+        self.assertEqual(self.emp_2.email, 'Beto.Smith@email.com')
+
+        self.emp_1.first = 'John'
+        self.emp_2.first = 'Juan'
+
+        self.assertEqual(self.emp_1.email, 'John.Schafer@email.com')
+        self.assertEqual(self.emp_2.email, 'Juan.Smith@email.com')
+
+    def test_aumento(self):
+        print('Aumento Test')
+
+        self.emp_1.aplicar_aumento()
+        self.emp_2.aplicar_aumento()
+
+        self.assertEqual(self.emp_1.pay, 52500)
+        self.assertEqual(self.emp_2.pay, 63000)
+```
+Hemos agregado una sentencia print en el método setUp(), está tiene el único fin de ejemplificar como se va a generar un empleado previo al inicio de cada prueba.
+
+Ejecutar el código anterior resulta en el siguiente resultado:
+
+ ```Python
+setUp
+Aumento Test
+.setUp
+Email Test
+.
+----------------------------------------------------------------------
+Ran 2 tests in 0.002s
+```
+Debido a los mensajes print podemos ver como se genera de forma correcta el empleado de prueba. el método setUp no es el único método que provee unittest para gestionar los datos de prueba. También contamos con el método tearDown que destruye los empleados que hemos generado posterior a cada prueba.
+
+```
+   def tearDown(self):
+        print('tearDown\n')
+```
+La implementación de este método será parte del reto que deberás resolver :).

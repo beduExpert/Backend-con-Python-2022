@@ -63,7 +63,7 @@ Recuerda que debes haber inicializado tu usuario en IAM y agregado los permisos 
 
 ![](img/img1.jpg)
 
-Para inicilizar tu proyecto en amazon AWS utiliza la CLI desde tu consola y corre los siguientes comandos.
+Para inicializar tu proyecto en amazon AWS utiliza la CLI desde tu consola y corre los siguientes comandos.
 
 ```
 eb init-p python-3.8 django-tutorial

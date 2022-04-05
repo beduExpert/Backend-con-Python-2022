@@ -1,9 +1,9 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 08`](../Readme.md) > Ejemplo-05
-## Secuencias de comandos entre sitios (XSS)
+## Ejemplo 05: Prueba de Módelos
 
 ### Objetivos
-- Analizar el mecanismo de protección contra comandos XSS
-- Ejemplificar el uso comandos XSS en Django contra XSS
+- Progamar pruebas para Modelos
+- Implementar las clases de pruebas provistas por django
 
 
 ### Desarollo
@@ -34,29 +34,104 @@ Instalaremos los requerimientos del archivo requirements.txt y procederemos a re
    ```
 ![](img/2.jpeg)
 
-Abre el sitio en su navegador local e inicie sesión en su cuenta de superusuario.
+### Pruebas en el proyecto LocalLibrary
 
-Navega a la página de creación del autor (que debería estar en URL :) [http://127.0.0.1:8000/catalog/author/create/]().
+Ahora que sabemos cómo ejecutar nuestras pruebas y qué tipo de cosas necesitamos probar, veamos algunos ejemplos prácticos.
 
-Introducir nombres y detalles de fecha para un nuevo usuario, y luego agregar el siguiente texto en el campo Apellido:
-`<script>alert('Test alert');</script>`.
+Como se discutió anteriormente, debemos probar todo lo que sea parte de nuestro diseño o que esté definido por el código que hayamos escrito, pero no las bibliotecas / código que ya haya probado Django o el equipo de desarrollo de Python.
 
-	![](img/3.png)
+Por ejemplo, considere el modelo de Author a continuación. Aquí deberíamos probar las etiquetas para todos los campos, porque aunque no hemos especificado explícitamente la mayoría de ellos, tenemos un diseño que dice cuáles deberían ser estos valores. Si no probamos los valores, entonces no sabemos que las etiquetas de los campos tienen sus valores deseados. De manera similar, aunque confiamos en que Django creará un campo de la longitud especificada, vale la pena especificar una prueba para esta longitud para asegurarse de que se implementó según lo planeado.
 
-	> Nota: Este es un script inofensivo que, si se ejecuta, mostrará un cuadro de alerta en su navegador. Si se muestra la alerta cuando envía el registro, el sitio es vulnerable a las amenazas XSS.
+```python
+class Author(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField(null=True, blank=True)
+    date_of_death = models.DateField('Died', null=True, blank=True)
+    
+    def get_absolute_url(self):
+        return reverse('author-detail', args=[str(self.id)])
+    
+    def __str__(self):
+        return '%s, %s' % (self.last_name, self.first_name)
+```	
 
-Presiona Enviar para guardar el registro.
+Abra **/catalog/tests/test_models.py** y reemplace cualquier código existente con el siguiente código de prueba para el Authormodelo.
 
-Cuando se guarde el autor, se mostrará como se muestra a continuación. Debido a las protecciones XSS `alert()`, no se debe ejecutar. En su lugar, la secuencia de comandos se muestra como texto sin formato.
+Aquí verá que primero importamos `TestCase` y derivamos nuestra clase de prueba ( `AuthorModelTest`) de ella, usando un nombre descriptivo para que podamos identificar fácilmente cualquier prueba fallida en el resultado de la prueba. Luego llamamos setUpTestData()para crear un objeto de autor que usaremos pero no modificaremos en ninguna de las pruebas.
 
-	![](img/4.png)
+	```python
+	from django.test import TestCase
 	
-El código fuente HTML de la página, puede ver que los caracteres peligrosos para las etiquetas de secuencia de comandos se han convertido en sus equivalentes de código de escape inofensivos (por ejemplo, `>` ahora `&gt;`)
-
-	```html
-	<h1>Author: Boon&lt;script&gt;alert(&#39;Test alert&#39;);&lt;/script&gt;, David (Boonie) </h1>
+	# Create your tests here.
+	
+	from catalog.models import Author
+	
+	class AuthorModelTest(TestCase):
+	
+	    @classmethod
+	    def setUpTestData(cls):
+	        #Set up non-modified objects used by all test methods
+	        Author.objects.create(first_name='Big', last_name='Bob')
+	
+	    def test_first_name_label(self):
+	        author=Author.objects.get(id=1)
+	        field_label = author._meta.get_field('first_name').verbose_name
+	        self.assertEquals(field_label,'first name')
+	
+	    def test_date_of_death_label(self):
+	        author=Author.objects.get(id=1)
+	        field_label = author._meta.get_field('date_of_death').verbose_name
+	        self.assertEquals(field_label,'died')
+	
+	    def test_first_name_max_length(self):
+	        author=Author.objects.get(id=1)
+	        max_length = author._meta.get_field('first_name').max_length
+	        self.assertEquals(max_length,100)
+	
+	    def test_object_name_is_last_name_comma_first_name(self):
+	        author=Author.objects.get(id=1)
+	        expected_object_name = '%s, %s' % (author.last_name, author.first_name)
+	        self.assertEquals(expected_object_name,str(author))
+	
+	    def test_get_absolute_url(self):
+	        author=Author.objects.get(id=1)
+	        #This will also fail if the urlconf is not defined.
+	        self.assertEquals(author.get_absolute_url(),'/catalog/author/1')
 	```
 
-El uso de plantillas de Django lo protege contra la mayoría de los ataques XSS. Sin embargo, es posible desactivar esta protección, y la protección no se aplica automáticamente a todas las etiquetas que normalmente no se llenarían con la entrada del usuario (por ejemplo, el `help_text` campo en un formulario generalmente no lo proporciona el usuario, por lo que Django no lo hace no escapar de esos valores).
+Las pruebas de campo verifican que los valores de las etiquetas de campo ( verbose_name) y que el tamaño de los campos de caracteres sea el esperado. Todos estos métodos tienen nombres descriptivos y siguen el mismo patrón:
 
-También es posible que los ataques XSS se originen en otra fuente de datos que no sea de confianza, como cookies, servicios web o archivos cargados (siempre que los datos no estén lo suficientemente desinfectados antes de incluirlos en una página). Si se estan mostrando datos de estas fuentes, es posible que deba agregar su propio código de desinfección.
+	```python
+	author=Author.objects.get(id=1)   # Get an author object to test
+	field_label = author._meta.get_field('first_name').verbose_name   # Get the metadata for the required field and use it to query the required field data
+	self.assertEquals(field_label,'first name')  # Compare the value to the expected result
+	```
+Las cosas interesantes a tener en cuenta son:
+
+	* No podemos obtener el verbose_name en uso directo author.first_name.verbose_name, porque author.first_namees una cadena (no un identificador del first_name objeto que podemos usar para acceder a sus propiedades). En su lugar, necesitamos usar el _metaatributo del autor para obtener una instancia del campo y usarlo para consultar la información adicional.
+	
+	* Elegimos usar en assertEquals(field_label,'first name')lugar de assertTrue(field_label == 'first name'). La razón de esto es que si la prueba falla, la salida de la primera le dice cuál era realmente la etiqueta, lo que facilita un poco la depuración del problema.
+
+También necesitamos probar nuestros métodos personalizados. Básicamente, estos solo verifican que el nombre del objeto se construyó como esperábamos usando el formato "Apellido", "Nombre", y que la URL que obtenemos para un Authorelemento es la que esperamos.
+
+```python
+def test_object_name_is_last_name_comma_first_name(self):
+    author=Author.objects.get(id=1)
+    expected_object_name = '%s, %s' % (author.last_name, author.first_name)
+    self.assertEquals(expected_object_name,str(author))
+        
+def test_get_absolute_url(self):
+    author=Author.objects.get(id=1)
+    #This will also fail if the urlconf is not defined.
+    self.assertEquals(author.get_absolute_url(),'/catalog/author/1')
+```
+Finalmente correpos  las pruebas. 
+
+```console
+python3 manage.py test
+```
+
+![](img/3.png)
+
+

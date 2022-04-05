@@ -16,10 +16,15 @@ Realizar pruebas a una aplicación nos asegura buena calidad de la misma y verif
 El debugging o depuración es el nombre que se le da al proceso de encontrar y eliminar los errores que pueden cometer softwares y hardwares.
 
 
-   - [**`EJEMPLO 01: Descripción general de la estructura de prueba.`**](Ejemplo-01)
-   - [**`EJEMPLO 02: Test de Modelos.`**](Ejemplo-02)
-   - [**`EJEMPLO 03: Test de Formularios`**](Ejemplo-03)
-   - [**`EJEMPLO 04: Test de Vistas.`**](Ejemplo-04)
+   - [**`EJEMPLO 01: Unittest`**](Ejemplo-01)
+   - [**`RETO 01: Pruebas unitarias usando unittest`**](Reto-01)
+   - [**`EJEMPLO 02: Unittest - excepciones`**](Ejemplo-02)
+   - [**`EJEMPLO 03:  Unittest - pruebas a clases`**](Ejemplo-03)
+   - [**`RETO 02: Pruebas a clases usando unittest`**](Reto-02)
+   - [**`EJEMPLO 04:  Django Test.`**](Ejemplo-04)
+   - [**`EJEMPLO 05:  Prueba de Módelos.`**](Ejemplo-05)
+   - [**`EJEMPLO 06:  Prueba de Formularios.`**](Ejemplo-06)
+   - [**`EJEMPLO 07:  Pruebas para vistas.`**](Ejemplo-07)
 
 ***
 #### <ins>Tema 02: Seguridad</ins>
@@ -30,7 +35,7 @@ Por último, hablaremos sobre la seguridad, los diferentes ataques y/o amenazas 
 
 Proteger los datos de los usuarios es una parte esencial de cualquier diseño de un sitio web.  La buena noticia para los usuarios de Django es que muchas de las amenazas más comunes son manejadas por el framework.
 
-   - [**`EJEMPLO 05: Secuencias de comandos entre sitios (XSS).`**](Ejemplo-05)
+   - [**`EJEMPLO 08: Secuencias de comandos entre sitios (XSS).`**](Ejemplo-08)
 
 
 ### Postwork :memo:

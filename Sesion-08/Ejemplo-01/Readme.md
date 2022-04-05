@@ -1,159 +1,146 @@
 [`Backend con Python`](../../Readme.md) > [`Sesión 08`](../Readme.md) > Ejemplo-01
-## Ejemplo 01: Descripción general de la estructura de prueba
+## Ejemplo 01: Unittest
 
 ### Objetivos
-- Analizar la estructura de pruebas django.
-- Implementar librerias de pruebas que integra django
-- Recuperar información adicional sobre las pruebas ejecutadas
-
-
+- Analizar la estructura unitest
+- Implementar un caso de pruebas
+- Unterpretar los mensajes de consola resultantes de la ejecución de pruebas.
 
 ### Desarrollo
 
->*__Nota__: Para los ejercicios de esta sesión utiliza el ejemplo provisto en django-locallibrary-tutorial*
+Las pruebas unitarias son un tiop de pruebas en las que verificamos la funcionalidad minimina de una parte de neustro software. Las pruebas nos permiten asegruarnos de que nuestro software funciona como debería y dotan de más confianza a nuestro erquipo de trabajo para colaborar en un futuro con nosotros.
 
-Crear un entorno virtual para el proyecto **django-locallibrary-tutorial** con Django usando el siguiente comando:
+unittest es el paquete que se integra por defecto en Python. Para integrarlo en un proyecto solo basta importarlo de la siguiente forma.
 
-`conda create --name django-locallibrary-tutorial python=3.8`
+```
+import unittest
+```
+unittest es una funcionalidad independiente de Django y podemos utilizar el paquete de forma independiente. Para demostrar su funcionalidad escribiremos un script de pruebas para una programa en python llamado calc.py
 
-![](img/1.jpeg)
+```python
+def suma(x,y):
+    return x + y
 
-Activaremos el entorno virtual con el comando:
+def resta(x,y):
+    return x-y
 
-	`conda activate django-locallibrary-tutorial`
+def multiplica(x,y):
+    return x*y
 
- Entramos al directorio django-locallibrary-tutorial**
+def divide(x,y):
+    return x/y
 
-	`cd django-locallibrary-tutorial`
+```
+Este es el contenido de nuestro programa calculadora. Consiste en las funciones suma, resta,multiplica y divide. Para inicializar un caso de pruebas generaremos un nuevo archivo de nombre `test_calc.py`. Esta nomenclatura test_ permite a modulos como unittest o pytest descubrir automáticamente casos de prueba.
 
-Instalaremos los requerimientos del archivo requirements.txt y procederemos a realizar las migraciones y crear el super usuario con los siguientes comandos:**
+```python
+import unittest
+import calc
 
-   ```
-   pip3 install -r requirements.txt
-   python3 manage.py makemigrations
-   python3 manage.py migrate
-   python3 manage.py collectstatic
-   python3 manage.py createsuperuser
-   python3 manage.py runserver
-   ```
-![](img/2.jpeg)
-
-Django utiliza el descubrimiento de pruebas integrado del módulo unittest (built-in test discovery), que descubrirá pruebas en el directorio de trabajo actual en cualquier archivo nombrado con el patrón **test*.py**. Siempre que asigne un nombre a los archivos de forma adecuada, puede utilizar la estructura que desee. Recomendamos crear un módulo para su código de prueba y que tenga archivos separados para modelos, vistas, formularios y cualquier otro tipo de código que necesite probar. Por ejemplo:
-
-	```console
-	catalog/
-  		/tests/
-		    __init__.py
-		    test_models.py
-		    test_forms.py
-		    test_views.py
-	```
-
-Cree una estructura de archivo como se muestra arriba en su proyecto  LocalLibrary. El  `__init__.py` debe ser un archivo vacío (esto le dice a Python que el directorio es un paquete). Puede crear los tres archivos de prueba copiando y cambiando el nombre del archivo de prueba de esqueleto /catalog/tests.py.
-
-Abre el archivo /catalog/tests/test_models.py. El archivo debe importar django.test.TestCase, como se muestra:
-
-	```python
-		from django.test import TestCase
-
-		# Create your tests here.
-	```
-
-Agregue la clase de prueba a continuación al final del archivo. La clase demuestra cómo construir una clase de caso de prueba derivando de TestCase.
-
-	```python
-		class YourTestClass(TestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        print("setUpTestData: Run once to set up non-modified data for all class methods.")
-        pass
-
-    def setUp(self):
-        print("setUp: Run once for every test method to setup clean data.")
-        pass
-
-    def test_false_is_false(self):
-        print("Method: test_false_is_false.")
-        self.assertFalse(False)
-
-    def test_false_is_true(self):
-        print("Method: test_false_is_true.")
-        self.assertTrue(False)
-
-    def test_one_plus_one_equals_two(self):
-        print("Method: test_one_plus_one_equals_two.")
-        self.assertEqual(1 + 1, 2)
-    ```
-
-La nueva clase define dos métodos que puede utilizar para la configuración previa a la prueba (por ejemplo, para crear modelos u otros objetos que necesitará para la prueba):
-
-	* setUpTestData() se llama una vez al comienzo de la ejecución de prueba para la configuración a nivel de clase. Usaría esto para crear objetos que no se modificarán ni cambiarán en ninguno de los métodos de prueba.
+class TestCalc(unittest.TestCase):
 	
-	* setUp() se llama antes de cada función de prueba para configurar cualquier objeto que pueda ser modificado por la prueba (cada función de prueba obtendrá una versión "nueva" de estos objetos).
+```
 
-	* 	Debajo de ellos tenemos una serie de métodos de prueba, que utilizamos funciones Assert toprobar si las condiciones son verdaderas, falsas o iguales (AssertTrue, AssertFalse, AssertEqual). Si la condición no se evalúa como se esperaba, la prueba fallará y reportará el error a su consola.
+El contenido de nuestro caso de pruebas incluye una clase llamada TestCalc que hereda de la clase TestCase. Dentro de esta clase escribiremos las diversas pruebas a nuestro programa calculadora.
 
-	* Los AssertTrue, AssertFalse, AssertEqual son afirmaciones estándar proporcionadas por unittest.  Hay otras aserciones estándar en el marco y también aserciones específicas de Django (Django-specific assertions) para probar si una vista redirecciona (assertRedirects),para probar si se ha utilizado una plantilla en particular (assertTemplateUsed), etc.
+Escribamos un primer caso para verificar la función suma.
 
-1. La forma más sencilla de ejecutar todas las pruebas es utilizar el comando:
+```python 
+import unittest
+import calc
 
-	```python
-	python3 manage.py test
-	```
-	
-	Esto descubrirá todos los archivos nombrados con el patrón `test*.py` bajo el directorio actual y ejecute todas las pruebas definidas usando las clases base apropiadas (aquí tenemos una serie de archivos de prueba, pero solo **/catalog/tests/test_models.py** contiene actualmente cualquier prueba). De forma predeterminada, las pruebas informarán individualmente solo sobre las fallas de las pruebas, seguidas de un resumen de la prueba.
-	
-	```console
-	>python manage.py test
+class TestCalc(unittest.TestCase):
+	def test_suma(self):
+		result = calc.suma(10,5)
+		self.assertEqual(result, 15)
+```
+Para correr nuestras pruebas llamamos a unittest como nuestro modulo principal y pasamos nuestro test case con el siguiente comando:
 
-	Creating test database for alias 'default'...
-	setUpTestData: Run once to set up non-modified data for all class methods.
-	setUp: Run once for every test method to setup clean data.
-	Method: test_false_is_false.
-	.setUp: Run once for every test method to setup clean data.
-	Method: test_false_is_true.
-	FsetUp: Run once for every test method to setup clean data.
-	Method: test_one_plus_one_equals_two.
-	.
-	======================================================================
-	FAIL: test_false_is_true (catalog.tests.tests_models.YourTestClass)
-	----------------------------------------------------------------------
-	Traceback (most recent call last):
-	  File "D:\Github\django_tmp\library_w_t_2\locallibrary\catalog\tests\tests_models.py", line 22, in test_false_is_true
-	    self.assertTrue(False)
-	AssertionError: False is not true
-	
-	----------------------------------------------------------------------
-	Ran 3 tests in 0.075s
-	
-	FAILED (failures=1)
-	Destroying test database for alias 'default'...
-	```
-	
-![](img/3.jpeg)
+```
+python -m unittest test_calc.py
+```
 
-Aquí vemos que tuvimos una falla de prueba, y podemos ver exactamente qué función falló y por qué (se espera esta falla, porque False no es True!).
+El resultado de este comando será el siguiente:
+```
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+```
+unittest nos indica el número de pruebas y el tiempo que le toma realizar las evaluciones.
 
-### Mostrando más información de las pruebas
 
-Si deseas obtener más información sobre la ejecución de prueba, puede cambiar el nivel de detalle. Por ejemplo, para enumerar los éxitos y fallas de la prueba (y una gran cantidad de información sobre cómo está configurada la base de datos de prueba), puede establecer la verbosidad en "2" como se muestra:
 
-	```console
-	python3 manage.py test --verbosity 2
-	```
-	
-![](img/4.png)
+Recuerda que las pruebas deben de nombrarse con test_ al inicio. modificquemos el nombre de nuestra prueba a tsuma y corramos la prueba nuevamente para mostrar esta funcionalidad.
 
-### Ejecutando pruebas especificas
+al correr el comando 
 
-Si desea ejecutar un subconjunto de sus pruebas, puede hacerlo especificando la ruta de puntos completa al paquete (s), módulo, TestCase subclase o metodo:
+```
+python -m unittest test_calc.py
+```
+En el resultado de la consola podemos observar como no se han ejecutado pruebas.
 
-	```
-	python3 manage.py test catalog.tests   # Run the specified module
-	python3 manage.py test catalog.tests.test_models  # Run the specified module
-	python3 manage.py test catalog.tests.test_models.YourTestClass # Run the specified class
-	python3 manage.py test catalog.tests.test_models.YourTestClass.test_one_plus_one_equals_two  # Run the specified method
-	```
-	
-![](img/5.png)
+```
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.000s
+```
+Por esta razón debemos tener cuidado al nombrar nuestras funciones de prueba. Renombremos nuestro método a test_suma y agreguemos más casos de prueba. En esta ocasión probaremos la suma de números negativos.
+
+```python
+import unittest
+import calc
+
+class TestCalc(unittest.TestCase):
+
+    def test_suma(self):
+        result = calc.suma(10,5)
+        self.assertEqual(result, 15)
+        result = calc.suma(-1,-1)
+        self.assertEqual(result,-2)
+
+```
+Notarás que si ejecutas esta prueba nos indica que se corrió 1 prueba con estado Ok
+
+```
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+
+```
+Esto es debido que aunque agregamos varios casos solo estamos probando la función prueba. Agreguemos una prueba para la resta.
+
+```python
+import unittest
+import calc
+
+class TestCalc(unittest.TestCase):
+
+    def test_suma(self):
+        result = calc.suma(10,5)
+        self.assertEqual(result, 15)
+        result = calc.suma(-1,-1)
+        self.assertEqual(result,-2)
+
+    def test_resta(self):
+        result = calc.resta(10,5)
+        self.assertEqual(result, 5)
+        result = calc.resta(-1,-1)
+        self.assertEqual(result,0)
+
+```
+El resultado de nuestro prueba indica que se han ejecutado dos pruebas de forma exitosa.
+
+```
+..
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+```
+
+
+
+
+
