@@ -19,5 +19,5 @@ El alumno será capaz de desarrollar aplicaciones a nivel BackEnd y API´s utili
  - [`Sesión 4`](Sesion-04): Django Admins, Views y Templates
  - [`Sesión 5`](Sesion-05): Django Rest framework, ( serializadores, generic field, viewsets)
  - [`Sesión 6`](Sesion-06): Middleware & GraphQL
- - [`Sesión 7`](Sesion-07): Deploy: PythonAnywhere, AWS.
+ - [`Sesión 7`](Sesion-07): Deploy: Pythonanywhere y AWS
  - [`Sesión 8`](Sesion-08): Debug, Testing y Seguridad
